@@ -212,8 +212,11 @@ jobs:
 
       - name: Roll back ECS service
         if: failure()
+        timeout-minutes: 20
         run: bash scripts/ci/rollback-ecs-service.sh
         env:
           ECS_CLUSTER_NAME: ${{ inputs.ecs-cluster-name }}
           ECS_SERVICE_NAME: ${{ inputs.ecs-service-name }}
           TASK_DEFINITION_ARN: ${{ steps.current-task-definition.outputs.arn }}
+          ECS_ROLLBACK_TIMEOUT_SECONDS: "900"
+          ECS_ROLLBACK_POLL_INTERVAL_SECONDS: "15"

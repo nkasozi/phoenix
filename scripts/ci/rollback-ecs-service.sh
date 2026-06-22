@@ -13,7 +13,10 @@ aws ecs update-service \
   --cluster "$ECS_CLUSTER_NAME" \
   --service "$ECS_SERVICE_NAME" \
   --task-definition "$TASK_DEFINITION_ARN"
-aws ecs wait services-stable \
-  --cluster "$ECS_CLUSTER_NAME" \
-  --services "$ECS_SERVICE_NAME"
+
+# Reuse the same detailed waiter used by deploys so rollback failures are diagnosable.
+ECS_STABILITY_TIMEOUT_SECONDS="${ECS_ROLLBACK_TIMEOUT_SECONDS:-900}" \
+ECS_STABILITY_POLL_INTERVAL_SECONDS="${ECS_ROLLBACK_POLL_INTERVAL_SECONDS:-15}" \
+bash scripts/ci/wait-for-ecs-service.sh
+
 echo "[ecs] Rollback complete."

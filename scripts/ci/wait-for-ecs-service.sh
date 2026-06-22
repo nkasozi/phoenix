@@ -11,6 +11,28 @@ describe_query_base=(
   --services "$ECS_SERVICE_NAME"
 )
 
+print_failure_hints() {
+  local recent_messages
+  recent_messages="$(${describe_query_base[@]} --query 'services[0].events[:20].message' --output text 2>/dev/null || true)"
+
+  if echo "$recent_messages" | grep -qiE 'GetAuthorizationToken|cannot pull registry auth|ECR.*i/o timeout|api\.ecr\..*amazonaws\.com'; then
+    echo "[ecs] DIAGNOSIS - Tasks cannot reach ECR to get auth token or pull image layers."
+    echo "[ecs] LIKELY CAUSE - VPC egress to AWS endpoints is blocked or missing."
+    echo "[ecs] ACTIONS - Verify task subnet route to NAT gateway OR VPC endpoints for ecr.api/ecr.dkr, plus S3 access for image layers."
+    echo "[ecs] ACTIONS - Confirm task security group allows outbound tcp/443 and NACLs allow ephemeral return traffic."
+  fi
+
+  if echo "$recent_messages" | grep -qiE 'unable to pull secrets|secretsmanager|ssm parameter'; then
+    echo "[ecs] DIAGNOSIS - Task failed retrieving runtime secrets/parameters."
+    echo "[ecs] ACTIONS - Verify task execution role permissions and network path to Secrets Manager/SSM endpoints."
+  fi
+
+  if echo "$recent_messages" | grep -qiE 'CannotPullContainerError|pull image manifest has been retried'; then
+    echo "[ecs] DIAGNOSIS - Image pull failed."
+    echo "[ecs] ACTIONS - Verify image exists in ECR, repository policy allows pull, and task execution role has ECR pull permissions."
+  fi
+}
+
 echo "[ecs] Waiting for service stability: $ECS_SERVICE_NAME"
 echo "[ecs] Timeout: ${timeout_seconds}s | Poll interval: ${poll_interval_seconds}s"
 
@@ -38,6 +60,7 @@ while true; do
     echo "[ecs] ERROR - timed out waiting for service stability after ${elapsed}s."
     echo "[ecs] Recent ECS service events:"
     ${describe_query_base[@]} --query 'services[0].events[:10].[createdAt,message]' --output table || true
+    print_failure_hints
     echo "[ecs] Final service snapshot:"
     ${describe_query_base[@]} --query 'services[0].{status:status,desired:desiredCount,running:runningCount,pending:pendingCount,deployments:deployments[*].{status:status,rollout:rolloutState,desired:desiredCount,running:runningCount,pending:pendingCount,failed:failedTasks}}' --output json || true
     exit 1
@@ -47,6 +70,7 @@ while true; do
   if (( elapsed % 60 < poll_interval_seconds )); then
     echo "[ecs] Recent ECS service events:"
     ${describe_query_base[@]} --query 'services[0].events[:3].[createdAt,message]' --output table || true
+    print_failure_hints
   fi
 
   sleep "$poll_interval_seconds"
