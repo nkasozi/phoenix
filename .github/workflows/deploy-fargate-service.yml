@@ -202,10 +202,13 @@ jobs:
           TASK_DEFINITION_ARN: ${{ steps.next-task-definition.outputs.arn }}
 
       - name: Wait for ECS service stability
+        timeout-minutes: 25
         run: bash scripts/ci/wait-for-ecs-service.sh
         env:
           ECS_CLUSTER_NAME: ${{ inputs.ecs-cluster-name }}
           ECS_SERVICE_NAME: ${{ inputs.ecs-service-name }}
+          ECS_STABILITY_TIMEOUT_SECONDS: "1200"
+          ECS_STABILITY_POLL_INTERVAL_SECONDS: "15"
 
       - name: Roll back ECS service
         if: failure()
