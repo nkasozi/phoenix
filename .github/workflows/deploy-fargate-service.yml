@@ -91,11 +91,11 @@ jobs:
           set -euo pipefail
           echo "::group::Workflow security scan"
           if [[ "${SKIP_SUPPLY_CHAIN_STEPS:-}" == "true" ]]; then
-            echo "[zizmor] SKIPPED - workflow scan because SKIP_SUPPLY_CHAIN_STEPS=true."
+            echo "[workflow-security] SKIPPED - zizmor workflow scan because SKIP_SUPPLY_CHAIN_STEPS=true."
           else
-            echo "[zizmor] SKIPPED - workflow scan because SKIP_ZIZMOR=true."
+            echo "[workflow-security] SKIPPED - zizmor workflow scan because SKIP_ZIZMOR=true."
           fi
-          echo "[zizmor] To enable this step, remove the skip variable or set it to 'false'."
+          echo "[workflow-security] To enable this step, remove the skip variable or set it to 'false'."
           echo "::endgroup::"
         env:
           SKIP_SUPPLY_CHAIN_STEPS: ${{ vars.SKIP_SUPPLY_CHAIN_STEPS }}
@@ -131,6 +131,7 @@ jobs:
 
       # Supply-chain checks fail the deploy before ECS receives a new task revision.
       - name: Scan image
+        if: ${{ vars.SKIP_SUPPLY_CHAIN_STEPS != 'true' }}
         uses: aquasecurity/trivy-action@v0.36.0
         with:
           exit-code: '1'
@@ -139,6 +140,7 @@ jobs:
           severity: CRITICAL,HIGH
 
       - name: Generate SBOM
+        if: ${{ vars.SKIP_SUPPLY_CHAIN_STEPS != 'true' }}
         uses: anchore/sbom-action@v0
         with:
           image: ${{ steps.image-ref.outputs.image }}
@@ -146,23 +148,36 @@ jobs:
           format: spdx-json
 
       - name: Upload SBOM artifact
+        if: ${{ vars.SKIP_SUPPLY_CHAIN_STEPS != 'true' }}
         uses: actions/upload-artifact@v6
         with:
           name: sbom-${{ github.sha }}
           path: sbom.spdx.json
 
       - name: Install Cosign
+        if: ${{ vars.SKIP_SUPPLY_CHAIN_STEPS != 'true' }}
         uses: sigstore/cosign-installer@v3
 
       - name: Sign image
+        if: ${{ vars.SKIP_SUPPLY_CHAIN_STEPS != 'true' }}
         run: cosign sign --yes "${{ steps.image-ref.outputs.image }}"
 
       - name: Attest build provenance
+        if: ${{ vars.SKIP_SUPPLY_CHAIN_STEPS != 'true' }}
         uses: actions/attest-build-provenance@v1
         with:
           subject-name: ${{ steps.login-ecr.outputs.registry }}/${{ inputs.ecr-repository }}
           subject-digest: ${{ steps.build-image.outputs.digest }}
           push-to-registry: true
+
+      - name: Skip supply-chain notice
+        if: ${{ vars.SKIP_SUPPLY_CHAIN_STEPS == 'true' }}
+        run: |
+          set -euo pipefail
+          echo "::group::Image supply-chain checks"
+          echo "[supply-chain] SKIPPED - image scan/SBOM/sign/attestation because SKIP_SUPPLY_CHAIN_STEPS=true."
+          echo "[supply-chain] Deploy continues directly to ECS/Fargate update."
+          echo "::endgroup::"
 
       - name: Capture current task definition
         id: current-task-definition
