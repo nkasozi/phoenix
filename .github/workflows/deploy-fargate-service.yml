@@ -15,6 +15,10 @@ on:
         required: false
         type: string
         default: .
+      build-args:
+        required: false
+        type: string
+        default: ""
       container-name:
         required: true
         type: string
@@ -116,6 +120,7 @@ jobs:
         uses: docker/build-push-action@v7
         with:
           context: ${{ inputs.build-context }}
+          build-args: ${{ inputs.build-args }}
           file: ${{ inputs.dockerfile-path }}
           provenance: false
           push: true

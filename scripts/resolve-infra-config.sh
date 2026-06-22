@@ -83,6 +83,10 @@ emit ecr-repository      phoenixRepositoryName       required
 emit ecs-cluster-name    phoenixClusterName          required
 emit ecs-service-name    phoenixServiceName          required
 emit task-family         phoenixTaskFamily           required
+emit api-ecr-repository phoenixApiRepositoryName    required
+emit api-ecs-cluster-name phoenixApiClusterName     required
+emit api-ecs-service-name phoenixApiServiceName     required
+emit api-task-family    phoenixApiTaskFamily        required
 
 load_balancer_dns_name="$(printf '%s' "$OUTPUTS" | jq -r '.phoenixLoadBalancerDnsName // empty')"
 if [[ -z "$load_balancer_dns_name" ]]; then
@@ -91,6 +95,15 @@ if [[ -z "$load_balancer_dns_name" ]]; then
 else
   printf 'app-url=http://%s\n' "$load_balancer_dns_name" >> "$GITHUB_OUTPUT"
   log "OK    - app-url = 'http://$load_balancer_dns_name' [derived from phoenixLoadBalancerDnsName]"
+fi
+
+api_load_balancer_dns_name="$(printf '%s' "$OUTPUTS" | jq -r '.phoenixApiLoadBalancerDnsName // empty')"
+if [[ -z "$api_load_balancer_dns_name" ]]; then
+  err "phoenixApiLoadBalancerDnsName is required to build the API URL."
+  missing=1
+else
+  printf 'api-url=http://%s\n' "$api_load_balancer_dns_name" >> "$GITHUB_OUTPUT"
+  log "OK    - api-url = 'http://$api_load_balancer_dns_name' [derived from phoenixApiLoadBalancerDnsName]"
 fi
 
 if [[ "$missing" -ne 0 ]]; then
