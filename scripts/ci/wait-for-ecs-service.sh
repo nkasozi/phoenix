@@ -27,6 +27,10 @@ print_failure_hints() {
     echo "[ecs] DIAGNOSIS - Image pull failed."
     echo "[ecs] ACTIONS - Verify the image, ECR policy, execution role, and network path."
   fi
+  if echo "$recent_messages" | grep -qiE 'Health checks failed with these codes: \[404\]'; then
+    echo "[ecs] DIAGNOSIS - The container is running, but the configured ALB health-check path returns HTTP 404."
+    echo "[ecs] ACTIONS - Add the configured health route to the app or correct the infrastructure health-check path."
+  fi
 }
 
 print_failure_details() {
