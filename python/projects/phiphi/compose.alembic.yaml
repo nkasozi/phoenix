@@ -1,0 +1,16 @@
+# This file is used to run alembic commands in the container
+# It is important to overwrite the entrypoint and working_dir
+# So that we don't get an error when running alembic commands
+
+services:
+  api:
+    entrypoint: /app/.docker-entrypoint.sh
+    working_dir: /app/projects/phiphi/
+    volumes:
+      # It is useful to be able to run the alembic in google cloud to test they work.
+      - $HOME/.config/gcloud:/gcp/config:ro
+    environment:
+      # It is useful to be able to run the alembic in google cloud to test they work.
+      GOOGLE_APPLICATION_CREDENTIALS: /gcp/config/application_default_credentials.json
+      # Be careful with the GOOGLE_CLOUD_PROJECT as resources in this project will be created and used.
+      GOOGLE_CLOUD_PROJECT: ${GOOGLE_CLOUD_PROJECT}

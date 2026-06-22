@@ -1,0 +1,113 @@
+{{- if .Values.console.enabled -}}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-console
+spec:
+  replicas: {{ .Values.console.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}-console
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}-console
+    spec:
+      containers:
+      - name: phoenix-console
+        image: {{ .Values.console.image.repository }}:{{ .Values.console.image.tag }}
+        ports:
+          - containerPort: 3000
+        env:
+          - name: NEXT_RUNTIME
+            value: "nodejs"
+          - name: NEXT_PUBLIC_API_URL
+            value: {{ tpl (.Values.console.api_url) . }}
+          - name: NEXT_PUBLIC_ENV
+            value: {{ .Values.console.env | quote }}
+          - name: NEXT_PUBLIC_DEV_ADMIN_EMAIL
+            value: {{ .Values.console.dev_admin_email | quote }}
+          - name: NEXT_PUBLIC_USER_INFO_COOKIE_NAME
+            value: {{ .Values.console.user_info_cookie_name | quote }}
+          {{ if .Values.console.env_auth_cookie }}
+          - name: NEXT_PUBLIC_ENV_AUTH_COOKIE
+            value: {{ tpl (.Values.console.env_auth_cookie) . }}
+          {{ end }}
+          - name: NEXT_PUBLIC_ENV_AUTH_URL
+            value: {{ tpl (.Values.console.env_auth_url) . }}
+          - name: NEXT_PUBLIC_ENV_LOGIN_URL
+            value: {{ tpl (.Values.console.env_login_url) . }}
+          - name: NEXT_PUBLIC_ENV_LOGOUT_URL
+            value: {{ tpl (.Values.console.env_logout_url) . }}
+          - name: NEXT_PUBLIC_PLATFORM_DOMAIN_BASE
+            value: {{ .Values.base_host | quote }}
+          - name: NEXT_PUBLIC_PLATFORM_DOMAIN_SCHEMA
+            value: {{ .Values.base_schema | quote }}
+          {{- if .Values.console.sentryDsn }}
+          - name: NEXT_PUBLIC_SENTRY_DSN
+            value: {{ .Values.console.sentryDsn | quote }}
+          {{- end }}
+          - name: NEXT_PUBLIC_SENTRY_DEBUG
+            value: {{ .Values.console.sentryDebug | quote }}
+          - name: NEXT_PUBLIC_SENTRY_ENVIRONMENT
+            value: {{ .Values.console.sentryEnvironment | quote }}
+          - name: NEXT_PUBLIC_SENTRY_RELEASE
+            value: {{ .Values.console.sentryRelease | quote }}
+          - name: NEXT_PUBLIC_SENTRY_TRACES_SAMPLE_RATE
+            value: {{ .Values.console.sentryTracesSampleRate | quote }}
+          - name: NEXT_PUBLIC_SENTRY_REPLAYS_ON_ERROR_SAMPLE_RATE
+            value: {{ .Values.console.sentryReplaysOnErrorSampleRate | quote }}
+          - name: NEXT_PUBLIC_SENTRY_REPLAYS_SESSION_SAMPLE_RATE
+            value: {{ .Values.console.sentryReplaysSessionSampleRate | quote }}
+          {{- if .Values.console.sentryOrg }}
+          - name: SENTRY_ORG
+            value: {{ .Values.console.sentryOrg | quote }}
+          {{- end }}
+          {{- if .Values.console.sentryProject }}
+          - name: SENTRY_PROJECT
+            value: {{ .Values.console.sentryProject | quote }}
+          {{- end }}
+          {{- if .Values.console.sentryAuthToken }}
+          - name: SENTRY_AUTH_TOKEN
+            value: {{ .Values.console.sentryAuthToken | quote }}
+          {{- end }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-console-service
+spec:
+  type: NodePort
+  selector:
+    app: {{ .Release.Name }}-console
+  ports:
+    - port: 80
+      targetPort: 3000
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ .Release.Name }}-console
+  annotations:
+    kubernetes.io/ingress.class: {{ .Values.ingressClassName }}
+    cert-manager.io/issuer: {{ .Values.cert_issuer.issuer_name }}
+spec:
+  ingressClassName: {{ .Values.ingressClassName }}
+  {{- if .Values.cert_issuer.enabled }}
+  tls:
+  - hosts:
+      - console.{{ .Values.base_host }}
+    secretName: oauth-phoenix-tls
+  {{- end }}
+  rules:
+  - host: console.{{ .Values.base_host }}
+    http:
+      paths:
+      - backend:
+          service:
+            name: {{.Release.Name }}-console-service
+            port:
+              number: 80
+        path: /
+        pathType: Prefix
+{{- end -}}

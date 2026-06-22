@@ -1,0 +1,26 @@
+# compose.nvidia.yaml
+x-phoenix-bind: &default-bind
+  type: bind
+  source: ../../
+  target: /app
+  consistency: cached
+
+services:
+  hugging_face_nvidia:
+    image: "hugging_face_classifier_nvidia"
+    user: "${HOST_UID:-root}:${HOST_GID:-root}"
+    build:
+      context: ../../
+      dockerfile: Dockerfile.nvidia
+      args:
+        PROJECT: hugging_face_classifier
+    volumes:
+      - *default-bind
+      - ~/.cache/huggingface:/root/.cache/huggingface
+      - $HOME/.config/gcloud:/gcp/config:ro
+    environment:
+      CLOUDSDK_CONFIG: /gcp/config
+      GOOGLE_APPLICATION_CREDENTIALS: /gcp/config/service_account_key.json
+      # Be careful with the GOOGLE_CLOUD_PROJECT as resources in this project will be created and used.
+      GOOGLE_CLOUD_PROJECT: ${GOOGLE_CLOUD_PROJECT}
+      HF_TOKEN: ${HF_TOKEN:-}

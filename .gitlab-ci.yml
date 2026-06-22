@@ -1,0 +1,259 @@
+# ########
+# Docs on testing the CI:
+# The Gitlab CI is set up so that if your branch is called `ci/*` it will
+# run CI pipelines for every commit.
+#
+# To run jobs which are currently specified in the yaml to only run when
+# commits are added to `main` branch, you can (temporarily) add the following
+# rule to the job, which will force the job to run on all commits to `ci/*`
+# branches.
+# - if: $CI_COMMIT_BRANCH =~ /^ci\/*/
+.docker_template:
+  image: docker:27.3.1-dind
+  services:
+    - docker:27.3.1-dind
+  before_script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+
+
+# As based on this:
+# https://docs.gitlab.com/ee/ci/yaml/workflow.html#git-flow-with-merge-request-pipelines
+workflow:
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_TAG
+    - if: $CI_COMMIT_REF_PROTECTED == "true"
+
+
+include:
+  # This remote is needed for the google authentication
+  - remote: 'https://gitlab.com/gitlab-com/gl-security/security-operations/infrastructure-security-public/oidc-modules/-/raw/3.0.0/templates/gcp_auth.yaml'
+  - local: 'python/projects/phiphi/.phiphi-gitlab-ci.yaml'
+  - local: 'python/projects/hugging_face_classifier/.hugging_face_classifier-gitlab-ci.yaml'
+  - local: 'console_ui/.console_ui-gitlab-ci.yaml'
+  - local: 'charts/main/.charts-main-gitlab-ci.yaml'
+
+services:
+  - docker:27.3.1-dind
+
+stages:
+  - debug
+  - pre_build
+  - test
+  - test_stage_2
+  - build
+  - publish
+  - release
+
+# GLOBAL VARIABLES
+variables:
+  DOCKER_DRIVER: overlay2
+  DOCKER_HOST: tcp://docker:2375
+  PHOENIX_SUPERSET_REGISTRY_IMAGE: $CI_REGISTRY_IMAGE/phoenix_superset
+  PHOENIX_SUPERSET_TEST_IMAGE: $PHOENIX_SUPERSET_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
+  PHOENIX_SUPERSET_LATEST_IMAGE: $PHOENIX_SUPERSET_REGISTRY_IMAGE:latest
+  PHOENIX_SUPERSET_RELEASE_IMAGE: $PHOENIX_SUPERSET_REGISTRY_IMAGE:stable
+  PRE_BUILD_IMAGE_FOLDER: pre_build_images
+  PYTHON_IMAGE_REGISTRY: $CI_REGISTRY_IMAGE/python
+  # Default google-oida:auth authentication variables
+  WI_POOL_PROVIDER: "//iam.googleapis.com/projects/213657970054/locations/global/workloadIdentityPools/howtobuildup-gitlab/providers/howtobuildup-gitlab"
+  SERVICE_ACCOUNT: "bu-phoenix-dev-ci-manual@bu-phoenix-dev.iam.gserviceaccount.com"
+  GCLOUD_PROJECT: "bu-phoenix-dev"
+  # If you don't use this you will get 2-0-0 for the tag 2.0.0
+  # From https://gitlab.com/gitlab-org/gitlab/-/issues/34329#note_1807670358
+  # Unfortunately, this only works if it directly in the script and not a variable
+  # COMMIT_TAG: ${CI_COMMIT_TAG:-$CI_COMMIT_BRANCH}
+
+#######################
+# Pre Build of the images for the python projects
+#
+# This speeds up the build process by building the images
+# before the actual build and test process
+#######################
+python_images_pre_build:
+  extends: .docker_template
+  stage: pre_build
+  script:
+    - cd python
+    # Refactor this to use the stable image as cache
+    - docker build --build-arg PROJECT=$PROJECT -t $PROJECT .
+    # Need to be in the correct folder for the artifacts to work
+    - cd ..
+    - mkdir -p $PRE_BUILD_IMAGE_FOLDER
+    - docker save $PROJECT -o $PRE_BUILD_IMAGE_FOLDER/$PROJECT.tar
+    - docker tag $PROJECT $PYTHON_IMAGE_REGISTRY/$PROJECT:$CI_COMMIT_SHORT_SHA
+    - docker tag $PROJECT $PYTHON_IMAGE_REGISTRY/$PROJECT:latest
+    - docker push $PYTHON_IMAGE_REGISTRY/$PROJECT:$CI_COMMIT_SHORT_SHA
+    - docker push $PYTHON_IMAGE_REGISTRY/$PROJECT:latest
+  artifacts:
+    paths:
+      - $PRE_BUILD_IMAGE_FOLDER/*.tar
+    expire_in: 1 hour
+  parallel:
+    matrix:
+      - PROJECT:
+          - phoenix_superset
+          - example_project_1
+
+python_ci_test:
+  extends: .docker_template
+  stage: test
+  script:
+    - docker load -i $PRE_BUILD_IMAGE_FOLDER/$PROJECT.tar
+    - docker run $PROJECT make all path=projects/$PROJECT
+  needs:
+    - job: python_images_pre_build
+      artifacts: true
+  parallel:
+    matrix:
+      - PROJECT:
+          - example_project_1
+          - phoenix_superset
+
+python_ci_libs:
+  stage: test
+  image: python:3.11.8
+  script:
+    - cd python
+    - make install path=libs/$LIB
+    - make all path=libs/$LIB
+  parallel:
+    matrix:
+      - LIB: [example_lib_1]
+  needs: []
+
+
+
+build_phoenix_superset_image:
+  extends: .docker_template
+  stage: build
+  script:
+    - cd python/projects/phoenix_superset
+    - docker build --pull -t $PHOENIX_SUPERSET_TEST_IMAGE .
+    - docker tag $PHOENIX_SUPERSET_TEST_IMAGE $PHOENIX_SUPERSET_LATEST_IMAGE
+    - docker push $PHOENIX_SUPERSET_TEST_IMAGE
+    - docker push $PHOENIX_SUPERSET_LATEST_IMAGE
+  needs:
+    - job: python_ci_test
+      parallel:
+        matrix:
+          - PROJECT: phoenix_superset
+
+
+#######################
+# Build the python images
+#######################
+python_images_build:
+  extends:
+    - .docker_template
+  stage: build
+  script:
+    - docker load -i $PRE_BUILD_IMAGE_FOLDER/$PROJECT.tar
+    - docker tag $PROJECT $PYTHON_IMAGE_REGISTRY/$PROJECT:$CI_COMMIT_REF_SLUG
+    - docker push $PYTHON_IMAGE_REGISTRY/$PROJECT:$CI_COMMIT_REF_SLUG
+  parallel:
+    matrix:
+      - PROJECT:
+          # Add to show how to use
+          - example_project_1
+          # phoenix_superset is built in a separate job as it doesn't use the default python image
+          # for the release
+  needs:
+    - job: python_images_pre_build
+      artifacts: true
+    - job: python_ci_test
+      parallel:
+        matrix:
+          # If an other generic python project is added it should be added here
+          - PROJECT: example_project_1
+
+publish_phoenix_superset_image:
+  stage: publish
+  extends: .docker_template
+  script:
+    - docker pull $PHOENIX_SUPERSET_TEST_IMAGE
+    - docker tag $PHOENIX_SUPERSET_TEST_IMAGE $PHOENIX_SUPERSET_RELEASE_IMAGE
+    - docker push $PHOENIX_SUPERSET_RELEASE_IMAGE
+  needs:
+    - job: build_phoenix_superset_image
+  rules:
+    # Only run on `main` branch
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+
+publish_phoenix_superset_image_tags:
+  stage: publish
+  extends: .docker_template
+  script:
+    - docker pull $PHOENIX_SUPERSET_TEST_IMAGE
+    - docker tag $PHOENIX_SUPERSET_TEST_IMAGE $PHOENIX_SUPERSET_REGISTRY_IMAGE:${CI_COMMIT_TAG:-$CI_COMMIT_BRANCH}
+    - docker push $PHOENIX_SUPERSET_REGISTRY_IMAGE:${CI_COMMIT_TAG:-$CI_COMMIT_BRANCH}
+  needs:
+    - job: build_phoenix_superset_image
+  rules:
+    - if: $CI_COMMIT_TAG
+
+#######################
+# Publish the python images
+#######################
+publish_python_images:
+  extends: .docker_template
+  stage: publish
+  script:
+    - docker load -i $PRE_BUILD_IMAGE_FOLDER/$PROJECT.tar
+    - docker tag $PROJECT $PYTHON_IMAGE_REGISTRY/$PROJECT:stable
+    - docker push $PYTHON_IMAGE_REGISTRY/$PROJECT:stable
+  parallel:
+    matrix:
+      - PROJECT:
+          # Add to show how to use
+          - example_project_1
+          # phoenix_superset is built in a separate job as it doesn't use the default python image
+          # for the release
+  needs:
+    - job: python_images_pre_build
+      artifacts: true
+    - job: python_images_build
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+
+publish_python_images_tags:
+  extends: .docker_template
+  stage: publish
+  script:
+    - docker load -i $PRE_BUILD_IMAGE_FOLDER/$PROJECT.tar
+    - docker tag $PROJECT $PYTHON_IMAGE_REGISTRY/$PROJECT:${CI_COMMIT_TAG:-$CI_COMMIT_BRANCH}
+    - docker push $PYTHON_IMAGE_REGISTRY/$PROJECT:${CI_COMMIT_TAG:-$CI_COMMIT_BRANCH}
+  parallel:
+    matrix:
+      - PROJECT:
+          # Add to show how to use
+          - example_project_1
+          # phoenix_superset is built in a separate job as it doesn't use the default python image
+          # for the release
+  needs:
+    - job: python_images_pre_build
+      artifacts: true
+    - job: python_images_build
+  rules:
+    - if: $CI_COMMIT_TAG
+
+
+#######################
+# Release the repo
+# As in docs: https://docs.gitlab.com/ee/ci/yaml/#release
+# and https://docs.gitlab.com/ee/user/project/releases/release_cicd_examples.html#create-a-release-when-a-git-tag-is-created
+#######################
+release_job:
+  stage: release
+  image: registry.gitlab.com/gitlab-org/release-cli:latest
+  rules:
+    # Only run with projected tags
+    # See protected tags
+    # https://gitlab.com/howtobuildup/phoenix/-/settings/repository
+    - if: $CI_COMMIT_TAG && $CI_COMMIT_REF_PROTECTED == "true"
+  script:
+    - echo "Running the release job."
+  release:
+    tag_name: $CI_COMMIT_TAG
+    name: 'Release $CI_COMMIT_TAG'
+    description: $CI_COMMIT_TAG_MESSAGE

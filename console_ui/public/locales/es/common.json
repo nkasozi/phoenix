@@ -1,0 +1,1322 @@
+{
+	"pages": {
+		"coming_soon": {
+			"title": "¡Próximamente!",
+			"message": "Estamos trabajando arduamente para ofrecerte esta página. Vuelve pronto para ver nuestro progreso.",
+			"link_text": "Mira nuestro progreso"
+		},
+		"login": {
+			"title": "Inicie sesión en su cuenta",
+			"signin": "Iniciar sesión",
+			"signup": "Registrarse",
+			"divider": "o",
+			"fields": {
+				"email": "Correo electrónico",
+				"password": "Contraseña"
+			},
+			"errors": {
+				"validEmail": "Dirección de correo electrónico no válida"
+			},
+			"buttons": {
+				"submit": "Iniciar sesión",
+				"forgotPassword": "¿Olvidó la contraseña?",
+				"noAccount": "¿No tiene una cuenta?",
+				"rememberMe": "Recuérdame"
+			}
+		},
+		"forgotPassword": {
+			"title": "¿Olvidó su contraseña?",
+			"fields": {
+				"email": "Correo electrónico"
+			},
+			"errors": {
+				"validEmail": "Dirección de correo electrónico no válida"
+			},
+			"buttons": {
+				"submit": "Enviar instrucciones de reinicio"
+			}
+		},
+		"register": {
+			"title": "Regístrese para su cuenta",
+			"fields": {
+				"email": "Correo electrónico",
+				"password": "Contraseña"
+			},
+			"errors": {
+				"validEmail": "Dirección de correo electrónico no válida"
+			},
+			"buttons": {
+				"submit": "Registrarse",
+				"haveAccount": "¿Tiene una cuenta?"
+			}
+		},
+		"updatePassword": {
+			"title": "Actualizar contraseña",
+			"fields": {
+				"password": "Nueva contraseña",
+				"confirmPassword": "Confirmar nueva contraseña"
+			},
+			"errors": {
+				"confirmPasswordNotMatch": "Las contraseñas no coinciden"
+			},
+			"buttons": {
+				"submit": "Actualizar"
+			}
+		},
+		"profile": {
+			"profile": "Perfil",
+			"email": "Correo Electrónico",
+			"created_at": "Creado en",
+			"fields": {
+				"name": "Nombre de visualización",
+				"email": "Correo Electrónico",
+				"role": "Rol"
+			},
+			"settings": {
+				"title": "Configuración del Perfil",
+				"description": "Esta información aparecerá en tu perfil."
+			}
+		},
+		"error": {
+			"info": "Puede que haya olvidado agregar el componente {{action}} al recurso {{resource}}.",
+			"404": "Lo sentimos, la página que visitó no existe.",
+			"resource404": "¿Está seguro de que ha creado el recurso {{resource}}?",
+			"backHome": "Volver a inicio"
+		}
+	},
+	"errors": {
+		"default": "Se produjo un error"
+	},
+	"actions": {
+		"list": "Lista",
+		"create": "Crear",
+		"edit": "Editar",
+		"show": "Mostrar"
+	},
+	"buttons": {
+		"create": "Crear",
+		"confirm_apply": "Confirmar y aplicar",
+		"create_apply": "Crear y aplicar",
+		"create_edit": "Crear y empezar a editar",
+		"create_add_keyword": "Crear y comenzar a agregar palabras clave",
+		"create_classifying": "Crear y comenzar a clasificar autores",
+		"save": "Guardar",
+		"logout": "Cerrar sesión",
+		"delete": "Eliminar",
+		"duplicate": "Dupliquer",
+		"edit": "Editar",
+		"cancel": "Cancelar",
+		"close": "Cerrar",
+		"confirm": "¿Está seguro?",
+		"filter": "Filtrar",
+		"clear": "Limpiar",
+		"refresh": "Actualizar",
+		"show": "Mostrar",
+		"undo": "Deshacer",
+		"import": "Importar",
+		"clone": "Clonar",
+		"start_run": "Iniciar ejecución",
+		"add_class": "Agregar clase",
+		"save_all": "Guardar todo",
+		"update_basic_info": "Actualizar información básica",
+		"notAccessTitle": "No tiene permiso para acceder"
+	},
+	"inputs": {
+		"select": "Seleccionar"
+	},
+	"note": "¡Nota!",
+	"warnWhenUnsavedChanges": "¿Está seguro de que desea salir? Tiene cambios sin guardar.",
+	"notifications": {
+		"success": "Exitoso",
+		"unsaved_changes": "Tienes cambios no guardados. ¿Estás seguro de que deseas salir?",
+		"error": "Error (código de estado: {{statusCode}})",
+		"undoable": "Tiene {{seconds}} segundos para deshacer",
+		"createSuccess": "{{resource}} creado correctamente",
+		"createError": "Hubo un error al crear {{resource}} (código de estado: {{statusCode}})",
+		"deleteSuccess": "{{resource}} eliminado correctamente",
+		"deleteError": "Error al eliminar {{resource}} (código de estado: {{statusCode}})",
+		"editSuccess": "{{resource}} editado correctamente",
+		"editError": "Error al editar {{resource}} (código de estado: {{statusCode}})",
+		"importProgress": "Importando: {{processed}}/{{total}}"
+	},
+	"loading": "Cargando",
+	"tags": {
+		"clone": "Clonar"
+	},
+	"projects": {
+		"projects": "Proyectos",
+		"more_info": "Más información",
+		"dataset_last_update": "Última actualización del conjunto de datos del panel a las",
+		"total_costs_and_allocated_credits": "Costos totales / Créditos asignados totales",
+		"total_costs": "Costos totales",
+		"no_more_allocated_credits": "No tienes más créditos asignados, por lo que no puedes realizar más reuniones.",
+		"resources_provisioning_title": "Configuración del proyecto en progreso",
+		"resources_provisioning_message": "Este proyecto aún se está configurando. Algunas funciones pueden no estar disponibles hasta que se complete la configuración. Espere unos minutos y actualice la página.",
+		"fields": {
+			"id": "ID único",
+			"name": "Nombre",
+			"description": "Descripción",
+			"workspace_slug": "Espacio de trabajo",
+			"days_until_pi_expiration": "La información personal se eliminará después de (días)",
+			"days_until_all_data_expiration": "Todos los datos se eliminarán después de (días)",
+			"has_unlimited_credits": "El proyecto tiene créditos ilimitados",
+			"initial_credit_allocation_amount": "Monto inicial de la asignación de créditos",
+			"initial_credit_allocation_description": "Descripción de la asignación inicial de créditos",
+			"dashboard_id": "ID del panel",
+			"dashboard_id_tooltip": "El identificador único del panel de destino, que se puede encontrar en la URL del panel. Al visualizar un panel de Superset, la URL generalmente sigue este patrón: https://<some domain>/superset/dashboard/<dashboard_unique_id>. Copie la parte <dashboard_unique_id> de la URL para usarla en su configuración.",
+			"expected_usage": {
+				"title": "¿Con qué frecuencia revisarás tu panel",
+				"options": {
+					"one_off": "Análisis único",
+					"monthly": "Mensual",
+					"weekly": "Semanal",
+					"daily": "Diario"
+				}
+			},
+			"inputs": {
+				"description": "Descripción (Opcional)"
+			},
+			"status": "Estado",
+			"created_at": "Creado en",
+			"updated_at": "Actualizado en",
+			"validation": {
+				"required": "requerido",
+				"invalid_name": "Use solo letras, números, espacios, guiones y guiones bajos",
+				"days_until_pi_expiration": "El valor debe estar entre 30 y 365 días",
+				"days_until_all_data_expiration": "El valor debe estar entre 30 y 365 días"
+			}
+		},
+		"titles": {
+			"create": "Crear proyecto",
+			"edit": "Editar proyecto",
+			"list": "Proyectos",
+			"show": "Mostrar proyecto",
+			"gathers": "Ver Reuniones",
+			"tabulates": "Ver Correr Tabulado",
+			"dashboard": "Tablero de control"
+		},
+		"warnings": {
+			"create": "¡Para extender los días de 'La información personal se eliminará después' o 'Todos los datos se eliminarán después' más allá de 365, por favor, contacte con soporte!",
+			"days_until_pi_expiration": "Los nombres de texto y de cuenta se consideran información personal y se eliminarán x días después de su recopilación.",
+			"days_until_all_data_expiration": "Es importante para el cumplimiento de la privacidad que los datos solo se almacenen el tiempo que los necesite. Los datos se eliminarán x días después de haber sido recopilados."
+		},
+		"tabs": {
+			"overview": {
+				"header": "Descripción",
+				"title": "Bienvenido a tu proyecto Phoenix",
+				"description": {
+					"part1": {
+						"a": "Tu proyecto Phoenix te ofrece las herramientas para recopilar datos de las plataformas de redes sociales, crear clasificaciones para organizar esos datos y visualizar los datos que has recopilado y clasificado en un panel interactivo. Encontrarás estas herramientas en las pestañas de arriba para ",
+						"b": "recopilar, clasificar y visualizar."
+					},
+					"part2": {
+						"a": "La escucha social no solo requiere estas herramientas, también necesita un proceso de análisis. ¡Es posible que ya tengas tu propio proceso! Hemos establecido nuestro proceso recomendado de análisis de redes sociales para mediadores y constructores de paz en ",
+						"b": "el manual de Phoenix."
+					},
+					"part3": "¿No sabes por dónde empezar? Usa nuestra lista de verificación estándar para guiarte a través de los pasos:"
+				},
+				"problem_statement": "Definir una declaración de problema",
+				"source": "Definir de dónde obtendrás los datos",
+				"gather": "Recopilar datos de las plataformas de redes sociales",
+				"classify": "Clasificar los datos que has recopilado",
+				"explore": "Explorar los datos que has recopilado y clasificado",
+				"insights": "Explorar conocimientos usando tu panel de control",
+				"tips": {
+					"manual": "ver manual de Phoenix",
+					"gather": "ir a Recopilar",
+					"classify": "ir a Clasificar",
+					"explore": "ir a Explorar"
+				}
+			},
+			"classify": {
+				"header": "Clasificar",
+				"coming_soon": "Próximamente"
+			},
+			"explore": {
+				"header": "Explorar",
+				"title": "Explora tus datos",
+				"description": {
+					"part1": {
+						"a": "Todos los datos que has recopilado para tu proyecto están en una sola base de datos, con todas las clasificaciones que has creado aplicadas a los datos. Para más detalles sobre cómo se estructura esta base de datos, consulta ",
+						"b": "esta sección del manual de Phoenix"
+					},
+					"part2": {
+						"a": "Usa la barra de búsqueda a continuación para explorar los datos que has recopilado. Esto te dará una idea de lo que hay en tus datos y si necesitas recopilar datos adicionales/diferentes.",
+						"b": "BARRA DE BÚSQUEDA PRÓXIMAMENTE"
+					},
+					"part3": {
+						"a": "Tu proyecto Phoenix también crea automáticamente un panel interactivo. Cuando lo abras por primera vez, el panel solo mostrará algunos gráficos básicos y filtros que hemos creado para ti. Puedes crear tantos gráficos y tablas adicionales como desees. Para obtener consejos sobre la creación de paneles, consulta ",
+						"b": "esta sección del manual de Phoenix"
+					}
+				}
+			},
+			"gather": {
+				"header": "Recolectar",
+				"title": "Recopilar",
+				"description": {
+					"part1": {
+						"a": "En esta página, puedes recopilar datos de las plataformas de redes sociales. Deberás tomar varias decisiones sobre qué datos deseas recopilar. Antes de agregar tu primera recopilación, te recomendamos que leas ",
+						"b": "esta sección",
+						"c": " del manual Phoenix."
+					},
+					"part2": {
+						"a": "Una vez que hayas agregado una recopilación, deberás ejecutar la recopilación utilizando el botón de reproducción en la columna de Acción. Cada vez que ejecutas una recopilación, usas algunos de tus créditos de proyecto (ver ",
+						"b": "aquí",
+						"c": " para más información sobre los créditos de proyecto)."
+					}
+				}
+			},
+			"about": {
+				"header": "Acerca de"
+			},
+			"help": {
+				"header": "Ayuda"
+			},
+			"classifier": {
+				"title": "Clasificadores",
+				"description": {
+					"part1": {
+						"a": "En esta página, puede agregar clasificaciones a sus datos; básicamente, otra columna que contiene información que le resulta útil.",
+						"b": "Los clasificadores no recopilan datos.",
+						"c": "Los clasificadores aplican clases (etiquetas) a los datos que ya ha recopilado mediante Gather. Antes de agregar su primer clasificador, le recomendamos que lea ",
+						"d": "esta sección",
+						"e": " del manual de Phoenix."
+					}
+				}
+			}
+		}
+	},
+	"gathers": {
+		"gathers": "Reuniones",
+		"details": "Reunir detalles",
+		"titles": {
+			"create": "Crear reunión",
+			"edit": "Editar reunión",
+			"list": "Reuniones",
+			"show": "Mostrar reunión",
+			"select_type": "Seleccione el tipo de recopilación que le gustaría hacer"
+		},
+		"sub_titles": {
+			"list": "Define la plataforma, la fuente y los parámetros de búsqueda para la recopilación de datos. Crea tu nueva reunión y luego ejecútala. Una vez que se haya completado, puedes ejecutar una tabulación para actualizar el conjunto de datos del tablero."
+		},
+		"types": {
+			"proceed_text": "Proceder",
+			"apify_facebook_posts": {
+				"title": "Publications Facebook à partir d'une liste de comptes",
+				"description": "Rassemblez les publications d'une liste de comptes Facebook. Les comptes doivent être des pages ou des groupes publics (pas de comptes privés).",
+				"create": "Configurar un nuevo recopilador de publicaciones de Facebook",
+				"create_description": "Recopila publicaciones de Facebook de una lista de cuentas de Facebook. Las cuentas deben ser páginas públicas o grupos (no cuentas privadas). Una vez que hayas configurado tu recopilador, podrás ejecutarlo para recopilar los datos.",
+				"edit": "Editar el recopilador de publicaciones de Facebook",
+				"edit_description": "Edita un recopilador de publicaciones de Facebook a partir de una lista de cuentas de Facebook. Las cuentas deben ser páginas públicas o grupos (no cuentas privadas). Una vez que hayas creado tu recopilador, podrás ejecutarlo para recopilar los datos.",
+				"fields": {
+					"posts_created_after": "Publicaciones creadas después de",
+					"posts_created_before": "Publicaciones creadas antes de",
+					"limit_posts_per_account": "Limitar publicaciones por cuenta",
+					"input": {
+						"url_list": "Enumere todas las cuentas de Facebook que desea recopilar (máximo de 200 cuentas)"
+					},
+					"info": {
+						"limit_posts_per_account": "Limitar el número de publicaciones que se recopilan para cada cuenta.",
+						"posts_created_after": "Reunir publicaciones creadas después de las 00:00 del día configurado.",
+						"posts_created_before": "Reunir publicaciones creadas antes de las 00:00 del día configurado."
+					},
+					"validation": {
+						"required": "Requerido",
+						"limit_posts_per_account": "El número máximo de publicaciones por cuenta es 50,000",
+						"account_url_list": {
+							"too_many": "Tiene demasiadas cuentas en su lista. Reduzca la cantidad de cuentas a 200 o menos"
+						},
+						"posts_created_after": {
+							"less_than_today": "La fecha de inicio no puede estar en el futuro",
+							"less_than_end": "La fecha de inicio no puede ser después de la fecha de finalización",
+							"max_days": "El número máximo de días que puedes recopilar publicaciones es 365 días"
+						},
+						"posts_created_before": {
+							"greater_than_start": "La fecha de finalización no puede ser antes de la fecha de inicio",
+							"max_days": "El número máximo de días que puedes recopilar publicaciones es 365 días"
+						}
+					}
+				},
+				"view": {
+					"text": "Esta es una reunión de publicaciones de Facebook. Reúne publicaciones de cuentas de Facebook utilizando el scraper web Apify.",
+					"accordion": {
+						"status": "Estado",
+						"general": "General",
+						"source": "Las publicaciones de Facebook provienen de estas cuentas",
+						"source_title": "URLs de cuentas de Facebook"
+					}
+				}
+			},
+			"apify_facebook_search_posts": {
+				"title": "Publicaciones de Facebook a partir de una lista de palabras clave",
+				"description": "Recopila publicaciones de una lista de palabras clave en Facebook. Las palabras clave se buscarán solo en publicaciones públicas (no en publicaciones privadas).",
+				"create": "Configurar una nueva recopilación de publicaciones de búsqueda de Facebook",
+				"create_description": {
+					"part1": "Crea una recopilación de publicaciones de Facebook que contengan palabras clave.",
+					"part2": "Si ingresas más de una palabra clave, la búsqueda encontrará publicaciones que contengan todas ellas. Por ejemplo, una recopilación para `comida chatarra` buscará publicaciones que contengan ambas palabras.",
+					"part3": "Si deseas ejecutar una recopilación que contenga `comida` o `chatarra`, necesitarás crear dos recopilaciones separadas: una para `comida` y otra para `chatarra`.",
+					"part4": "Una vez que hayas creado una recopilación, podrás ejecutarla para recoger los datos."
+				},
+				"edit": "Editar la recopilación de publicaciones de Facebook por búsqueda de palabras clave",
+				"edit_description": {
+					"part1": "Editar una recopilación de publicaciones de Facebook que contengan palabras clave.",
+					"part2": "Si ingresas más de una palabra clave, la búsqueda encontrará publicaciones que contengan todas ellas. Por ejemplo, una recopilación para `comida chatarra` buscará publicaciones que contengan ambas palabras.",
+					"part3": "Si deseas ejecutar una recopilación que contenga `comida` o `chatarra`, necesitarás crear dos recopilaciones separadas: una para `comida` y otra para `chatarra`.",
+					"part4": "Una vez que hayas creado una recopilación, podrás ejecutarla para recoger los datos."
+				},
+				"fields": {
+					"search_query": "¿Qué palabras clave deseas buscar?",
+					"limit_posts": "Limitar publicaciones",
+					"limit_retries": "Limitar reintentos",
+					"recent_posts": "Publicaciones recientes",
+					"proxy_groups": "País de búsqueda (no geolocalización de las publicaciones)",
+					"residential_proxies": "Proxies residenciales",
+					"no_proxy": "Sin proxy",
+					"proxy_country": "País del proxy",
+					"anywhere": "Cualquier lugar",
+					"info": {
+						"search_query": "La recopilación recoge todas las publicaciones que contienen estas palabras clave.",
+						"search_query_results": "Ver posibles resultados para la consulta de búsqueda",
+						"results_tooltip": "Los resultados varían dependiendo del proxy y del usuario conectado. La recopilación usará usuarios anónimos y el proxy definido a continuación.",
+						"limit_posts": "No puedes establecer un límite de fecha para las publicaciones que recojas, pero puedes limitar el número total de publicaciones recolectadas.",
+						"limit_retries": "A veces, Facebook bloquea una recolección y falla. Cuantas más veces intentes, más créditos costará tu recolección.",
+						"recent_posts": "El orden en que se recogen las publicaciones está definido por Facebook. Usa `Publicaciones recientes` para indicar que la búsqueda debe centrarse en las publicaciones más recientes o las más relevantes.",
+						"proxy_groups": "Aún recibirás publicaciones de otros países, pero el país que selecciones debe ser el que crees que tendrá la mayoría de las publicaciones. Si tienes varios países de los que deseas buscar, te recomendamos que elijas uno."
+					},
+					"validation": {
+						"required": "Requerido"
+					}
+				},
+				"view": {
+					"text": "Esta es una recopilación de publicaciones de búsqueda de Facebook. Recopila publicaciones desde una búsqueda de Facebook utilizando el web scraper Apify.",
+					"accordion": {
+						"status": "Estado",
+						"general": "General",
+						"proxy_setting": "Configuración del proxy"
+					}
+				},
+				"warnings": {
+					"create": "Actualmente, esta recopilación no funciona completamente y no puede recopilar los 'Me gusta', las publicaciones compartidas ni la cantidad de comentarios. Estamos trabajando activamente para encontrar una solución."
+				}
+			},
+			"apify_facebook_comments": {
+				"title": "Comentarios de Facebook de una lista de publicaciones de Facebook",
+				"description": "Recopila comentarios de una lista de publicaciones de Facebook. Los comentarios se recopilarán únicamente de publicaciones públicas (no de publicaciones privadas).",
+				"create": "Configurar una nueva recopilación de comentarios de Facebook",
+				"create_description": {
+					"part1": "Recopila comentarios de una lista de publicaciones de Facebook. Los comentarios solo se recopilarán de publicaciones públicas (no de publicaciones privadas). Una vez que hayas configurado tu recopilación, podrás ejecutarla para recolectar los datos.",
+					"part2": {
+						"main": "IMPORTANTE: Phoenix solo te mostrará comentarios de publicaciones que ya hayas recopilado. La mejor manera de hacer esto es:",
+						"a": "1. Ejecutar una recopilación para publicaciones de Facebook (usando cuentas o palabras clave)",
+						"b": "2. Encontrar las publicaciones de Facebook de las que deseas obtener comentarios usando la pestaña Explorar",
+						"c": "3. Luego, ejecutar una recopilación para los comentarios de esas publicaciones de Facebook"
+					}
+				},
+				"edit": "Editar la nueva recopilación de comentarios de Facebook",
+				"edit_description": {
+					"part1": "Edita una recopilación de comentarios de una lista de publicaciones de Facebook. Los comentarios solo se recopilarán de publicaciones públicas (no de publicaciones privadas). Una vez que hayas configurado tu recopilación, podrás ejecutarla para recolectar los datos.",
+					"part2": {
+						"main": "IMPORTANTE: Phoenix solo te mostrará comentarios de publicaciones que ya hayas recopilado. La mejor manera de hacer esto es:",
+						"a": "1. Ejecutar una recopilación para publicaciones de Facebook (usando cuentas o palabras clave)",
+						"b": "2. Encontrar las publicaciones de Facebook de las que deseas obtener comentarios usando la pestaña Explorar",
+						"c": "3. Luego, ejecutar una recopilación para los comentarios de esas publicaciones de Facebook"
+					}
+				},
+				"fields": {
+					"limit_replies": "Limitar respuestas",
+					"nested_replies": "Respuestas anidadas",
+					"limit_comments_per_post": "Limitar comentarios por publicación",
+					"include_comment_replies": "Incluir respuestas a comentarios",
+					"sort_comments_by": "Ordenar comentarios por",
+					"sort_comments_by_options": {
+						"facebook_default": "Predeterminado de Facebook",
+						"most_relevant": "Más relevante",
+						"newest_first": "Más recientes primero",
+						"non_filtered": "Sin filtrar"
+					},
+					"input": {
+						"url_list": "Agregar las publicaciones de Facebook de las que desea recopilar los comentarios"
+					},
+					"info": {
+						"limit_comments_per_post": "Limitar el número de comentarios que se recogen para cada publicación.",
+						"sort_comments_by": "Ordenar comentarios por."
+					},
+					"validation": {
+						"required": "Obligatorio",
+						"posts_created_after": {
+							"less_than_today": "La fecha de inicio no puede ser en el futuro",
+							"less_than_end": "La fecha de inicio no puede ser después de la fecha de finalización"
+						},
+						"posts_created_before": {
+							"greater_than_start": "La fecha de finalización no puede ser antes de la fecha de inicio"
+						}
+					}
+				},
+				"view": {
+					"text": "Esta es una recopilación de comentarios de Facebook. Recopila comentarios de publicaciones de Facebook utilizando el scraper web Apify.",
+					"accordion": {
+						"status": "Estado",
+						"general": "General",
+						"source": "Los comentarios de Facebook provienen de estas publicaciones",
+						"source_title": "URLs de publicaciones de Facebook"
+					}
+				}
+			},
+			"apify_tiktok_accounts_posts": {
+				"title": "Publicaciones de TikTok de una lista de cuentas",
+				"description": "Reúne publicaciones (videos) de una lista de cuentas de TikTok (nombres de usuario). Las cuentas deben ser públicas.",
+				"create": "Configurar una nueva recopilación de publicaciones de cuentas TikTok:",
+				"fields": {
+					"posts_created_after": "Publicaciones creadas después de - solo editable si 'Publicaciones creadas desde (Número de días)' está vacío",
+					"limit_posts_per_account": "Limitar publicaciones por cuenta",
+					"posts_created_since_num_days": "Publicaciones creadas en los últimos (número de días) - editable solo si 'Publicaciones creadas después' está vacío",
+					"proxy_country_to_gather_from": "País desde el que recopilar",
+					"input": {
+						"url_list": "Lista de todas las cuentas de TikTok (nombres de usuario) de las que deseas recopilar"
+					},
+					"info": {
+						"posts_created_after": "Recopila las publicaciones creadas después de las 0:00 del día configurado. Usa `x` a la derecha para dejar el campo vacío.",
+						"limit_posts_per_account": "Limita el número de publicaciones recopiladas por cada cuenta.",
+						"posts_created_since_num_days": "Especifica cuántos días deben tener los videos recolectados. Poner 1 obtendrá solo las publicaciones de hoy, 2 las de ayer y hoy, y así sucesivamente. Si el campo 'Publicaciones creadas después' está configurado, se recopilarán los videos más recientes.",
+						"proxy_country_to_gather_from": "Si deseas recopilar desde más de un país, ejecuta una recopilación para cada país."
+					},
+					"validation": {
+						"required": "Requerido",
+						"created_since_num_days_and_created_after": "No se pueden configurar ambos, 'Publicaciones creadas después' y 'Publicaciones creadas desde (Número de días)'",
+						"created_since_num_days_or_created_after": "Configura ya sea 'Publicaciones creadas después' o 'Publicaciones creadas desde (Número de días)'"
+					}
+				},
+				"view": {
+					"text": "Esta es una recopilación de publicaciones de cuentas TikTok. Recopila publicaciones de cuentas de TikTok usando el scraper web Apify.",
+					"accordion": {
+						"status": "Estado",
+						"general": "General",
+						"source": "Las publicaciones de TikTok provienen de estas cuentas",
+						"source_title": "URLs de las cuentas de TikTok"
+					}
+				}
+			},
+			"apify_tiktok_hashtags_posts": {
+				"title": "Publicaciones de TikTok de una lista de hashtags",
+				"description": "Reúne publicaciones (videos) de una lista de hashtags de TikTok. Los hashtags se buscarán en la descripción de los videos públicos (no en los videos privados).",
+				"create": "Configurar una nueva recolección de publicaciones TikTok por hashtag",
+				"create_description": {
+					"part1": "Crea una recopilación de publicaciones de TikTok que contengan hashtags.",
+					"part2": "Es posible agregar un hashtag, por ejemplo, #junkfood.",
+					"part3": "Si quieres ejecutar una recopilación que contenga #junkfood o #healthyfood, puedes usar una nueva línea o una coma para separar las entradas de hashtags.",
+					"part4": "Una vez que hayas creado una recopilación, podrás ejecutarla para recopilar los datos."
+				},
+				"edit": "Editar la recolección de publicaciones TikTok por hashtag",
+				"edit_description": "Editar una recolección de publicaciones (videos) de cuentas de TikTok (nombres de usuario) utilizando el scraper web Apify. Una vez que hayas creado tu recolección, podrás ejecutarla para recolectar los datos.",
+				"fields": {
+					"limit_posts_per_hashtag": "Limitar publicaciones",
+					"proxy_country_to_gather_from": "País de recolección",
+					"input": {
+						"data_placeholder": "Escriba y pegue las entradas separadas por <Enter> (nueva línea) o , (coma)",
+						"url_list": "Lista todos los hashtags a partir de los cuales te gustaría recolectar"
+					},
+					"info": {
+						"limit_posts_per_account": "Limita el número de publicaciones recolectadas para cada hashtag.",
+						"proxy_country_to_gather_from": "País de recolección"
+					},
+					"validation": {
+						"required": "Requerido"
+					}
+				},
+				"view": {
+					"text": "Esta es una recopilación de publicaciones de hashtags de TikTok. Recoge publicaciones de hashtags de TikTok usando el web scraper Apify.",
+					"accordion": {
+						"status": "Estado",
+						"general": "General",
+						"source": "Las publicaciones de TikTok provienen de estos hashtags",
+						"source_title": "Hashtag de TikTok (sin '#')"
+					}
+				}
+			},
+			"apify_tiktok_comments": {
+				"title": "Comentarios de TikTok de una lista de publicaciones de TikTok",
+				"description": "Recopila comentarios de una lista de publicaciones de TikTok (videos). Los comentarios se recopilarán solo de publicaciones públicas (no de publicaciones privadas).",
+				"create": "Configurar una nueva recopilación de comentarios de Tiktok",
+				"create_description": {
+					"part1": "Recopila comentarios de una lista de publicaciones de TikTok. Los comentarios solo se recopilarán de publicaciones públicas (no de publicaciones privadas). Una vez que hayas configurado tu recopilación, podrás ejecutarla para recolectar los datos.",
+					"part2": {
+						"main": "IMPORTANTE: Phoenix solo te mostrará comentarios de las publicaciones que ya has recopilado. La mejor forma de hacerlo es:",
+						"a": "1. Ejecuta una recopilación de publicaciones de TikTok (usando cuentas o palabras clave)",
+						"b": "2. Encuentra las publicaciones de TikTok para las que deseas comentarios utilizando la pestaña Explorar",
+						"c": "3. Luego, ejecuta una recopilación para los comentarios de esas publicaciones de TikTok"
+					}
+				},
+				"edit": "Editar nueva recopilación de comentarios de TikTok",
+				"edit_description": "Editar una recopilación de comentarios de publicaciones de TikTok utilizando el scraper web Apify. Una vez que hayas creado tu recopilación, podrás ejecutarla para recolectar los datos.",
+				"fields": {
+					"limit_total_comments": "Limitar el número total de comentarios",
+					"include_comment_replies": "Respuestas a comentarios",
+					"input": {
+						"url_list": "Lista todas las publicaciones de TikTok de las que deseas recopilar comentarios"
+					},
+					"info": {
+						"limit_total_comments": "Limite el número total de comentarios que se recopilan."
+					},
+					"validation": {
+						"required": "Requerido"
+					}
+				},
+				"view": {
+					"text": "Esta es una recopilación de comentarios de Tiktok. Recopila comentarios de publicaciones de Tiktok utilizando el raspador web Apify.",
+					"accordion": {
+						"status": "Estado",
+						"general": "General",
+						"source": "Los comentarios de Tiktok provienen de estas publicaciones",
+						"source_title": "URLs de publicaciones de Tiktok"
+					}
+				}
+			},
+			"apify_tiktok_searches_posts": {
+				"title": "Publicaciones de TikTok a partir de una lista de palabras clave",
+				"description": "Recoge publicaciones (videos) a partir de una lista de palabras clave en TikTok. Las palabras clave se buscarán en la descripción del video de videos públicos (no se incluyen videos privados).",
+				"create": "Configurar una nueva recolección de publicaciones TikTok por palabra clave",
+				"create_description": {
+					"part1": "Crea una recolección de publicaciones de TikTok que contengan palabras clave.",
+					"part2": "Es posible agregar una frase como palabra clave, por ejemplo, `comida chatarra`. Si agrega una frase, la búsqueda encontrará publicaciones que contengan todas las palabras clave. Por ejemplo, una búsqueda para `comida chatarra` buscaría publicaciones que contengan ambas palabras.",
+					"part3": "Si desea ejecutar una búsqueda que contenga `comida chatarra` o `comida`, deberá agregar dos entradas de palabras clave separadas a continuación: una para `comida` y otra para `comida chatarra`. También puede usar una nueva línea o una coma para separar las entradas de frases. Por ejemplo, si escribe `comida chatarra, comida saludable`, entonces buscará publicaciones que contengan `comida chatarra` o `comida saludable`",
+					"part4": "Una vez que hayas creado una recolección, podrás ejecutarla para recolectar los datos."
+				},
+				"edit": "Editar la nueva recolección de publicaciones TikTok por palabra clave",
+				"edit_description": "Editar una recolección de publicaciones (videos) de TikTok a partir de búsquedas utilizando el scraper web Apify. Una vez que hayas creado tu recolección, podrás ejecutarla para recolectar los datos.",
+				"fields": {
+					"limit_posts_per_search": "Limitar publicaciones",
+					"proxy_country_to_gather_from": "País de recolección",
+					"input": {
+						"data_placeholder": "Escriba y pegue las entradas separadas por <Enter> (nueva línea) o , (coma)",
+						"url_list": "Lista todos los palabras clave de los que te gustaría recolectar"
+					},
+					"info": {
+						"limit_posts_per_search": "Limita el número de publicaciones recolectadas para cada palabra clave.",
+						"proxy_country_to_gather_from": "País de recolección"
+					},
+					"validation": {
+						"required": "Requerido"
+					}
+				},
+				"view": {
+					"text": "Esta es una recolección de publicaciones de búsquedas TikTok. Recoge publicaciones de búsquedas de TikTok usando el scraper web Apify.",
+					"accordion": {
+						"status": "Estado",
+						"general": "General",
+						"source": "Las publicaciones de TikTok provienen de estas búsquedas",
+						"source_title": "Búsqueda TikTok"
+					}
+				}
+			},
+			"danek_facebook_searches_posts": {
+				"title": "Publicaciones de Facebook desde una lista de palabras clave (Danek)",
+				"description": "Reúne publicaciones desde una lista de palabras clave en Facebook. Las palabras clave serán buscadas solo en publicaciones públicas (no privadas). (Usa el scraper Danek)",
+				"create": "Configurar una nueva recolección de publicaciones de Facebook por palabra clave",
+				"create_description": {
+					"part1": "Crea una recopilación de publicaciones de Facebook que contengan palabras clave (usando el scraper Danek).",
+					"part2": "Es posible agregar una frase como palabra clave, por ejemplo, `comida chatarra`. Si agregas una frase, se buscarán publicaciones que contengan todas las palabras. Por ejemplo, `comida chatarra` buscará publicaciones con ambas palabras.",
+					"part3": "Si quieres reunir publicaciones que contengan `comida` o `chatarra`, debes agregar dos entradas separadas: una para `comida` y otra para `chatarra`. Puedes usar una nueva línea o coma para separar frases. Por ejemplo, \"comida chatarra, comida saludable\" reunirá publicaciones que contengan \"comida chatarra\" o \"comida saludable\".",
+					"part4": "Una vez creada la recopilación, podrás ejecutarla para recoger los datos."
+				},
+				"edit": "Editar recopilación de publicaciones de Facebook por palabra clave",
+				"fields": {
+					"posts_created_after": "Publicaciones creadas después de",
+					"posts_created_before": "Publicaciones creadas antes de",
+					"recent_posts": "Publicaciones recientes",
+					"stop_scraping_per_search_after_count": "Límite de publicaciones",
+					"proxy_country_to_gather_from": "País desde el cual recopilar",
+					"input": {
+						"data_placeholder": "Escribe/pega entradas separadas por <Enter> (nueva línea) o ',' (coma)",
+						"url_list": "Lista todas las palabras clave desde las cuales deseas recopilar"
+					},
+					"info": {
+						"recent_posts": "El orden de las publicaciones es determinado por Facebook. Usa `Publicaciones recientes` para indicar si deseas las publicaciones más recientes o más relevantes.",
+						"stop_scraping_per_search_after_count": "Para cada palabra clave, se recopilará al menos esta cantidad mínima de publicaciones. Debido al método de recopilación, podrías obtener algunas más del límite especificado, pero nunca menos.",
+						"proxy_country_to_gather_from": "Seguirás recibiendo publicaciones de otros países, pero el país que selecciones debe ser el que creas que encontrará más publicaciones. Si quieres buscar en varios países, te recomendamos que elijas uno.",
+						"posts_created_after": "Recopila publicaciones creadas después de las 0:00, en tu hora local, del día configurado.",
+						"posts_created_before": "Recopila publicaciones creadas antes de las 0:00, en tu hora local, del día configurado."
+					},
+					"validation": {
+						"required": "Requerido",
+						"posts_created_after": {
+							"less_than_today": "La fecha de inicio no puede estar en el futuro",
+							"less_than_end": "La fecha de inicio no puede ser después de la fecha final"
+						},
+						"posts_created_before": {
+							"greater_than_start": "La fecha final no puede ser antes de la fecha de inicio"
+						}
+					}
+				},
+				"view": {
+					"text": "Esta es una recopilación de publicaciones provenientes de búsquedas en Facebook. Recopila publicaciones usando el scraper web Danek.",
+					"accordion": {
+						"status": "Estado",
+						"general": "General",
+						"source": "Las publicaciones de Facebook provienen de estas búsquedas",
+						"source_title": "Búsqueda en Facebook"
+					}
+				}
+			},
+			"danek_instagram_posts": {
+				"title": "Publicaciones de Instagram desde una lista de cuentas (Danek)",
+				"description": "Reúne publicaciones de una lista de cuentas de Instagram. Las cuentas deben ser públicas. Opcionalmente también puede reunir comentarios de cada publicación.",
+				"create": "Configurar una nueva recopilación de publicaciones de cuentas de Instagram",
+				"create_description": {
+					"part1": "Crea una recopilación de publicaciones de Instagram a partir de una lista de nombres de usuario públicos usando el scraper Danek.",
+					"part2": "Las publicaciones se recopilan en el orden en que aparecen en la página de la cuenta en el momento de la recopilación. También puedes reunir comentarios de nivel superior para cada publicación y, opcionalmente, un número limitado de respuestas por comentario.",
+					"part3": "Los nombres de usuario se encuentran en la URL de la cuenta: https://www.instagram.com/<username>. Ingrésalos separados por una nueva línea o una coma. Los duplicados se ignorarán."
+				},
+				"edit": "Editar recopilación de publicaciones de cuentas de Instagram",
+				"fields": {
+					"limit_posts_per_account": "Límite de publicaciones por cuenta",
+					"account_username_list": "Nombres de usuario de Instagram",
+					"posts_created_after": "Publicaciones creadas después de",
+					"scrape_comments_count_per_post": "Comentarios principales por publicación",
+					"limit_child_comments_per_comment": "Respuestas por comentario",
+					"input": {
+						"url_list": "Lista todos los nombres de usuario de Instagram desde los que deseas recopilar"
+					},
+					"info": {
+						"limit_posts_per_account": "Número máximo de publicaciones que se recopilarán de cada cuenta de Instagram.",
+						"posts_created_after": "La recopilación se detendrá al llegar a una página de publicaciones que contenga una publicación creada antes de esta fecha. Nota: las publicaciones fijadas pueden recopilarse independientemente de esta fecha. Usa los filtros del panel para un filtrado de fechas preciso.",
+						"scrape_comments_count_per_post": "Número máximo de comentarios principales a recopilar por publicación. La cantidad real puede ser menor si existen menos comentarios.",
+						"limit_child_comments_per_comment": "Número máximo de respuestas a recopilar por comentario principal. La cantidad real puede ser menor si existen menos respuestas."
+					},
+					"validation": {
+						"required": "Requerido",
+						"scrape_comments_count_per_post_max": "Debe ser 200 o menos"
+					}
+				},
+				"view": {
+					"text": "Esta es una recopilación de publicaciones de cuentas de Instagram. Reúne publicaciones y comentarios opcionales usando el scraper Danek.",
+					"accordion": {
+						"status": "Estado",
+						"general": "General",
+						"source": "Las publicaciones de Instagram provienen de estas cuentas",
+						"source_title": "Cuenta de Instagram"
+					}
+				}
+			},
+			"danek_instagram_comments": {
+				"title": "Comentarios de Instagram desde una lista de IDs de publicaciones (Danek)",
+				"description": "Reúne comentarios de una lista de IDs de publicaciones de Instagram. Opcionalmente también puede reunir respuestas a cada comentario principal.",
+				"create": "Configurar una nueva recopilación de comentarios de Instagram",
+				"create_description": {
+					"part1": "Crea una recopilación de comentarios de Instagram a partir de una lista de IDs de publicaciones usando el scraper Danek.",
+					"part2": "Cada ID de publicación debe ser numérico (no el código corto de la URL de Instagram). Puedes encontrarlo en la columna 'post_platform_id_pi' en los datos sin procesar del panel. También es posible convertir el código corto de la URL de una publicación al ID numérico usando herramientas de conversión en línea o mediante conversión programática. Separa los IDs con una nueva línea o una coma.",
+					"part3": "Opcionalmente puedes reunir respuestas para cada comentario principal."
+				},
+				"edit": "Editar recopilación de comentarios de Instagram",
+				"fields": {
+					"limit_comments_per_post": "Límite de comentarios por publicación",
+					"limit_child_comments_per_comment": "Respuestas por comentario",
+					"input": {
+						"url_list": "Lista todos los IDs de publicaciones de Instagram de los que deseas recopilar comentarios",
+						"data_placeholder": "Escribe/pega IDs numéricos de publicaciones de Instagram separados por <Enter> (nueva línea) o ',' (coma)"
+					},
+					"info": {
+						"limit_comments_per_post": "Número máximo de comentarios principales que se recopilarán de cada publicación de Instagram.",
+						"limit_child_comments_per_comment": "Número máximo de respuestas que se recopilarán por cada comentario principal."
+					},
+					"validation": {
+						"required": "Requerido",
+						"numeric_post_ids": "Todos los IDs de publicaciones de Instagram deben ser números"
+					}
+				},
+				"view": {
+					"text": "Esta es una recopilación de comentarios de Instagram. Reúne comentarios de publicaciones de Instagram usando el scraper Danek.",
+					"accordion": {
+						"status": "Estado",
+						"general": "General",
+						"source": "Los comentarios de Instagram provienen de estos IDs de publicaciones",
+						"source_title": "ID de publicación de Instagram"
+					}
+				}
+			},
+			"apify_x_simple_searches_posts_comments": {
+				"title": "Publicaciones y comentarios de x.com (Twitter) desde búsquedas simples",
+				"description": "Reunir tuits como publicaciones y comentarios a partir de una lista de palabras clave y cuentas en x.com (Twitter).",
+				"create": "Configurar una nueva recopilación de x.com (Twitter) desde búsquedas simples",
+				"create_description": {
+					"part1": "Crea una recopilación de x.com (Twitter) para publicaciones y comentarios. Esta recopilación obtendrá todas las palabras clave de una lista de cuentas.",
+					"part2": "Consulta el manual para más información sobre cómo se procesan los tuits y qué tipos de palabras clave pueden utilizarse.",
+					"part3a": "manual genérico de x.com",
+					"part3b": "manual de búsquedas simples"
+				},
+				"edit": "Editar configuración para una nueva recopilación de x.com (Twitter) desde búsquedas simples",
+				"edit_description": {
+					"part1": "Edita una recopilación de x.com (Twitter) para publicaciones y comentarios. Esta recopilación obtendrá todas las palabras clave de una lista de cuentas.",
+					"part2": "Consulta el manual para más información sobre cómo se procesan los tuits y qué tipos de palabras clave pueden utilizarse.",
+					"part3a": "manual genérico de x.com",
+					"part3b": "manual de búsquedas simples"
+				},
+				"fields": {
+					"limit_results_per_search": "Limitar publicaciones y comentarios por búsqueda",
+					"posts_created_after": "Publicaciones y comentarios creados después de",
+					"posts_created_before": "Publicaciones y comentarios creados antes de",
+					"location": "Ubicación",
+					"sort": "Ordenar por",
+					"sort_options": {
+						"top": "Interacciones",
+						"latest": "Más recientes"
+					},
+					"detail": "Información",
+					"keywords_list": "Palabras clave",
+					"handle_list": "Cuentas de x.com (Twitter)",
+					"search_queries": "Consultas de búsqueda",
+					"keyword_handle_placeholder": "Escribe/pega entradas separadas por <Enter> (nueva línea)",
+					"info": {
+						"limit_results_per_search": "Limita el número de resultados recopilados por búsqueda",
+						"posts_created_after": "Recopila publicaciones y comentarios creados después de las 00:00 del día configurado.",
+						"posts_created_before": "Recopila publicaciones y comentarios creados antes de las 00:00 del día configurado.",
+						"sort": "Orden en que se recopilarán publicaciones y comentarios.",
+						"location": "Agrega un filtro de ubicación para todos los tuits. Ten en cuenta que muchos tuits no tienen metadatos de ubicación, por lo que usar un filtro de ubicación puede dar resultados inesperados. Ejemplo de ubicación: `Cerca de Ámsterdam`, `Kenia`",
+						"keyword_handle": {
+							"part1": "Establece las palabras clave y/o cuentas desde las que deseas recopilar datos.",
+							"part2": "Tanto palabras clave como cuentas son opcionales.",
+							"part3": "Si se proporcionan ambas, se recopilarán los tweets que coincidan con las palabras clave de esas cuentas.",
+							"part4": "Haz clic en las pestañas para cambiar entre ellas.",
+							"part5a": "Consulta el ",
+							"part5b": "manual",
+							"part5c": " para más información sobre cómo se procesan los tweets y qué palabras clave se pueden usar."
+						}
+					},
+					"validation": {
+						"required": "Requerido",
+						"posts_created_after": {
+							"less_than_today": "La fecha de inicio no puede estar en el futuro",
+							"less_than_end": "La fecha de inicio no puede ser posterior a la fecha de fin",
+							"max_days": "El número máximo de días para recopilar publicaciones es 365 días."
+						},
+						"posts_created_before": {
+							"greater_than_start": "La fecha de fin no puede ser anterior a la de inicio",
+							"max_days": "El número máximo de días para recopilar publicaciones es 365 días."
+						}
+					}
+				},
+				"view": {
+					"text": "Este es un recolector de X (Twitter). Reúne publicaciones y comentarios de una lista de cuentas y/o palabras clave usando el scraper web de Apify.",
+					"accordion": {
+						"run": "Ejecutar",
+						"status": "Estado",
+						"general": "General",
+						"source": "Las publicaciones y comentarios de X (Twitter) provienen de estos"
+					},
+					"computed": {
+						"title": "Consultas de búsqueda generadas",
+						"handle": "Cuenta",
+						"keyword": "Palabra clave",
+						"date": "Rango de fechas",
+						"location": "Ubicación",
+						"link": "Enlace",
+						"empty": "No se encontraron consultas generadas."
+					}
+				}
+			},
+			"apify_x_advanced_searches_posts_comments": {
+				"title": "Publicaciones y comentarios de x.com (Twitter) a partir de una lista de consultas de búsqueda avanzada",
+				"description": "Reunir tuits como publicaciones y comentarios a partir de una lista de consultas de búsqueda en x.com (Twitter).",
+				"create": "Configurar una nueva recopilación de x.com (Twitter) desde búsquedas avanzadas",
+				"create_description": {
+					"part1": "Crea una recopilación de x.com (Twitter) para publicaciones y comentarios. Esta recopilación reunirá los tuits de todas las consultas de búsqueda.",
+					"part2": "Consulta el manual para obtener más información sobre cómo se procesan los tuits y qué tipos de consultas pueden usarse.",
+					"part3a": "manual genérico de x.com",
+					"part3b": "manual de búsquedas avanzadas"
+				},
+				"edit": "Editar configuración de recopilación desde búsquedas avanzadas de x.com (Twitter)",
+				"edit_description": {
+					"part1": "Edita una recopilación de x.com (Twitter) para publicaciones y comentarios. Esta recopilación reunirá los tuits de todas las consultas de búsqueda.",
+					"part2": "Consulta el manual para obtener más información sobre cómo se procesan los tuits y qué tipos de consultas pueden usarse.",
+					"part3a": "manual genérico de x.com",
+					"part3b": "manual de búsquedas avanzadas"
+				},
+				"fields": {
+					"limit_results_per_search": "Limitar resultados por búsqueda",
+					"posts_created_after": "Publicaciones creadas después de",
+					"posts_created_before": "Publicaciones creadas antes de",
+					"sort_by": "Ordenar por",
+					"sort_by_options": {
+						"top": "Interacciones",
+						"latest": "Más recientes"
+					},
+					"search_queries": "Consultas de búsqueda",
+					"search_queries_placeholder": "Escribe/pega entradas separadas por <Enter> (nueva línea)",
+					"info": {
+						"limit_results_per_search": "Limita el número de resultados que se recopilan por búsqueda",
+						"posts_created_after": "Recopila publicaciones y comentarios creados después de las 00:00 del día configurado.",
+						"posts_created_before": "Recopila publicaciones y comentarios creados antes de las 00:00 del día configurado.",
+						"sort_by": "Orden en el que deseas recopilar las publicaciones y comentarios.",
+						"search_queries": {
+							"part1": "Las consultas no son solo palabras clave; pueden combinar términos de búsqueda y filtros. Consulta el ",
+							"part2": "manual",
+							"part3": " para más información."
+						}
+					},
+					"validation": {
+						"required": "Obligatorio",
+						"posts_created_after": {
+							"less_than_today": "La fecha de inicio no puede estar en el futuro",
+							"less_than_end": "La fecha de inicio no puede ser posterior a la fecha de fin",
+							"max_days": "El número máximo de días para recopilar publicaciones es de 365 días."
+						},
+						"posts_created_before": {
+							"greater_than_start": "La fecha de fin no puede ser anterior a la fecha de inicio",
+							"max_days": "El número máximo de días para recopilar publicaciones es de 365 días."
+						}
+					}
+				},
+				"view": {
+					"text": "Esta es una recopilación de X (Twitter). Recopila publicaciones y comentarios de una lista de búsquedas utilizando el scraper web de Apify.",
+					"accordion": {
+						"run": "Ejecutar",
+						"status": "Estado",
+						"general": "General",
+						"source": "Las publicaciones y comentarios de X (Twitter) provienen de estas búsquedas",
+						"source_title": "Consultas de búsqueda en X (Twitter)"
+					}
+				}
+			},
+			"apify_youtube_accounts_posts": {
+				"title": "Publicaciones de YouTube de una lista de cuentas",
+				"description": "Recopila publicaciones (videos) de una lista de cuentas en YouTube"
+			},
+			"apify_youtube_search_posts": {
+				"title": "Publicaciones de YouTube a partir de una lista de palabras clave",
+				"description": "Recopila publicaciones (videos) de una lista de palabras clave en YouTube"
+			},
+			"apify_youtube_comments": {
+				"title": "Comentarios de YouTube de una lista de publicaciones de YouTube",
+				"description": "Recopilar comentarios de una lista de publicaciones de YouTube (videos)"
+			},
+			"apify_instagram_accounts_posts": {
+				"title": "Publicaciones de Instagram de una lista de cuentas",
+				"description": "Recopila publicaciones de una lista de cuentas de Instagram. Las cuentas deben ser páginas o grupos públicos (no cuentas privadas)."
+			},
+			"apify_instagram_search_posts": {
+				"title": "Publicaciones de Instagram a partir de una lista de palabras clave",
+				"description": "Recopila publicaciones de una lista de palabras clave en Instagram. Se buscarán palabras clave solo en publicaciones públicas (no en publicaciones privadas)"
+			},
+			"apify_instagram_comments": {
+				"title": "Comentarios de Instagram de una lista de publicaciones de Instagram",
+				"description": "Recopila comentarios de una lista de publicaciones de Instagram. Los comentarios se recopilarán únicamente de publicaciones públicas (no de publicaciones privadas)."
+			},
+			"apify_telegram_chats_posts": {
+				"title": "Publicaciones de Telegram desde chats",
+				"description": "Recopilar publicaciones desde chats en Telegram"
+			},
+			"manual_upload": {
+				"title": "Subir manualmente los datos recolectados",
+				"description": "Sube publicaciones y comentarios a la plataforma Phoenix desde un archivo CSV.",
+				"create": "Configurar una nueva subida manual",
+				"create_description": {
+					"part1": "Sube datos directamente a la plataforma Phoenix usando un archivo CSV.",
+					"part2": {
+						"a": "Consulta las instrucciones para dar formato al CSV,",
+						"b": "aquí"
+					},
+					"part3": "Estos datos se clasificarán de la misma manera que otras recopilaciones."
+				},
+				"fields": {
+					"name": "Nombre de la recopilación",
+					"file": "Archivo",
+					"validation": {
+						"required": "Requerido",
+						"invalid_file_type": "Tipo de archivo no válido",
+						"file_too_large": "Archivo demasiado grande"
+					}
+				},
+				"errors": {
+					"message": "¡Vaya! Parece haber un problema con el archivo subido:",
+					"column_not_in_dataframe": "Faltan algunas columnas",
+					"column_not_in_schema": "Hay columnas adicionales",
+					"dataframe_check": "Algunos de los datos están en el formato incorrecto"
+				},
+				"view": {
+					"text": "Esta recopilación contiene datos subidos manualmente.",
+					"file_name": "Nombre del archivo",
+					"file_size": "Tamaño del archivo (en bytes)",
+					"no_rows": "Número de filas en el archivo",
+					"accordion": {
+						"status": "Estado",
+						"general": "General"
+					}
+				}
+			}
+		},
+		"fields": {
+			"id": "ID",
+			"name": "Nombre",
+			"platform": "Plataforma de redes sociales",
+			"data_type": "Tipo de datos de redes sociales",
+			"project_id": "Proyecto",
+			"created_at": "Creado a las",
+			"updated_at": "Actualizado a las",
+			"status": "Estado de la ejecución",
+			"from": "De",
+			"started_processing_at": "Inicio del procesamiento a las",
+			"started_run_at": "Inicio de la ejecución a las",
+			"completed_at": "Completado a las",
+			"latest_job_id": "ID de la última ejecución del trabajo",
+			"total_cost": "Costo total",
+			"result_count": "Recuento de resultados",
+			"result_count_tooltip": "El recuento de resultados recopilados incluye errores y resultados duplicados que se filtran en la creación del conjunto de datos del panel de control.",
+			"error_count": "Recuento de errores",
+			"error_count_tooltip": "El recuento de errores es la cantidad de errores que ocurrieron durante el procesamiento de los datos recopilados.",
+			"source": {
+				"label": "Recoger datos de",
+				"apify": "Scraper web (Apify)",
+				"input_values": "valores de entrada"
+			},
+			"input": {
+				"name": "Nombre",
+				"data_placeholder": "Escriba y pegue las entradas separadas por <Enter> (nueva línea) o , (coma)",
+				"button_text": "Agregar a entradas",
+				"search_placeholder": "Buscar una entrada",
+				"edit_input_label": "Editar elemento",
+				"select_placeholder": "Seleccione una entrada"
+			},
+			"info": {
+				"name": "Nombre corto para que sepas cuál era el objetivo de la reunión.",
+				"input": {
+					"type": "El tipo de datos de entrada que desea reunir. Consulte el manual para obtener más información.",
+					"data": "Agregue los datos de entrada que desea reunir. Escriba/pegue entradas separadas por ` ` (espacio)"
+				}
+			}
+		},
+		"caution": {
+			"over_cost": "Esta recopilación parece demasiado grande para ejecutarse con los créditos que tienes. Intenta editarla para reducir la cantidad de resultados que estás recopilando o contáctanos para obtener más créditos.",
+			"no_credit": "No tienes más créditos asignados, por lo que no puedes ejecutar esta recopilación",
+			"pending_cost": "Se estima que las recopilaciones que se están ejecutando actualmente utilizarán los créditos que tienes asignados. Espera a que finalicen antes de comenzar esta."
+		},
+		"run_estimate": {
+			"title": "¿Estás seguro de que quieres ejecutar esta reunión?",
+			"estimated_credit_cost": "Créditos estimados para esta ejecución",
+			"estimated_duration_minutes": "Tiempo estimado",
+			"cost": "Costo estimado",
+			"max_no_results": "Número máximo estimado de resultados",
+			"max_credit_for_run": "Créditos máximos estimados utilizados para esta ejecución",
+			"max_credit_after_run": "Créditos estimados utilizados después de la ejecución",
+			"max_credit_after_run_tooltip": "La estimación puede ser ligeramente superior a los créditos asignados para permitir un margen de error en la estimación. El costo real se calculará después de que se complete la ejecución"
+		},
+		"delete": {
+			"message": "¿Está seguro de que desea eliminar esta recopilación?",
+			"note": "Tenga en cuenta que al eliminar esta recopilación:",
+			"list": {
+				"a": "Los datos recopilados para esta recopilación se eliminarán del panel de control.",
+				"b": "Esta acción no se puede deshacer.",
+				"c": "Esta recopilación seguirá estando disponible para duplicar."
+			}
+		},
+		"success": {
+			"create": "Creado con éxito.",
+			"update": "Actualizado con éxito.",
+			"delete": "Eliminando la recopilación."
+		},
+		"errors": {
+			"create": "Algo salió mal al crear",
+			"delete": "Ocurrió un error al eliminar la recopilación."
+		},
+		"cautions": {
+			"is_total_cost_estimated": "El costo de esta recopilación se basa en una estimación y debe ser actualizado manualmente por un administrador. Por favor, póngase en contacto con el administrador si esta advertencia no se resuelve en varios días laborables."
+		}
+	},
+	"classifiers": {
+		"classifiers": "Clasificadores",
+		"details": "Detalles de los clasificadores",
+		"titles": {
+			"create": "Crear Clasificador",
+			"edit": "Editar Clasificador",
+			"list": "Clasificadores",
+			"show": "Mostrar Clasificador",
+			"select_type": "Seleccione el tipo de clasificador que desea aplicar"
+		},
+		"fields": {
+			"class_name": "Nombre de la clase",
+			"name_placeholder": "Mi clasificador",
+			"description_placeholder": "Descripción del clasificador",
+			"class_name_placeholder": "Nombre de la clase",
+			"class_description_placeholder": "Descripción de la clase",
+			"keywords": "Debe contener todas estas palabras",
+			"keywords_placeholder": "p. ej. PalabraClave1 PalabraClave2",
+			"latest_version_applyed_at": "Última versión aplicada en",
+			"latest_edits_made_at": "Últimas ediciones realizadas en",
+			"is_regex": "Regex",
+			"keyword_count": "Cantidad de palabras clave"
+		},
+		"info": {
+			"create_keywords": "Las palabras clave añadidas en una secuencia tienen un operador `y` entre ellas. Para crear relaciones `o` para esta clase, añada más de una secuencia de palabras clave.",
+			"edit_keywords": "Para crear relaciones `o` para esta clase, añada más de una secuencia de palabras clave.",
+			"unsaved_keyword": "Aún no añadido — haz clic en + o presiona Enter",
+			"is_regex": "Cuando está activado, el campo de palabras clave se trata como un patrón regex RE2 sin procesar.",
+			"is_regex_link": "Crear y probar patrones regex"
+		},
+		"no_gather": {
+			"text1": "Necesitas ejecutar y completar al menos una recopilación antes de poder clasificar.",
+			"text2": "Un clasificador nunca recopilará nuevos datos, solo aplicará clases (etiquetas) a los datos recopilados.",
+			"text3a": "Haz clic ",
+			"text3b": "aquí ",
+			"text3c": "para leer más sobre los clasificadores en el manual de Phoenix."
+		},
+		"run": "Ejecutar y aplicar a futuras recolecciones",
+		"run_modal": {
+			"title": "¿Estás seguro de que deseas ejecutar este clasificador?",
+			"text1": "El clasificador se aplicará a todos los datos recopilados. Añadirá una clase (o etiqueta) a todos los datos que coincidan.",
+			"text2": "El clasificador no recopilará nuevos datos.",
+			"text3": "Una vez que ejecutes este clasificador, cualquier nuevo dato que recopiles tendrá este clasificador aplicado.",
+			"text4": "Puedes archivar un clasificador, y todas las clases (etiquetas) serán eliminadas de tus datos. Puedes restaurar un clasificador que hayas archivado y las clases (etiquetas) se aplicarán nuevamente a tus datos."
+		},
+		"types": {
+			"manual_post_authors": {
+				"create": "Crear un clasificador de autores de post",
+				"create_description": "A partir de los datos recopilados, puedes añadir una o más clases a cada autor que tenga posts. Los autores se ordenarán por el número de posts recopilados (de mayor a menor) y podrás añadir clases a cada autor.",
+				"create_description_2": "Primero debes crear el clasificador con las clases antes de poder añadir clases a los autores.",
+				"proceed_text": "Comenzar a aplicar",
+				"edit": "Editar el clasificador de autores de publicaciones",
+				"edit_description": "Defina un clasificador que agregará automáticamente clases a una publicación y/o comentario cuando su texto contenga ciertas palabras clave. Esto se aplicará a publicaciones y/o comentarios que se hayan recopilado, así como a datos recopilados en el futuro.",
+				"edit_description_2": "Las ediciones se guardarán automáticamente, pero debe `Ejecutar y aplicar a futuras recopilaciones` para que el clasificador actualice el conjunto de datos del panel de control.",
+				"fields": {
+					"classes": "Clases",
+					"author_name": "Nombre del autor",
+					"author_link": "Enlace del autor",
+					"no_of_posts": "Número de posts recopilados para el autor",
+					"author_platform": "Plataforma del autor",
+					"author_anon_id": "ID Anónimo del autor",
+					"create": {
+						"class_section": "Clases (esto se puede modificar más tarde)",
+						"authors_section": "Autores (se puede editar después de crear)"
+					}
+				},
+				"author_count": "Número total de autores que tienen publicaciones: ",
+				"author_edit": {
+					"title": "Clasificar un autor de publicación",
+					"instruction": "Cada edición se guardará automáticamente, pero deberá `Ejecutar y aplicar a futuras recopilaciones` (en la página de edición) si desea que el conjunto de datos del panel de control se actualice.",
+					"count": "Está en el autor",
+					"processing": "Procesando",
+					"go_to_next": "Ir al siguiente autor",
+					"go_back_to_list": "Volver a la lista de autores"
+				},
+				"view": {
+					"text": "Ver tu clasificador de autores de post.",
+					"accordion": {
+						"status": "Estado",
+						"general": "General",
+						"basic_setup": "Configuración básica",
+						"class_configuration": "Configuración de clases",
+						"author_configuration": "Configuración de autores"
+					}
+				}
+			},
+			"keyword_match": {
+				"create": "Crear un clasificador de texto por palabra clave",
+				"create_description": "Defina un clasificador que añadirá automáticamente clases a una publicación y/o comentario cuando su texto contenga ciertas palabras clave. Esto se aplicará a publicaciones y/o comentarios que han sido recogidos, y a los datos recogidos en el futuro.",
+				"create_description_2": "Necesitará crear el clasificador con las clases antes de editar las palabras clave.",
+				"proceed_text": "Comenzar a aplicar",
+				"edit": "Editar un clasificador de texto por palabra clave",
+				"edit_description": "Defina un clasificador que añadirá automáticamente clases a una publicación y/o comentario cuando su texto contenga ciertas palabras clave. Esto se aplicará a publicaciones y/o comentarios que han sido recogidos, y a los datos recogidos en el futuro.",
+				"edit_description_2": "Las ediciones se guardarán automáticamente, pero debe `Ejecutar y aplicar a futuras recolecciones` para que el clasificador actualice el conjunto de datos del tablero.",
+				"view": {
+					"text": "Ver su clasificador de texto por palabra clave.",
+					"accordion": {
+						"status": "Estado",
+						"general": "General",
+						"configuration": "Configuración (guardado automático)",
+						"create_configuration": "Configuración (puedes agregar palabras clave después de la creación)",
+						"basic_setup": "Configuración básica"
+					}
+				}
+			},
+			"perspective_api": {
+				"create": "Aplicar la API Perspective para clasificar el texto (solo se permite uno)",
+				"create_description": "La API Perspective es un clasificador gratuito que utiliza aprendizaje automático para identificar comentarios tóxicos. Puedes usar la API Perspective para clasificar según el texto de una publicación y/o comentario. Esto se aplicará a todas las publicaciones y/o comentarios que se hayan recopilado, y los datos recopilados en el futuro. Para más información sobre el modelo consulta",
+				"proceed_text": "Comenzar a aplicar",
+				"create_page": {
+					"title": "Aplicar el clasificador API Perspective",
+					"description1a": "API Perspective",
+					"description1b": " utiliza un modelo de aprendizaje automático, creado por Google Jigsaw, para identificar contenido tóxico en línea. En este contexto, tóxico se define como « un comentario grosero, irrespetuoso o irracional que probablemente te haga abandonar una discusión ».",
+					"description2": "Al usar este clasificador, utilizaremos esta API para asignar una puntuación de toxicidad al contenido de redes sociales que hayas recopilado. Para simplificar el trabajo con estos datos, transformamos la puntuación en las clases `no_toxicity`, `low_toxicity`, `medium_toxicity` y `high_toxicity`.",
+					"description3": "Ten en cuenta que esta API solo funciona para los siguientes idiomas, y obtendrás clasificaciones incorrectas si los datos están en otro idioma: Árabe (ar), Chino (zh), Checo (cs), Neerlandés (nl), Inglés (en), Francés (fr), Alemán (de), Hindi (hi), Hinglish (hi-Latn), Indonesio (id), Italiano (it), Japonés (ja), Coreano (ko), Polaco (pl), Portugués (pt), Ruso (ru), Español (es), Sueco (sv).",
+					"description4": "La API Perspective también tiene algunos clasificadores adicionales que puedes aplicar a tus datos. Lee más sobre ellos ",
+					"description5": "aquí"
+				},
+				"edit_page": {
+					"title": "Editar el clasificador API Perspective"
+				},
+				"view": {
+					"text": "Ver tu clasificador API Perspective",
+					"edit_run": "Editar y volver a ejecutar",
+					"accordion": {
+						"status": "Estado",
+						"general": "General",
+						"basic_setup": "Configuración básica",
+						"classes": "Sub-clasificadores seleccionados"
+					}
+				},
+				"warnings": {
+					"create": "Se recomienda incluir todos los clasificadores que creas que podrías necesitar y no editar ni volver a ejecutar el clasificador con demasiada frecuencia. Esto se debe a las limitaciones de tasa de la API Perspective."
+				}
+			},
+			"hugging_face": {
+				"create": "Aplicar un clasificador de código abierto",
+				"create_description": "Utiliza Phoenix para clasificar tus publicaciones y comentarios con modelos de código abierto del Hugging Face Hub. Simplemente elige un modelo de código abierto compatible y Phoenix lo descargará automáticamente, ejecutará la inferencia y categorizará los resultados en etiquetas intuitivas como low_prob_toxicity, high_prob_toxicity, etc.",
+				"proceed_text": "Comenzar",
+				"create_page": {
+					"title": "Aplicar un clasificador de código abierto",
+					"description1a": "Hugging Face Hub",
+					"description1b": " contiene una gran cantidad de modelos de clasificación de código abierto (y otros tipos de modelos). Con Phoenix puedes procesar todos tus datos recopilados a través de un modelo de clasificación de código abierto.",
+					"description2": "Al usar un clasificador, Phoenix descargará el modelo y lo utilizará para inferir la puntuación/probabilidad de que la publicación o comentario pertenezca a la(s) clase(s) predicha(s). Para simplificar el trabajo con estos datos, transformamos la probabilidad en intervalos de clase: `low_prob_<class_name>`, `medium_prob_<class_name>`, `high_prob_<class_name>` y `very_high_prob_<class_name>`.",
+					"description3": "Si el modelo seleccionado produce más de una clase, se añadirán todos estos intervalos de probabilidad para cada clase del modelo. Por ejemplo, si el modelo produce `toxicity` e `intimidation`, Phoenix generará todos los intervalos de clase para `toxicity` e `intimidation`.",
+					"description4": "Consulta nuestro manual para ver una lista de modelos recomendados y cómo buscar modelos con los que Phoenix pueda trabajar. Solo podemos ejecutar modelos que soporten la arquitectura `<xxx>ForSequenceClassification` y que sean `safetensors`. Si no sabes cómo comprobar esto, consulta el manual."
+				},
+				"input": {
+					"model": "Modelo",
+					"hub_url": "Nombre del modelo en Hugging Face Hub",
+					"hub_url_placeholder": "Copia aquí el nombre o la URL del modelo de Hugging Face"
+				},
+				"errors": {
+					"model_not_found": "Modelo no encontrado",
+					"invalid_model_id": "ID de modelo inválido",
+					"invalid_architecture": "El modelo debe ser del tipo `<xxx>ForSequenceClassification`",
+					"list_repo_files_failed": "No se pudieron listar los archivos del repositorio para el modelo",
+					"no_safetensors": "El modelo debe ser del tipo `safetensors`. Si deseas utilizar este modelo, ponte en contacto con el administrador."
+				},
+				"view": {
+					"text": "Ver tu clasificador de código abierto. Ten en cuenta que no es posible editar el clasificador de código abierto. Cuando esté activo, se ejecutará automáticamente en todos los nuevos datos recopilados. Puedes archivar este clasificador o crear uno nuevo para otro modelo si lo necesitas.",
+					"accordion": {
+						"status": "Estado",
+						"general": "General"
+					}
+				}
+			}
+		},
+		"actions": {
+			"button": "Sí, proceder",
+			"titles": {
+				"archive": "Archivar",
+				"view_and_run": "Ver y ejecutar",
+				"restore": "Restaurar"
+			},
+			"text": {
+				"archive": "¿Le gustaría ARCHIVAR este clasificador?",
+				"restore": "¿Le gustaría RESTAURAR este clasificador?"
+			},
+			"tooltips": {
+				"save_class": "Guardar datos de clase y palabras clave",
+				"add_keyword": "Añadir",
+				"delete_class": "Eliminar esta clase",
+				"delete_keyword": "Eliminar este grupo de palabras clave"
+			}
+		},
+		"buttons": {
+			"finish": "Terminar y ver el clasificador"
+		},
+		"caution": "Su clasificador tiene ediciones que no se han aplicado. Haga clic en el ícono para ir a la página de edición y luego haga clic en 'Ejecutar y aplicar a futuras recopilaciones' para actualizar el conjunto de datos del panel.",
+		"cautions": {
+			"not_run": {
+				"title": "Su clasificador no ha sido aplicado.",
+				"description": "Haga clic en 'Ejecutar y aplicar a futuras recolecciones' para que su clasificador se aplique al conjunto de datos del tablero y a futuras recolecciones."
+			},
+			"not_applied": {
+				"title": "Su clasificador tiene ediciones que no se han aplicado.",
+				"description": "Haga clic en 'Ejecutar y aplicar a futuras recolecciones' para que su clasificador se aplique al conjunto de datos del tablero y a futuras recolecciones."
+			},
+			"no_author_class": "Debe tener autores clasificados para ejecutar este clasificador, editar y agregar clases a los autores. Si desea eliminar el clasificador, deberá archivarlo.",
+			"no_keyword_configurations": "Debe tener configuraciones de palabras clave para ejecutar este clasificador, editarlo y agregar palabras clave. Si desea eliminar el clasificador, deberá archivarlo."
+		},
+		"or": "O",
+		"keyword_configurations": "configuraciones de palabras clave",
+		"export_csv": "Exportar CSV",
+		"import_csv": "Importar CSV",
+		"import_export_recommendation": "Recomendamos usar la funcionalidad de importación y exportación para grandes cantidades de configuraciones de palabras clave. Use un editor de hojas de cálculo que tenga más funcionalidad que Phoenix e importe las configuraciones.",
+		"import_modal": {
+			"title": "Importar configuraciones de palabras clave",
+			"description": "Suba un archivo CSV para importar configuraciones de palabras clave. El CSV debe tener las columnas: class_name, class_description, musts, nots, is_regex. Donde musts es la configuración de palabras clave. Las columnas nots e is_regex son funciones avanzadas que solo se pueden configurar mediante la importación/exportación de CSV, no a través de la interfaz de la consola. Cuando is_regex es verdadero, los valores de musts y nots se tratan como expresiones regulares. Vea un ejemplo de importación usando la funcionalidad de exportación.",
+			"append_info": "Las nuevas configuraciones de palabras clave se agregarán junto a las existentes. Las entradas duplicadas se omitirán.",
+			"replace_warning": "Esto eliminará todas las clases y configuraciones de palabras clave existentes y las reemplazará con los datos importados.",
+			"mode": {
+				"label": "Modo de importación",
+				"replace": "Reemplazar",
+				"append": "Agregar"
+			}
+		},
+		"success": {
+			"success": "Éxito",
+			"archive": "Archivando clasificador.",
+			"restore": "Restaurando clasificador.",
+			"export": "CSV exportado exitosamente.",
+			"import": "CSV importado exitosamente."
+		},
+		"errors": {
+			"generic": "Algo salió mal",
+			"create": "Algo salió mal al crear"
+		}
+	},
+	"tabulate": {
+		"title": "Tabular",
+		"sub_titles": {
+			"list": "Un tabulado creará y actualizará un conjunto de datos del tablero a partir de los datos recopilados."
+		},
+		"run": "Ejecutar tabular",
+		"fields": {
+			"started_processing_at": "Inicio del procesamiento",
+			"completed_at": "Completado a las"
+		}
+	},
+	"documentTitle": {
+		"default": "Consola - Phoenix",
+		"suffix": " | Phoenix",
+		"projects": {
+			"list": "Proyectos | Phoenix",
+			"show": "#{{id}} Mostrar proyecto | Phoenix",
+			"edit": "#{{id}} Editar proyecto | Phoenix",
+			"create": "Crear nuevo proyecto | Phoenix",
+			"clone": "#{{id}} Clonar proyecto | Phoenix"
+		},
+		"gathers": {
+			"list": "Reuniones | Phoenix",
+			"show": "#{{id}} Mostrar reunion | Phoenix",
+			"edit": "#{{id}} Editar reunion | Phoenix",
+			"create": "Crear nuevo reunion | Phoenix",
+			"clone": "#{{id}} Clonar reunion | Phoenix"
+		}
+	},
+	"table": {
+		"actions": "Acciones"
+	},
+	"status": {
+		"success": "Éxito",
+		"error": "Error",
+		"in_queue": "En cola",
+		"awaiting_start": "En espera de inicio",
+		"processing": "Procesando",
+		"failed": "Fallido",
+		"completed_successfully": "Completado con éxito",
+		"delete_status": {
+			"in_queue": "Eliminación en cola",
+			"awaiting_start": "Eliminación en espera de inicio",
+			"processing": "Eliminación en proceso",
+			"failed": "Eliminación fallida",
+			"completed_successfully": "Eliminado"
+		},
+		"classify_tabulate": {
+			"in_queue": "En Cola",
+			"awaiting_start": "Esperando Inicio",
+			"processing": "Procesando",
+			"failed": "Fallido",
+			"completed_successfully": "Completado Exitosamente"
+		},
+		"classifier_archive": {
+			"in_queue": "Archivo en Cola",
+			"awaiting_start": "Esperando Archivo",
+			"processing": "Procesando Archivo",
+			"failed": "Archivo Fallido",
+			"completed_successfully": "Archivado"
+		},
+		"classifier_restore": {
+			"in_queue": "Restaurar en Cola",
+			"awaiting_start": "Esperando Restaurar",
+			"processing": "Procesando Restauración",
+			"failed": "Restauración Fallida",
+			"completed_successfully": "Restaurado"
+		}
+	}
+}

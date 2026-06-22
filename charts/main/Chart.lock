@@ -1,0 +1,27 @@
+dependencies:
+- name: superset
+  repository: https://apache.github.io/superset
+  version: 0.15.0
+- name: oauth2-proxy
+  repository: https://oauth2-proxy.github.io/manifests
+  version: 8.5.1
+- name: cert-manager
+  repository: https://charts.jetstack.io
+  version: v1.19.2
+- name: postgresql
+  repository: https://charts.bitnami.com/bitnami
+  version: 18.1.14
+- name: prefect-worker
+  repository: https://prefecthq.github.io/prefect-helm
+  version: 2025.11.14001416
+- name: prefect-server
+  repository: https://prefecthq.github.io/prefect-helm
+  version: 2025.11.14001416
+- name: reloader
+  repository: https://stakater.github.io/stakater-charts
+  version: 2.2.6
+- name: phoenix_hugging_face_classifier
+  repository: file://../phoenix_hugging_face_classifier/
+  version: 0.6.0
+digest: sha256:3749ac50bf3f8c8f20d7e6debada05362234e996c5e1fc04ab8383976d913199
+generated: "2025-12-16T15:11:04.920527805+01:00"

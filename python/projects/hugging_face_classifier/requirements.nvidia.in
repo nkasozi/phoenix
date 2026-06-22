@@ -1,0 +1,17 @@
+# Development requirements - all projects need these.
+# Note: for `-r` option the path should be relative to this file.
+# Note: pytest is in the dev requirements
+-r ../../dev-requirements.txt
+
+
+## # Third party deps
+# cu126 as adviced in pytorch docs
+# https://pytorch.org/get-started/previous-versions/
+--extra-index-url https://download.pytorch.org/whl/cu126
+# Fixing version to avoid dependency conflicts
+torch==2.6
+--extra-index-url https://download.pytorch.org/whl/cu126
+transformers[torch]
+
+# Add new requirements to requirements.shared.in so both are in CPU and GPU images
+-r requirements.shared.in

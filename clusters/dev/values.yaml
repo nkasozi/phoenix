@@ -1,0 +1,61 @@
+phiphiImage:
+  repository: phiphi-dev-image
+  tag: latest
+base_host: "phoenixplatformdev.xyz"
+ingressClassName: "nginx"
+api:
+  enabled: true
+  replicas: 1
+  image:
+    # This is the stable image created by the gitlab ci
+    repository: registry.gitlab.com/howtobuildup/phoenix/python/phiphi
+    tag: stable
+cert_issuer:
+  enabled: true
+  issuer_name: "letsencrypt-prod"
+  issuer_email: "buildup@datavaluepeople.com"
+cert-manager:
+  enabled: true
+oauth2-proxy:
+  config:
+    configFile: |
+      # Settings for Auth0
+      provider="oidc"
+      provider_display_name="Auth0"
+      oidc_issuer_url="https://dev-2ii4bfcaymdes14b.uk.auth0.com/"
+      code_challenge_method="S256"
+      http_address="0.0.0.0:4180"
+      upstreams="file:///dev/null"
+      email_domains="*"
+      # Important that this machtes the domain being used for the cluster
+      cookie_domains=".phoenixplatformdev.xyz"
+      whitelist_domains=["*.phoenixplatformdev.xyz:*", "dev-2ii4bfcaymdes14b.uk.auth0.com"]
+      cookie_httponly=false
+      cookie_samesite="lax"
+      # email is needed as is not in default openid scrop
+      scope="openid email"
+      pass_access_token = true
+      pass_authorization_header = true
+      pass_user_headers = true
+      set_xauthrequest = true
+      # Currently no email set up on auth0
+      insecure_oidc_allow_unverified_email = true
+      cookie_secure=true
+      reverse_proxy=true
+superset:
+  enabled: true
+  init:
+    adminUser:
+      email: buildup@datavaluepeople.com
+  image:
+    repository: registry.gitlab.com/howtobuildup/phoenix/phoenix_superset
+    tag: phoenix_superset_helm
+  configOverrides:
+    general: |
+      APP_NAME = "Dashboard - Phoenix"
+
+      # This must be change in conjunction with the ingress auth-response-headers
+      AUTH_REMOTE_USER_ENV_VAR = "HTTP_X_AUTH_REQUEST_EMAIL"
+
+      # Throw error if got past the auth layer
+      LOGIN_REDIRECT_URL = False

@@ -1,0 +1,9 @@
+# Always added even if the override is not used
+# This is so we don't need large if's in the prefect-deployments-job.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-override-prefect-yaml
+data:
+  prefect.yaml: |-
+{{ (.Files.Get "files/prefect.yaml") | indent 4 }}

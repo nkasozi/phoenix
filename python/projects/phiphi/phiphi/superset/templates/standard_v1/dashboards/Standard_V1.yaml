@@ -1,0 +1,928 @@
+dashboard_title: Standard Dashboard - V1
+description: null
+css: " /* this is the purple ribbon at the top */\n.header-with-actions {\n    background-color:\
+  \ #9be3f3;\n    color: white;\n  }\n  /* changing the font as globally as possible\
+  \ */\n  #main-menu + div *{\n      font-family: 'Avenir light', sans-serif !important;\n\
+  \  }\n  \n  ## Facebook: ![logo]\n\n[logo]:  https://live.staticflickr.com/65535/52764834749_3f91c8e359_t.jpg\
+  \ \"Logo Title Text 2\"\n"
+slug: null
+certified_by: null
+certification_details: null
+published: true
+uuid: b9337b84-cb67-4f77-87f4-9f85af39b66a
+position:
+  CHART-CpXNCpE3md:
+    children: []
+    id: CHART-CpXNCpE3md
+    meta:
+      chartId: 4820
+      height: 50
+      sliceName: Likes by post class
+      uuid: 895c6b0e-7950-4a1c-a6f0-d17a236d77bd
+      width: 12
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-k8UfK-Zket
+    - TAB-1DQvXD8EI
+    - ROW-QqCk_MNHDK
+    type: CHART
+  CHART-IrqdAOCVdF:
+    children: []
+    id: CHART-IrqdAOCVdF
+    meta:
+      chartId: 4819
+      height: 72
+      sliceName: Post class by author class
+      uuid: 756304dd-4e75-4df5-890f-d336a964ce83
+      width: 12
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-k8UfK-Zket
+    - TAB-uJVGYAQrxH
+    - ROW-OH74wCdbn
+    type: CHART
+  CHART-YDfDzDCe6J:
+    children: []
+    id: CHART-YDfDzDCe6J
+    meta:
+      chartId: 4811
+      height: 21
+      sliceName: Number of posts
+      uuid: 3e92381a-f157-48b8-bbbf-24e9a8372785
+      width: 3
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-k8UfK-Zket
+    - TAB-8sT5eh-P6
+    - ROW-3O__1vtS7
+    type: CHART
+  CHART-explore-1560-1:
+    children: []
+    id: CHART-explore-1560-1
+    meta:
+      chartId: 4824
+      height: 135
+      sliceName: Raw Data
+      uuid: 418b7158-a199-4fae-9603-94117f2ac157
+      width: 12
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-k8UfK-Zket
+    - TAB-xfKIJFxitW3m4nG8vbJr9
+    - ROW-x9vUzm9Gk1vtuqx5GKG70
+    type: CHART
+  CHART-explore-227-1:
+    children: []
+    id: CHART-explore-227-1
+    meta:
+      chartId: 4817
+      height: 24
+      sliceName: Comments per day
+      uuid: 4db2a088-318a-4ac8-b434-be8b2f16ed88
+      width: 9
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-k8UfK-Zket
+    - TAB-8sT5eh-P6
+    - ROW-KzqlV9bHN
+    type: CHART
+  CHART-explore-228-1:
+    children: []
+    id: CHART-explore-228-1
+    meta:
+      chartId: 4815
+      height: 50
+      sliceName: Posts by class
+      uuid: 78f24c03-50d1-4dae-9569-fb9075d44322
+      width: 6
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-k8UfK-Zket
+    - TAB-1DQvXD8EI
+    - ROW-p7PHSQxyC
+    type: CHART
+  CHART-explore-229-1:
+    children: []
+    id: CHART-explore-229-1
+    meta:
+      chartId: 4816
+      height: 50
+      sliceName: Comments by class
+      uuid: fc2a5c3c-62ea-4508-99e9-d30547b006ef
+      width: 6
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-k8UfK-Zket
+    - TAB-1DQvXD8EI
+    - ROW-p7PHSQxyC
+    type: CHART
+  CHART-explore-231-1:
+    children: []
+    id: CHART-explore-231-1
+    meta:
+      chartId: 4818
+      height: 50
+      sliceName: Number of comments by author class
+      uuid: 1d2b6c44-b513-4eb7-95d7-ec046427aec4
+      width: 7
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-k8UfK-Zket
+    - TAB-uJVGYAQrxH
+    - ROW-E_DAyKrv5
+    type: CHART
+  CHART-explore-238-1:
+    children: []
+    id: CHART-explore-238-1
+    meta:
+      chartId: 4821
+      height: 53
+      sliceName: Post class & Comment class
+      uuid: 6bfbda5d-8a67-40d4-a7a5-a01022e2da4b
+      width: 12
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-k8UfK-Zket
+    - TAB-1DQvXD8EI
+    - ROW-FDNWPuAmw
+    type: CHART
+  CHART-explore-260-1:
+    children: []
+    id: CHART-explore-260-1
+    meta:
+      chartId: 4822
+      height: 24
+      sliceName: Posts per day
+      uuid: 76190dad-ce54-48b5-9169-adb1380ededa
+      width: 9
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-k8UfK-Zket
+    - TAB-8sT5eh-P6
+    - ROW-3O__1vtS7
+    type: CHART
+  CHART-explore-37-1:
+    children: []
+    id: CHART-explore-37-1
+    meta:
+      chartId: 4812
+      height: 20
+      sliceName: Number of comments
+      uuid: f033424d-984b-4625-924c-0237af7cb114
+      width: 3
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-k8UfK-Zket
+    - TAB-8sT5eh-P6
+    - ROW-KzqlV9bHN
+    type: CHART
+  CHART-explore-38-1:
+    children: []
+    id: CHART-explore-38-1
+    meta:
+      chartId: 4813
+      height: 50
+      sliceName: Top 10 authors with highest maximum likes on a post
+      uuid: 7d69cf35-b73c-4389-8f2e-3f527d964cdf
+      width: 5
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-k8UfK-Zket
+    - TAB-uJVGYAQrxH
+    - ROW-E_DAyKrv5
+    type: CHART
+  CHART-explore-47-1:
+    children: []
+    id: CHART-explore-47-1
+    meta:
+      chartId: 4814
+      height: 59
+      sliceName: Posts with likes & shares
+      uuid: 02254d5e-65a6-4951-a9c6-2e5150ba6170
+      width: 12
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-k8UfK-Zket
+    - TAB-jsA2BpE31
+    - ROW-2rNgmZNdhT
+    type: CHART
+  CHART-hUUSSMBcrM:
+    children: []
+    id: CHART-hUUSSMBcrM
+    meta:
+      chartId: 4823
+      height: 65
+      sliceName: Comments with likes
+      uuid: 0cd49520-5492-4db9-a041-910925bd276f
+      width: 12
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-k8UfK-Zket
+    - TAB-jsA2BpE31
+    - ROW-e3uSAeavl
+    type: CHART
+  DASHBOARD_VERSION_KEY: v2
+  GRID_ID:
+    children:
+    - TABS-k8UfK-Zket
+    id: GRID_ID
+    parents:
+    - ROOT_ID
+    type: GRID
+  HEADER_ID:
+    id: HEADER_ID
+    meta:
+      text: Standard Dashboard - FINAL
+    type: HEADER
+  MARKDOWN-7qYaKkaJga:
+    children: []
+    id: MARKDOWN-7qYaKkaJga
+    meta:
+      code: '### These charts will only work if you have created post classes and
+        / or comment classes. '
+      height: 8
+      width: 12
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-k8UfK-Zket
+    - TAB-1DQvXD8EI
+    - ROW-4LAx8bXHvM
+    type: MARKDOWN
+  MARKDOWN-L5ISiGjv5G:
+    children: []
+    id: MARKDOWN-L5ISiGjv5G
+    meta:
+      code: '### If your charts and tables are not showing the most up to date data
+        and classes, then click on the three dots next to "EDIT DASHBOARD" and then
+        on "Refresh dashboard".'
+      height: 50
+      width: 12
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-k8UfK-Zket
+    - TAB-726iUfn7V
+    - ROW-Ar6ns9xCAO
+    type: MARKDOWN
+  MARKDOWN-LKZyBi0zll:
+    children: []
+    id: MARKDOWN-LKZyBi0zll
+    meta:
+      code: '### This is your starting dashboard, which includes some standard graphs
+        and tables you may find useful. You can edit or delete all the graphs, tables,
+        filters and tabs. You can also add new graphs, tables, filters and tabs.'
+      height: 9
+      width: 12
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-k8UfK-Zket
+    - TAB-8sT5eh-P6
+    - ROW-fF45LkDdc
+    type: MARKDOWN
+  MARKDOWN-wWENISpqdP:
+    children: []
+    id: MARKDOWN-wWENISpqdP
+    meta:
+      code: '### These charts will only work if you have created author classes.'
+      height: 7
+      width: 12
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-k8UfK-Zket
+    - TAB-uJVGYAQrxH
+    - ROW-qdmG81Beme
+    type: MARKDOWN
+  ROOT_ID:
+    children:
+    - GRID_ID
+    id: ROOT_ID
+    type: ROOT
+  ROW-2rNgmZNdhT:
+    children:
+    - CHART-explore-47-1
+    id: ROW-2rNgmZNdhT
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-k8UfK-Zket
+    - TAB-jsA2BpE31
+    type: ROW
+  ROW-3O__1vtS7:
+    children:
+    - CHART-YDfDzDCe6J
+    - CHART-explore-260-1
+    id: ROW-3O__1vtS7
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-k8UfK-Zket
+    - TAB-8sT5eh-P6
+    type: ROW
+  ROW-4LAx8bXHvM:
+    children:
+    - MARKDOWN-7qYaKkaJga
+    id: ROW-4LAx8bXHvM
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-k8UfK-Zket
+    - TAB-1DQvXD8EI
+    type: ROW
+  ROW-Ar6ns9xCAO:
+    children:
+    - MARKDOWN-L5ISiGjv5G
+    id: ROW-Ar6ns9xCAO
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-k8UfK-Zket
+    - TAB-726iUfn7V
+    type: ROW
+  ROW-E_DAyKrv5:
+    children:
+    - CHART-explore-38-1
+    - CHART-explore-231-1
+    id: ROW-E_DAyKrv5
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-k8UfK-Zket
+    - TAB-uJVGYAQrxH
+    type: ROW
+  ROW-FDNWPuAmw:
+    children:
+    - CHART-explore-238-1
+    id: ROW-FDNWPuAmw
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-k8UfK-Zket
+    - TAB-1DQvXD8EI
+    type: ROW
+  ROW-KzqlV9bHN:
+    children:
+    - CHART-explore-37-1
+    - CHART-explore-227-1
+    id: ROW-KzqlV9bHN
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-k8UfK-Zket
+    - TAB-8sT5eh-P6
+    type: ROW
+  ROW-OH74wCdbn:
+    children:
+    - CHART-IrqdAOCVdF
+    id: ROW-OH74wCdbn
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-k8UfK-Zket
+    - TAB-uJVGYAQrxH
+    type: ROW
+  ROW-QqCk_MNHDK:
+    children:
+    - CHART-CpXNCpE3md
+    id: ROW-QqCk_MNHDK
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-k8UfK-Zket
+    - TAB-1DQvXD8EI
+    type: ROW
+  ROW-e3uSAeavl:
+    children:
+    - CHART-hUUSSMBcrM
+    id: ROW-e3uSAeavl
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-k8UfK-Zket
+    - TAB-jsA2BpE31
+    type: ROW
+  ROW-fF45LkDdc:
+    children:
+    - MARKDOWN-LKZyBi0zll
+    id: ROW-fF45LkDdc
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-k8UfK-Zket
+    - TAB-8sT5eh-P6
+    type: ROW
+  ROW-p7PHSQxyC:
+    children:
+    - CHART-explore-228-1
+    - CHART-explore-229-1
+    id: ROW-p7PHSQxyC
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-k8UfK-Zket
+    - TAB-1DQvXD8EI
+    type: ROW
+  ROW-qdmG81Beme:
+    children:
+    - MARKDOWN-wWENISpqdP
+    id: ROW-qdmG81Beme
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-k8UfK-Zket
+    - TAB-uJVGYAQrxH
+    type: ROW
+  ROW-x9vUzm9Gk1vtuqx5GKG70:
+    children:
+    - CHART-explore-1560-1
+    id: ROW-x9vUzm9Gk1vtuqx5GKG70
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-k8UfK-Zket
+    - TAB-xfKIJFxitW3m4nG8vbJr9
+    type: ROW
+  TAB-1DQvXD8EI:
+    children:
+    - ROW-4LAx8bXHvM
+    - ROW-p7PHSQxyC
+    - ROW-QqCk_MNHDK
+    - ROW-FDNWPuAmw
+    id: TAB-1DQvXD8EI
+    meta:
+      defaultText: Tab title
+      placeholder: Tab title
+      text: Post & comment classes
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-k8UfK-Zket
+    type: TAB
+  TAB-726iUfn7V:
+    children:
+    - ROW-Ar6ns9xCAO
+    id: TAB-726iUfn7V
+    meta:
+      defaultText: Tab title
+      placeholder: Tab title
+      text: Refresh dashboard
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-k8UfK-Zket
+    type: TAB
+  TAB-8sT5eh-P6:
+    children:
+    - ROW-fF45LkDdc
+    - ROW-3O__1vtS7
+    - ROW-KzqlV9bHN
+    id: TAB-8sT5eh-P6
+    meta:
+      defaultText: Tab title
+      placeholder: Tab title
+      text: Overview
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-k8UfK-Zket
+    type: TAB
+  TAB-jsA2BpE31:
+    children:
+    - ROW-2rNgmZNdhT
+    - ROW-e3uSAeavl
+    id: TAB-jsA2BpE31
+    meta:
+      defaultText: Tab title
+      placeholder: Tab title
+      text: Engagement
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-k8UfK-Zket
+    type: TAB
+  TAB-uJVGYAQrxH:
+    children:
+    - ROW-qdmG81Beme
+    - ROW-E_DAyKrv5
+    - ROW-OH74wCdbn
+    id: TAB-uJVGYAQrxH
+    meta:
+      defaultText: Tab title
+      placeholder: Tab title
+      text: Author classes
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-k8UfK-Zket
+    type: TAB
+  TAB-xfKIJFxitW3m4nG8vbJr9:
+    children:
+    - ROW-x9vUzm9Gk1vtuqx5GKG70
+    id: TAB-xfKIJFxitW3m4nG8vbJr9
+    meta:
+      defaultText: Tab title
+      placeholder: Tab title
+      text: Raw Data
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-k8UfK-Zket
+    type: TAB
+  TABS-k8UfK-Zket:
+    children:
+    - TAB-8sT5eh-P6
+    - TAB-jsA2BpE31
+    - TAB-1DQvXD8EI
+    - TAB-uJVGYAQrxH
+    - TAB-xfKIJFxitW3m4nG8vbJr9
+    - TAB-726iUfn7V
+    id: TABS-k8UfK-Zket
+    meta: {}
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    type: TABS
+metadata:
+  chart_configuration:
+    '246':
+      id: 246
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 244
+        - 245
+        - 247
+        - 249
+        - 250
+        - 251
+        - 254
+        - 256
+        - 257
+        - 258
+        - 259
+        - 260
+        - 1560
+    '247':
+      id: 247
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 244
+        - 245
+        - 246
+        - 249
+        - 250
+        - 251
+        - 254
+        - 256
+        - 257
+        - 258
+        - 259
+        - 260
+        - 1560
+    '249':
+      id: 249
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 244
+        - 245
+        - 246
+        - 247
+        - 250
+        - 251
+        - 254
+        - 256
+        - 257
+        - 258
+        - 259
+        - 260
+        - 1560
+    '250':
+      id: 250
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 244
+        - 245
+        - 246
+        - 247
+        - 249
+        - 251
+        - 254
+        - 256
+        - 257
+        - 258
+        - 259
+        - 260
+        - 1560
+    '254':
+      id: 254
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 244
+        - 245
+        - 246
+        - 247
+        - 249
+        - 250
+        - 251
+        - 256
+        - 257
+        - 258
+        - 259
+        - 260
+        - 1560
+    '256':
+      id: 256
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 244
+        - 245
+        - 246
+        - 247
+        - 249
+        - 250
+        - 251
+        - 254
+        - 257
+        - 258
+        - 259
+        - 260
+        - 1560
+    '257':
+      id: 257
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 244
+        - 245
+        - 246
+        - 247
+        - 249
+        - 250
+        - 251
+        - 254
+        - 256
+        - 258
+        - 259
+        - 260
+        - 1560
+    '259':
+      id: 259
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 244
+        - 245
+        - 246
+        - 247
+        - 249
+        - 250
+        - 251
+        - 254
+        - 256
+        - 257
+        - 258
+        - 260
+        - 1560
+    '1560':
+      id: 1560
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 244
+        - 245
+        - 246
+        - 247
+        - 249
+        - 250
+        - 251
+        - 254
+        - 256
+        - 257
+        - 258
+        - 259
+        - 260
+  global_chart_configuration:
+    scope:
+      rootPath:
+      - ROOT_ID
+      excluded: []
+    chartsInScope:
+    - 244
+    - 245
+    - 246
+    - 247
+    - 249
+    - 250
+    - 251
+    - 254
+    - 256
+    - 257
+    - 258
+    - 259
+    - 260
+    - 1560
+  native_filter_configuration:
+  - id: NATIVE_FILTER-NKMNQHl-1
+    controlValues:
+      enableEmptyFilter: false
+      defaultToFirstItem: false
+      multiSelect: true
+      searchAllOptions: false
+      inverseSelection: false
+    name: Platform
+    filterType: filter_select
+    targets:
+    - column:
+        name: platform
+      datasetUuid: dd3e9568-93f9-4cbd-8ec7-001ce0758de4
+    defaultDataMask:
+      extraFormData: {}
+      filterState: {}
+      ownState: {}
+    cascadeParentIds: []
+    scope:
+      rootPath:
+      - ROOT_ID
+      excluded: []
+    type: NATIVE_FILTER
+    description: ''
+  - id: NATIVE_FILTER-orcxuZzVL
+    controlValues:
+      enableEmptyFilter: false
+      defaultToFirstItem: false
+      multiSelect: true
+      searchAllOptions: false
+      inverseSelection: false
+    name: Author class
+    filterType: filter_select
+    targets:
+    - column:
+        name: post_author_class
+      datasetUuid: dd3e9568-93f9-4cbd-8ec7-001ce0758de4
+    defaultDataMask:
+      extraFormData: {}
+      filterState: {}
+      ownState: {}
+    cascadeParentIds: []
+    scope:
+      rootPath:
+      - ROOT_ID
+      excluded: []
+    type: NATIVE_FILTER
+    description: ''
+  - id: NATIVE_FILTER-UzdiNGLNH
+    controlValues:
+      enableEmptyFilter: false
+      defaultToFirstItem: false
+      multiSelect: true
+      searchAllOptions: false
+      inverseSelection: false
+    name: Post class
+    filterType: filter_select
+    targets:
+    - column:
+        name: post_class
+      datasetUuid: dd3e9568-93f9-4cbd-8ec7-001ce0758de4
+    defaultDataMask:
+      extraFormData: {}
+      filterState: {}
+      ownState: {}
+    cascadeParentIds: []
+    scope:
+      rootPath:
+      - ROOT_ID
+      excluded: []
+    type: NATIVE_FILTER
+    description: ''
+  - id: NATIVE_FILTER-XrCAFUCFy
+    controlValues:
+      enableEmptyFilter: false
+      defaultToFirstItem: false
+      multiSelect: true
+      searchAllOptions: false
+      inverseSelection: false
+    name: Comment class
+    filterType: filter_select
+    targets:
+    - column:
+        name: comment_class
+      datasetUuid: dd3e9568-93f9-4cbd-8ec7-001ce0758de4
+    defaultDataMask:
+      extraFormData: {}
+      filterState: {}
+      ownState: {}
+    cascadeParentIds: []
+    scope:
+      rootPath:
+      - ROOT_ID
+      excluded: []
+    type: NATIVE_FILTER
+    description: ''
+  - id: NATIVE_FILTER-x8ZYoGgCN
+    controlValues:
+      enableEmptyFilter: false
+    name: Date
+    filterType: filter_time
+    targets:
+    - {}
+    defaultDataMask:
+      extraFormData: {}
+      filterState: {}
+      ownState: {}
+    cascadeParentIds: []
+    scope:
+      rootPath:
+      - ROOT_ID
+      excluded: []
+    type: NATIVE_FILTER
+    description: ''
+    chartsInScope:
+    - 244
+    - 245
+    - 246
+    - 247
+    - 249
+    - 250
+    - 251
+    - 254
+    - 256
+    - 257
+    - 258
+    - 259
+    - 260
+    tabsInScope:
+    - TAB-1DQvXD8EI
+    - TAB-8sT5eh-P6
+    - TAB-jsA2BpE31
+    - TAB-uJVGYAQrxH
+  timed_refresh_immune_slices: []
+  expanded_slices: {}
+  refresh_frequency: 0
+  color_scheme: d3Category10
+  label_colors: {}
+  cross_filters_enabled: true
+  default_filters: '{}'
+  shared_label_colors:
+  - number of comments
+  map_label_colors: {}
+  color_scheme_domain:
+  - '#1f77b4'
+  - '#ff7f0e'
+  - '#2ca02c'
+  - '#d62728'
+  - '#9467bd'
+  - '#8c564b'
+  - '#e377c2'
+  - '#7f7f7f'
+  - '#bcbd22'
+  - '#17becf'
+version: 1.0.0

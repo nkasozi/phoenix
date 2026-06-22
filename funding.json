@@ -1,0 +1,150 @@
+{
+  "version": "v1.0.0",
+  "entity": {
+    "type": "organisation",
+    "role": "owner",
+    "name": "Build Up",
+    "email": "phoenix@howtobuildup.org",
+    "description": "We transform conflict in the digital age. At the intersection of peacebuilding and technology, Build Up uses new tools for old problems, and old tools for new problems. We implement programs, conduct research, and develop technical solutions to engage with conflict and build societies in which everyone can thrive. ",
+    "webpageUrl": {
+      "url": "https://howtobuildup.org/",
+      "wellKnown": "https://howtobuildup.org/.well-known/funding-manifest-urls"
+    }
+  },
+  "projects": [
+    {
+      "guid": "phoenix",
+      "name": "Phoenix",
+      "description": "Phoenix is an open source, non-commercial platform designed to enable peacebuilders and mediators to conduct ethical and participatory social media listening in order to inform conflict transformation work. The platform is user-friendly, and allows peacebuilders and mediators with no technical knowledge of social media listening to:\n1. Gather posts and comments from social media platforms, based on search parameters they define;\n2. Classify social media accounts as well as the text of the posts and comments, including with simple AI-assisted tools;\n3. Explore the data they have collected from social media platforms, by searching it and building an interactive dashboard with graphs, tables and filters.",
+      "webpageUrl": {
+        "url": "https://howtobuildup.org/phoenix/",
+        "wellKnown": "https://howtobuildup.org/.well-known/funding-manifest-urls"
+      },
+      "repositoryUrl": {
+        "url": "https://gitlab.com/howtobuildup/phoenix"
+      },
+      "licenses": [
+        "spdx:AGPL-3.0-or-later"
+      ],
+      "tags": [
+        "social-media-analysis",
+        "peacebuilding",
+        "mediation",
+        "data-scraping",
+        "text-classification"
+      ]
+    }
+  ],
+  "funding": {
+    "channels": [
+      {
+        "guid": "paypal-donation",
+        "type": "payment-provider",
+        "address": "https://www.paypal.com/donate/?hosted_button_id=9GDVTQJC2BWAU",
+        "description": "Support Phoenix via Paypal."
+      },
+      {
+        "guid": "direct-bank",
+        "type": "bank",
+        "address": "phoenix@howtobuildup.org",
+        "description": "For substantive donations, contact us for direct bank transfer to a US bank."
+      }
+    ],
+    "plans": [
+      {
+        "guid": "fixed-costs",
+        "status": "active",
+        "name": "Platform Fixed Costs",
+        "description": "Supports ongoing costs for server hosting, database management, and infrastructure maintenance.",
+        "amount": 10000,
+        "currency": "USD",
+        "frequency": "yearly",
+        "channels": [
+          "paypal-donation"
+        ]
+      },
+      {
+        "guid": "full-time-dev",
+        "status": "active",
+        "name": "Full-Time Developer Sponsorship",
+        "description": "Sponsor a full-time developer to contribute to the Phoenix open-source platform, ensuring continuous feature improvement, updates, and bug fixing.",
+        "amount": 10000,
+        "currency": "USD",
+        "frequency": "monthly",
+        "channels": [
+          "paypal-donation"
+        ]
+      },
+      {
+        "guid": "part-time-dev",
+        "status": "active",
+        "name": "Part-Time Developer Support",
+        "description": "Fund part-time developer contributions to focus on specific features and enhancements.",
+        "amount": 3500,
+        "currency": "USD",
+        "frequency": "monthly",
+        "channels": [
+          "paypal-donation"
+        ]
+      },
+      {
+        "guid": "scraping-credits",
+        "status": "active",
+        "name": "Scraping Credits Sponsorship",
+        "description": "Sponsor the (estimated) cost of data scraping for 10 peacebuilding organisations to conduct a social media listening project over one year.",
+        "amount": 10000,
+        "currency": "USD",
+        "frequency": "one-time",
+        "channels": [
+          "paypal-donation",
+          "direct-bank"
+        ]
+      },
+      {
+        "guid": "engagement-fund",
+        "status": "active",
+        "name": "Engagement Fund",
+        "description": "Support trainings, manuals and onboarding activities for peacebuilders and mediators using the Phoenix platform.",
+        "amount": 3500,
+        "currency": "USD",
+        "frequency": "monthly",
+        "channels": [
+          "paypal-donation"
+        ]
+      },
+      {
+        "guid": "open-donation",
+        "status": "active",
+        "name": "Open Donation",
+        "description": "For contributors who wish to donate any amount as a gesture of support towards our mission.",
+        "amount": 0,
+        "currency": "USD",
+        "frequency": "one-time",
+        "channels": [
+          "paypal-donation",
+          "direct-bank"
+        ]
+      }
+    ],
+    "history": [
+      {
+        "year": 2023,
+        "income": 59350,
+        "currency": "USD",
+        "description": "Funding from Build Up overhead covered the development of the code base for Phoenix v1 (see: https://gitlab.com/howtobuildup/phoenix_v1)."
+      },
+      {
+        "year": 2024,
+        "income": 329000,
+        "currency": "USD",
+        "description": "A 200,000 USD grant from the Swiss Federal Department of Foreign Affairs, and an additional top-up contribution from Build Up, covered the development of the Phoenix platform (which build on Phoenix v1)."
+      },
+      {
+        "year": 2025,
+        "income": 84000,
+        "currency": "USD",
+        "description": "A contribution from Build Up overhead will ensure continuity of the Phoenix platform in 2025, as we fundraise to cover additional costs."
+      }
+    ]
+  }
+}

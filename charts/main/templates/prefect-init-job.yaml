@@ -1,0 +1,52 @@
+{{- if .Values.prefectInit.enabled -}}
+apiVersion:  batch/v1
+kind: Job
+metadata:
+  name: {{ .Release.Name }}-phoenix-prefect-init
+spec:
+  ttlSecondsAfterFinished: {{ .Values.prefectInit.ttlSecondsAfterFinished }}
+  template:
+    metadata:
+      name: {{ .Release.Name }}-phoenix-prefect-init
+    spec:
+      backoffLimit: 0
+      restartPolicy: Never
+      initContainers:
+      - name: phoenix-prefect-init
+        {{- include "phoenixmain.phiphi_container" . | nindent 8 }}
+        command: ["/app/projects/phiphi/entrypoint.sh"]
+        args: [
+          "python",
+          "projects/phiphi/phiphi/prefect_init.py",
+          "--image",
+          {{ tpl (.Values.prefectInit.image ) . | quote }},
+          {{- if .Values.prefectInit.reinitAllProjectConcurrencyLimits }}
+          "--reinit-all-project-concurrency-limits",
+          {{- end }}
+        ]
+        {{- with .Values.prefectInit.resources }}
+        resources:
+          {{- toYaml . | nindent 10 }}
+        {{- end }}
+      containers:
+      - name: prefect-health-check
+        {{- include "phoenixmain.phiphi_container" . | nindent 8 }}
+        command: ["/app/projects/phiphi/entrypoint.sh"]
+        args: [
+          "prefect",
+          "deployment",
+          "run",
+          "--watch",
+          "{{ .Values.prefectInit.health_check_deployment_name }}",
+        ]
+        {{- with .Values.prefectInit.resources }}
+        resources:
+          {{- toYaml . | nindent 10 }}
+        {{- end }}
+      {{- if .Values.gcp_service_account.enabled }}
+      volumes:
+      - name: gcp-creds
+        secret:
+          secretName: {{ tpl (.Values.gcp_service_account.secret_name) . }}
+      {{- end }}
+{{- end }}

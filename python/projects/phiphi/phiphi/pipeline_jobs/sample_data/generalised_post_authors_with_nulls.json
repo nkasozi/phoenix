@@ -1,0 +1,20 @@
+[
+  {
+    "phoenix_platform_message_author_id": "id_1",
+    "pi_platform_message_author_id": "pi_id_1",
+    "pi_platform_message_author_name": "pi_author name 1",
+    "phoenix_processed_at": "2023-10-23T15:34:01Z",
+    "platform": "facebook",
+    "post_count": 123,
+    "comment_count": 45
+  },
+  {
+    "phoenix_platform_message_author_id": "id_2",
+    "pi_platform_message_author_id": null,
+    "pi_platform_message_author_name": null,
+    "phoenix_processed_at": "2023-10-23T15:34:02Z",
+    "platform": "tiktok",
+    "post_count": 1,
+    "comment_count": 0
+  }
+]

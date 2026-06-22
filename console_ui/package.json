@@ -1,0 +1,93 @@
+{
+	"name": "console_ui",
+	"version": "0.1.0",
+	"private": true,
+	"engines": {
+		"node": ">=24.0.0"
+	},
+	"scripts": {
+		"dev": "cross-env NODE_OPTIONS=--max_old_space_size=4096 refine dev",
+		"build": "refine build",
+		"build:prod": "env-cmd -f .env.production refine build",
+		"start": "refine start",
+		"refine": "refine",
+		"prepare": "cd .. && husky install console_ui/.husky",
+		"lint": "eslint . && prettier . --check",
+		"lint:staged": "lint-staged",
+		"format": "prettier . --write"
+	},
+	"dependencies": {
+		"@emotion/react": "^11.8.2",
+		"@emotion/server": "^11.10.0",
+		"@mantine/core": "^5.10.4",
+		"@mantine/dates": "^5.10.4",
+		"@mantine/form": "^5.10.4",
+		"@mantine/hooks": "^5.10.4",
+		"@mantine/next": "^6.0.1",
+		"@mantine/notifications": "^5.10.4",
+		"@refinedev/cli": "^2.16.34",
+		"@refinedev/core": "^5.0.6",
+		"@refinedev/devtools": "^2.0.3",
+		"@refinedev/mantine": "^3.0.2",
+		"@refinedev/nextjs-router": "^7.0.4",
+		"@refinedev/react-table": "^6.0.1",
+		"@refinedev/simple-rest": "^6.0.1",
+		"@tabler/icons-react": "^3.35.0",
+		"@tanstack/react-table": "^8.13.0",
+		"@types/js-cookie": "^3.0.6",
+		"axios": "^1.6.8",
+		"cookie": "^1.0.2",
+		"dayjs": "^1.11.10",
+		"i18next": "^20.1.0",
+		"i18next-browser-languagedetector": "^6.1.1",
+		"i18next-resources-to-backend": "^1.2.0",
+		"i18next-xhr-backend": "^3.2.2",
+		"js-cookie": "^3.0.5",
+		"next": "^14.2.3",
+		"next-i18next": "^8.9.0",
+		"nookies": "^2.5.2",
+		"react": "^18.0.0",
+		"react-dom": "^18.0.0",
+		"react-i18next": "^11.8.11"
+	},
+	"devDependencies": {
+		"@sentry/nextjs": "^10.25.0",
+		"@stylistic/eslint-plugin": "^5.6.1",
+		"@svgr/webpack": "^8.1.0",
+		"@types/node": "^24.10.1",
+		"@types/react": "^18.0.0",
+		"@types/react-dom": "^18.0.0",
+		"@typescript-eslint/eslint-plugin": "^8.47.0",
+		"@typescript-eslint/parser": "^8.47.0",
+		"autoprefixer": "^10.4.18",
+		"cross-env": "^10.1.0",
+		"env-cmd": "^11.0.0",
+		"eslint": "^9.39.1",
+		"eslint-config-next": "^16.0.3",
+		"eslint-config-prettier": "^10.1.8",
+		"eslint-plugin-import": "^2.32.0",
+		"eslint-plugin-jsx-a11y": "^6.10.2",
+		"eslint-plugin-react": "^7.37.5",
+		"eslint-plugin-react-hooks": "^7.0.1",
+		"husky": "^9.1.7",
+		"lint-staged": "^16.2.6",
+		"postcss": "^8.4.35",
+		"prettier": "^3.2.5",
+		"tailwindcss": "^3.4.1",
+		"typescript": "^5.7.3",
+		"typescript-eslint": "^8.47.0"
+	},
+	"lint-staged": {
+		"*.{js,ts,jsx,tsx}": [
+			"eslint --fix",
+			"eslint",
+			"prettier . --write"
+		],
+		"*.json": [
+			"prettier . --write"
+		]
+	},
+	"refine": {
+		"projectId": "nMl5vA-MzwgF4-ONcYky"
+	}
+}

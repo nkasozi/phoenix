@@ -1,0 +1,11 @@
+# Development requirements - all projects need these.
+# Note: for `-r` option the path should be relative to this file.
+-r ../../dev-requirements.txt
+
+# First party deps, i.e. phoenix mono-repo libraries.
+# Note: for `-e` option the path should be relative to the working directory
+# when running the `pip install ...` command.
+-e file:libs/example_lib_1/
+
+# Third party deps
+pandas

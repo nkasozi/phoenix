@@ -1,0 +1,13 @@
+{
+	"extends": "./tsconfig.json",
+	"include": [
+		"src",
+		"next-env.d.ts",
+		"environment.d.ts",
+		"sentry.client.config.ts",
+		"sentry.edge.config.ts",
+		"sentry.server.config.ts",
+		"next.config.js",
+		"next-i18next.config.js"
+	]
+}

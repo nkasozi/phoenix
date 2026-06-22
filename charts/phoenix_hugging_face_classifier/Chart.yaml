@@ -1,0 +1,13 @@
+apiVersion: v2
+name: phoenix_hugging_face_classifier
+description: A Helm chart for Kubernetes that can deploy the phoenix hugging_face_classifier
+
+type: application
+version: 0.6.0
+appVersion: "0.6.0"
+dependencies:
+- name: prefect-worker
+  repository: https://prefecthq.github.io/prefect-helm
+  version: 2025.11.14001416
+  condition: hfClassifierPrefectWorker.enabled
+  alias: hfClassifierPrefectWorker

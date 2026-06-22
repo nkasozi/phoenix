@@ -1,0 +1,57 @@
+apiVersion: v2
+name: phoenix_chart_main
+description: Application chart for phoenix
+type: application
+
+# To simplify the chart and versioning, we are using the same version for the app and the chart.
+# Versions are expected to follow Semantic Versioning (https://semver.org/)
+# These values are used in the templating to define artifacts (e.g. image tags) and dependencies.
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# IMPORTANT:
+# If you change this you have to update in values.yaml:
+# - superset.image.tag
+# - phoenix_hugging_face_classifier.prefectDeployments.containerImage.tag
+# - phoenix_hugging_face_classifier.prefectDeployments.deploymentImage.tag
+# This can not be done via the parent chart
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+version: 2.35.1
+appVersion: "2.35.1"
+
+dependencies:
+- name: superset
+  condition: superset.enabled
+  version: "0.15.0"
+  repository: "https://apache.github.io/superset"
+- name: oauth2-proxy
+  condition: oauth2-proxy.enabled
+  version: "8.5.1"
+  repository: "https://oauth2-proxy.github.io/manifests"
+- name: cert-manager
+  version: v1.19.2
+  repository: https://charts.jetstack.io
+  alias: cert-manager
+  condition: cert-manager.enabled
+- name: postgresql
+  version: 18.1.14
+  repository: https://charts.bitnami.com/bitnami
+  # This is needed or will have name duplication with the postgresql chart in
+  # superset
+  alias: platformdb
+  condition: platformdb.enabled
+- name: prefect-worker
+  repository: https://prefecthq.github.io/prefect-helm
+  version: 2025.11.14001416
+  condition: prefect-worker.enabled
+- name: prefect-server
+  repository: https://prefecthq.github.io/prefect-helm
+  version: 2025.11.14001416
+  condition: prefect-server.enabled
+- name: reloader
+  repository: https://stakater.github.io/stakater-charts
+  version: 2.2.6
+- name: phoenix_hugging_face_classifier
+  # This version must match with version in the file
+  # ../phoenix_hugging_face_classifier/Chart.yaml
+  version: 0.6.0
+  repository: "file://../phoenix_hugging_face_classifier/"
+  condition: phoenix_hugging_face_classifier.enabled

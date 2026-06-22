@@ -1,0 +1,81 @@
+# Git
+.git
+.gitignore
+.gitattributes
+
+# CI
+.pre-commit-config.yaml
+.pre-commit-run-custom-mypy.sh
+.gitlab-ci.yml
+
+# Docker
+docker-compose.yml
+Dockerfile
+.docker
+.dockerignore
+
+# Jupyter
+**/.jupyter/lab/
+**/.jupyter/migrated
+**/*.ipynb_checkpoints/
+
+
+# Byte-compiled / optimized / DLL files
+**/__pycache__/
+**/*.py[cod]
+**/*$py.class
+
+# C extensions
+**/*.so
+
+# Virtual environment
+**/*.env
+**/*.venv/
+**/*venv/
+**/.venv*
+
+# Distribution / packaging
+**/.Python
+**/env/
+**/build/
+**/develop-eggs/
+**/dist/
+**/downloads/
+**/eggs/
+**/lib/
+**/lib64/
+**/parts/
+**/sdist/
+**/var/
+**/*.egg-info/
+**/.installed.cfg
+**/*.egg
+
+# PyInstaller
+#  Usually these files are written by a python script from a template
+#  before PyInstaller builds the exe, so as to inject date/other infos into it.
+**/*.manifest
+**/*.spec
+
+# Unit test / coverage reports
+**/*htmlcov/
+**/*.tox/
+**/*.coverage
+**/*.cache
+**/*nosetests.xml
+**/*coverage.xml
+**/*.pytest_cache/
+**/*cover
+**/*.cover
+
+# PyCharm
+**/*.idea
+
+# Vim swap files
+**/*.swp
+
+# VS Code
+**/*.vscode/
+
+# Mock data
+/projects/phiphi/mock_bq_data

@@ -1,0 +1,235 @@
+[
+    {
+        "post_id": "danek_facebook_search_posts-postId1",
+        "type": "post",
+        "url": "https://www.facebook.com/authorId1/posts/urlId1",
+        "message": "Innovation is our middle name!",
+        "timestamp": 1704196727,
+        "comments_count": 0,
+        "reactions_count": 0,
+        "reshare_count": 0,
+        "reactions": {
+            "angry": 0,
+            "care": 0,
+            "haha": 0,
+            "like": 0,
+            "love": 0,
+            "sad": 0,
+            "wow": 0
+        },
+        "author": {
+            "id": "danek_facebook_search_posts-authorId1",
+            "name": "danek_facebook_search_posts-authorName1",
+            "url": "https://www.facebook.com/authorId1",
+            "profile_picture_url": "https://scontent.fgye6-1.fna.fbcdn.net/v/profile_picture_url1"
+        },
+        "image": {
+            "uri": "https://scontent.fgye6-1.fna.fbcdn.net/v/image_uri1",
+            "height": 960,
+            "width": 679
+        },
+        "video": null,
+        "album_preview": null,
+        "video_files": null,
+        "video_thumbnail": null,
+        "external_url": null,
+        "attached_event": null,
+        "attached_post": null,
+        "attached_post_url": null
+    },
+    {
+        "post_id": "danek_facebook_search_posts-postId2",
+        "type": "post",
+        "url": "https://www.facebook.com/authorId2/posts/urlId2",
+        "message": "Sannad Cusub oo Farxad leh oo ka yimid ",
+        "timestamp": 1704091324,
+        "comments_count": 1,
+        "reactions_count": 10,
+        "reshare_count": 10,
+        "reactions": {
+            "angry": 0,
+            "care": 0,
+            "haha": 0,
+            "like": 10,
+            "love": 0,
+            "sad": 0,
+            "wow": 0
+        },
+        "author": {
+            "id": "danek_facebook_search_posts-authorId2",
+            "name": "danek_facebook_search_posts-authorName2",
+            "url": "https://www.facebook.com/authorId2",
+            "profile_picture_url": "https://scontent.fgye6-1.fna.fbcdn.net/v/profile_picture_url2"
+        },
+        "image": {
+            "uri": "https://scontent.fgye6-1.fna.fbcdn.net/v/image_uri2",
+            "height": 1080,
+            "width": 1080
+        },
+        "video": null,
+        "album_preview": null,
+        "video_files": null,
+        "video_thumbnail": null,
+        "external_url": null,
+        "attached_event": null,
+        "attached_post": null,
+        "attached_post_url": null
+    },
+    {
+        "post_id": "danek_facebook_search_posts-postId3",
+        "type": "post",
+        "url": "https://www.facebook.com/authorId3/posts/urlId3",
+        "message": "Follow \ud83d\udc49\ud83d\udc49 Tech Innovation for more",
+        "timestamp": 1704198271,
+        "comments_count": 2,
+        "reactions_count": 34,
+        "reshare_count": 7,
+        "reactions": {
+            "angry": 0,
+            "care": 0,
+            "haha": 0,
+            "like": "24k",
+            "love": 10,
+            "sad": 0,
+            "wow": 0
+        },
+        "author": {
+            "id": "danek_facebook_search_posts-authorId3",
+            "name": "danek_facebook_search_posts-authorName3",
+            "url": "https://www.facebook.com/authorId3",
+            "profile_picture_url": "https://scontent.fgye6-1.fna.fbcdn.net/v/profile_picture_url3"
+        },
+        "image": {
+            "uri": "https://scontent.fgye6-1.fna.fbcdn.net/v/image_uri3",
+            "height": 1080,
+            "width": 1080
+        },
+        "video": null,
+        "album_preview": null,
+        "video_files": null,
+        "video_thumbnail": null,
+        "external_url": null,
+        "attached_event": null,
+        "attached_post": null,
+        "attached_post_url": null
+    },
+    {
+        "post_id": "danek_facebook_search_posts-postId4",
+        "type": "post",
+        "url": "https://www.facebook.com/authorId4/posts/urlId4",
+        "message": "test 4",
+        "timestamp": 1704196827,
+        "comments_count": 0,
+        "reactions_count": 3,
+        "reshare_count": 0,
+        "reactions": {
+            "angry": 0,
+            "care": 0,
+            "haha": 0,
+            "like": 3,
+            "love": 0,
+            "sad": 0,
+            "wow": 0
+        },
+        "author": {
+            "id": "danek_facebook_search_posts-authorId4",
+            "name": "danek_facebook_search_posts-authorName4",
+            "url": "https://www.facebook.com/authorId4",
+            "profile_picture_url": "https://scontent.fgye6-1.fna.fbcdn.net/v/profile_picture_url4"
+        },
+        "image": {
+            "uri": "https://scontent.fgye6-1.fna.fbcdn.net/v/image_uri4",
+            "height": 1080,
+            "width": 1080
+        },
+        "video": null,
+        "album_preview": null,
+        "video_files": null,
+        "video_thumbnail": null,
+        "external_url": null,
+        "attached_event": null,
+        "attached_post": null,
+        "attached_post_url": null
+    },
+    {
+        "post_id": "danek_facebook_search_posts-postId5",
+        "type": "post",
+        "url": "https://www.facebook.com/authorId5/posts/urlId5",
+        "message": "test 5",
+        "timestamp": 1704130325,
+        "comments_count": 0,
+        "reactions_count": 16,
+        "reshare_count": 3,
+        "reactions": {
+            "angry": 0,
+            "care": 0,
+            "haha": 0,
+            "like": 15,
+            "love": 1,
+            "sad": 0,
+            "wow": 0
+        },
+        "author": {
+            "id": "danek_facebook_search_posts-authorId5",
+            "name": "danek_facebook_search_posts-authorName5",
+            "url": "https://www.facebook.com/authorId5",
+            "profile_picture_url": "https://scontent.fgye6-1.fna.fbcdn.net/v/profile_picture_url5"
+        },
+        "image": {
+            "uri": "https://scontent.fgye6-1.fna.fbcdn.net/v/image_uri5",
+            "height": 1080,
+            "width": 1080
+        },
+        "video": null,
+        "album_preview": null,
+        "video_files": null,
+        "video_thumbnail": null,
+        "external_url": null,
+        "attached_event": null,
+        "attached_post": null,
+        "attached_post_url": null
+    },
+    {
+        "post_id": "danek_facebook_search_posts-postId6",
+        "type": "post",
+        "url": "https://www.facebook.com/authorId6/posts/urlId6",
+        "message": "test 6",
+        "timestamp": 1704100378,
+        "comments_count": 0,
+        "reactions_count": 2,
+        "reshare_count": 0,
+        "reactions": {
+            "angry": 0,
+            "care": 0,
+            "haha": 0,
+            "like": 2,
+            "love": 0,
+            "sad": 0,
+            "wow": 0
+        },
+        "author": {
+            "id": "danek_facebook_search_posts-authorId6",
+            "name": "danek_facebook_search_posts-authorName6",
+            "url": "https://www.facebook.com/authorId6",
+            "profile_picture_url": "https://scontent.fgye6-1.fna.fbcdn.net/v/profile_picture_url6"
+        },
+        "image": {
+            "uri": "https://scontent.fgye6-1.fna.fbcdn.net/v/image_uri6",
+            "height": 1080,
+            "width": 1080
+        },
+        "video": null,
+        "album_preview": null,
+        "video_files": null,
+        "video_thumbnail": null,
+        "external_url": null,
+        "attached_event": null,
+        "attached_post": null,
+        "attached_post_url": null
+    },
+    {
+        "url":"https://www.facebook.com/1234567865",
+        "error":"not_available",
+        "errorDescription":"This content isn't available because the owner only shared it with a small group of people or changed who can see it, or it's been deleted."
+    }
+]

@@ -1,0 +1,39 @@
+{{- if .Values.prefectDeployments.enabled }}
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ .Release.Name }}-prefect-deployment-job
+spec:
+  backoffLimit: 2
+  ttlSecondsAfterFinished: 600
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: prefect
+          image: {{ tpl (.Values.prefectDeployments.containerImage.repository ) . }}:{{ tpl (.Values.prefectDeployments.containerImage.tag) . }}
+          imagePullPolicy: IfNotPresent
+          env:
+            {{- if eq .Values.hfClassifierPrefectWorker.worker.apiConfig "selfHostedServer" }}
+            - name: PREFECT_API_URL
+              value: {{ .Values.hfClassifierPrefectWorker.worker.selfHostedServerApiConfig.apiUrl }}
+            {{- end }}
+            # These environment variables are used in the default prefect.yaml
+            # See python/projects/hugging_face_classifier/prefect.yaml
+            - name: HF_WORK_POOL
+              value: {{ .Values.hfClassifierPrefectWorker.worker.config.workPool }}
+            - name: HF_IMAGE
+              value: {{ tpl (.Values.prefectDeployments.deploymentImage.repository) . }}:{{ tpl (.Values.prefectDeployments.deploymentImage.tag) . }}
+          command: ["sh", "-c"]
+          args:
+            - |
+              prefect deploy --all --prefect-file {{ .Values.prefectDeployments.overrideDefaultPrefectYaml | ternary "/etc/prefect/prefect.yaml" "/app/projects/hugging_face_classifier/prefect.yaml" }}
+          volumeMounts:
+            - name: override-prefect-yaml
+              mountPath: /etc/prefect/prefect.yaml
+              subPath: prefect.yaml
+      volumes:
+        - name: override-prefect-yaml
+          configMap:
+            name: {{ .Release.Name }}-override-prefect-yaml
+{{- end }}

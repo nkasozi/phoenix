@@ -1,0 +1,72 @@
+{{- if .Values.api.enabled -}}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-api
+spec:
+  {{- if .Values.api.hpa.enabled }}
+  replicas: {{ .Values.api.replicas }}
+  {{- end }}
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}-api
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}-api
+    spec:
+      initContainers:
+      - name: check-db-ready
+        image: postgres:9.6.5
+        command: ['sh', '-c',
+          'until pg_isready -h {{ tpl ( .Values.api.db_auth.host ) . }} -p {{ .Values.api.db_auth.port }} -U {{ .Values.api.db_auth.username }} -d {{ .Values.api.db_auth.database }}; 
+          do echo waiting for database; sleep 2; done;']
+      - name: phiphi-init-db
+        {{- include "phoenixmain.phiphi_container" . | nindent 8 }}
+        command: [{{ .Values.api.init_db_command }}]
+        args: ["echo", "'Successfull initialised DB!'"]
+        {{- with .Values.api.initResources }}
+        resources:
+          {{- toYaml . | nindent 10 }}
+        {{- end }}
+      containers:
+      - name: phiphi
+        {{- include "phoenixmain.phiphi_container" . | nindent 8 }}
+        command: ["/app/projects/phiphi/entrypoint.sh"]
+        args: [
+          "uvicorn",
+          "phiphi.api.main:app",
+          {{- if .Values.api.reload }} "--reload", {{- end }}
+          "--host", "0.0.0.0",
+          "--port", "80",
+          {{- if .Values.api.uvicornLogConfig }}
+          "--log-config", {{ .Values.api.uvicornLogConfig }},
+          {{- end }}
+          # Proxy headers are needed so that the redirects from the API have the correct
+          # scheme and host. This is needed for the console to work correctly.
+          "--proxy-headers"
+
+        ]
+        {{- with .Values.api.resources }}
+        resources:
+          {{- toYaml . | nindent 10 }}
+        {{- end }}
+      {{- if .Values.gcp_service_account.enabled }}
+      volumes:
+      - name: gcp-creds
+        secret:
+          secretName: {{ tpl (.Values.gcp_service_account.secret_name) . }}
+      {{- end }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-api-service
+spec:
+  type: NodePort
+  selector:
+    app: {{ .Release.Name }}-api
+  ports:
+    - port: 80
+      targetPort: 80
+{{- end -}}

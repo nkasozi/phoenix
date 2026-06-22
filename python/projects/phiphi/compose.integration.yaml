@@ -1,0 +1,12 @@
+# This file is used to run integration tests
+# It is needed because we have to override the environment variables for the integrations tests
+# to work.
+# Should be used with the docker-compose command
+# docker compose -f compose.yaml -f compose.dev.yaml -f compose.integration.yaml
+
+services:
+  api:
+    env_file:
+      - docker_env
+      - docker_env.dev
+      - docker_env.integration

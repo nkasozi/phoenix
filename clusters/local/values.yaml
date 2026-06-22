@@ -1,0 +1,172 @@
+phiphiImage:
+  repository: phiphi-dev-image
+  tag: latest
+ingress_cors:
+  enabled: true
+  allow_origin: "http://console.{{ .Values.base_host }}"
+use_local_insecure_auth: true
+# microk8s 1.35+ uses Traefik as the default ingress controller (prior versions used nginx).
+# Set to true for microk8s 1.35+, false for older versions.
+# The chart keeps nginx annotations for backward compatibility with dev/prod clusters — this flag
+# additionally deploys a Traefik ForwardAuth Middleware so auth works under both controllers.
+# See: https://canonical.com/microk8s/docs/ingress
+traefik_ingress: true
+api:
+  phiphiLogConfig: "/app/projects/phiphi/log_configs/phiphi.dev.yaml"
+  uvicornLogConfig: "/app/projects/phiphi/log_configs/uvicorn.dev.yaml"
+  cors_origins: "http://console.{{ .Values.base_host }}"
+  init_db_command: "/app/projects/phiphi/entrypoint_test_seed.sh"
+  apify_api_keys:
+    enabled: true
+    json: |
+      {
+        "main": "dummy_key"
+      }
+cert_issuer:
+  enabled: false
+console:
+  enabled: true
+  # Set env to local_cluster for local testing of the integration with the auth api endpoint
+  # env: "local_cluster"
+  env: "dev"
+  api_url: "http://api.{{ .Values.base_host }}"
+  # Should be the same as the first_admin_user_email for api
+  dev_admin_email: "buildup@datavaluepeople.com"
+  user_info_cookie_name: "phoenix_user_info"
+  # Using the insecure auth for the console
+  env_auth_url: "http://api.{{ .Values.base_host }}/oauth2/insecure_auth"
+  # So there is no redirect for the local cluster if there is an error
+  env_login_url: "http://console.{{ .Values.base_host }}/oauth2/start"
+  env_logout_url: "http://console.{{ .Values.base_host }}/oauth2/sign_out"
+cert-manager:
+  enabled: false
+oauth2-proxy:
+  enabled: false
+superset:
+  enabled: true
+  # These secrets must be created before the first apply of the chart
+  init:
+    adminUser:
+      email: buildup@datavaluepeople.com
+  image:
+    repository: phoenix_superset
+    tag: latest
+  supersetNode:
+    connections:
+      # Use shared phoenix-redis
+      redis_host: phoenix-redis
+      redis_port: "6379"
+      # Placeholder enables auth in template; actual password injected via extraEnvRaw
+      redis_password: "placeholder"
+    # For debugging it can be useful to remove the Probe
+    # Uncomment to remove the probe
+    # livenessProbe: ""
+    # readinessProbe: ""
+    # startupProbe: ""
+    # This is for auto reload and debugging
+    command:
+      - "/bin/sh"
+      - "-c"
+      - ". {{ .Values.configMountPath }}/superset_bootstrap.sh; flask run --reload --debugger -p 8088 --host=0.0.0.0"
+  configOverrides:
+    general: |
+      APP_NAME = "Dashboard - Phoenix"
+
+      # This must be change in conjunction with the ingress auth-response-headers
+      AUTH_REMOTE_USER_ENV_VAR = "HTTP_X_AUTH_REQUEST_EMAIL"
+
+      # Throw error if got past the auth layer
+      LOGIN_REDIRECT_URL = False
+
+      # DASHBOARD_RBAC is required so that roles can be seen and set on dashboards via the UI,
+      # and to make the dev environment closer to the configuration of production.
+      FEATURE_FLAGS = {
+          "DASHBOARD_RBAC": True,
+      }
+    # Override the default logging
+    logging: |
+      import logging
+      LOG_LEVEL = logging.DEBUG
+      FLASK_DEBUG = True
+      DEBUG = True
+      SILENCE_FAB = False
+  extraSecretEnv:
+    SUPERSET_SECRET_KEY: "this_is_an_in_secure_secret_key"
+  # Inject REDIS_PASSWORD from shared redis secret for auth
+  extraEnvRaw:
+    - name: REDIS_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: phoenix-redis
+          key: password
+
+prefect-worker:
+  enabled: true
+  worker:
+    apiConfig: "selfHostedServer"
+    config:
+      workPool: "main-work-pool"
+    selfHostedServerApiConfig:
+      apiUrl: "http://prefect-server.default.svc.cluster.local:4200/api"
+    # Inject shared Redis URL from secret (contains PREFECT_REDIS_URL)
+    extraEnvVarsSecret: "redis-app-secrets"
+
+baseJobTemplate:
+  enabled: true
+
+prefect-server:
+  enabled: true
+  # Database migrations run automatically via the chart's migrations Job
+  server:
+    # Wait for Redis before starting, then run the server
+    command: ["/bin/sh", "-c"]
+    args:
+      - |
+        echo "Waiting for Redis..."
+        until python -c "import socket; s=socket.socket(); s.settimeout(2); s.connect(('phoenix-redis',6379)); s.close()" 2>/dev/null; do
+          sleep 2
+        done
+        exec /opt/prefect/entrypoint.sh prefect server start --no-services --port 4200
+    # PREFECT_REDIS_MESSAGING_PASSWORD and PREFECT_REDIS_URL injected via redis-app-secrets (extraEnvVarsSecret)
+    extraEnvVarsSecret: "redis-app-secrets"
+  # Enable separate background services deployment with Redis
+  backgroundServices:
+    runAsSeparateDeployment: true
+    # Wait for Redis before starting, then run the background services
+    command: ["/bin/sh", "-c"]
+    args:
+      - |
+        echo "Waiting for Redis..."
+        until python -c "import socket; s=socket.socket(); s.settimeout(2); s.connect(('phoenix-redis',6379)); s.close()" 2>/dev/null; do
+          sleep 2
+        done
+        exec /opt/prefect/entrypoint.sh prefect server services start
+    # messaging.redis.password not needed - injected via extraEnvVarsSecret (redis-app-secrets)
+    extraEnvVarsSecret: "redis-app-secrets"
+
+prefectInit:
+  enabled: true
+  enable_health_check: true
+  reinitAllProjectConcurrencyLimits: true
+
+phoenix_hugging_face_classifier:
+  # Currently the phoenix_hugging_face_classifier chart is added as a seperate helm install
+  # in the local cluster to allow for easier development and testing.
+  enabled: false
+
+# Shared Redis for Superset and Prefect
+redis:
+  enabled: true
+  auth:
+    password: "local_redis_password"
+  maxmemory: "128mb"
+  persistence:
+    enabled: true
+    size: 1Gi
+  resources:
+    requests:
+      cpu: 50m
+      memory: 64Mi
+    limits:
+      cpu: 200m
+      memory: 256Mi

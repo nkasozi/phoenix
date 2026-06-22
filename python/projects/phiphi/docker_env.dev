@@ -1,0 +1,23 @@
+USE_COOKIE_AUTH = "true"
+COOKIE_AUTH_NAME = "phiphi-user-email"
+CORS_ORIGINS="http://localhost:3000"
+APIFY_API_KEYS='{"main":"dummy_key"}'
+USE_MOCK_APIFY="true"
+USE_MOCK_DANEK="true"
+USE_MOCK_BQ="true"
+MOCK_BQ_ROOT_DIR="/app/projects/phiphi/mock_bq_data"
+MANUAL_UPLOAD_STORAGE_URL="/app/projects/phiphi/mock_bq_data/manual_uploads/"
+HF_GCS_BUCKET_NAME="hugging_face_classifier_test_data"
+SUPERSET_API_URL=http://phoenix_superset:8088
+SUPERSET_SERVICE_ACCOUNT_EMAIL=admin@admin.com
+SUPERSET_API_URL=http://phoenix_superset:8088
+SUPERSET_DATABASE_UUID=c464e474-5abc-40fb-abe2-d635434cf91a
+SUPERSET_DATABASE_SQLALCHEMY_URI=""
+
+
+# Prefect settings for headless/Docker environments
+# Disable UI to prevent "could not locate runnable browser" errors
+# PREFECT_UI_ENABLED="0"
+# Keep API logging enabled for visibility
+# PREFECT_LOGGING_TO_API_ENABLED="1"
+

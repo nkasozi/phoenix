@@ -1,0 +1,75 @@
+hfClassifierPrefectWorker:
+  enabled: false
+  fullnameOverride: "phoenix-hf-classifier-prefect-worker"
+  worker:
+    config:
+      workPool: "hf-work-pool"
+      # See docs for reloading the config when changes are made
+      # https://github.com/PrefectHQ/prefect-helm/tree/main/charts/prefect-worker#updating-the-base-job-template
+      baseJobTemplate:
+        existingConfigMapName: "phoenix-hf-classifier-base-job-template"
+    ## to use the local prefect service in phoenix main chart
+    # apiConfig: "selfHostedServer"
+    # selfHostedServerApiConfig:
+      # apiUrl: "http://prefect-server.default.svc.cluster.local:4200/api"
+
+# Configure the baseJobTemplate for hf-work-pool
+baseJobTemplate:
+  enabled: false
+  # Most of the time the image will be set in the deployment job variable
+  defaultImage: "registry.gitlab.com/howtobuildup/phoenix/python/hugging_face_classifier:latest"
+  defaultImagePullPolicy: "Always"
+  defaultPodWatchTimeoutSeconds: 60
+  defaultFinishedJobTTL: 1800
+  # This block needs to be created in the cluster before it will work on the flow runs of this
+  # worker
+  defaultResultStorageBlock: ~
+  resultsPersistByDefault: false
+  tolerations:
+    enabled: true
+    # Default toleration for GPU nodes in phoenix
+    key: "phoenix.cluster.node.purpose"
+    operator: "Equal"
+    value: "gpu"
+    effect: "NoSchedule"
+  nodeSelector:
+    enabled: true
+    default:
+      # Default node selector for GPU nodes in phoenix
+      phoenix.cluster.node.purpose: "gpu"
+
+# Prefect deployment job will run the prefect deploy command to create the deployments in the
+# prefect server for the worker.
+prefectDeployments:
+  enabled: true
+  # Use this to override the default prefect.yaml file
+  # Set the file with
+  # --set-file prefect.yaml=./my-local-prefect.yaml
+  overrideDefaultPrefectYaml: false
+  containerImage:
+    repository: registry.gitlab.com/howtobuildup/phoenix/python/hugging_face_classifier
+    tag: latest
+  deploymentImage:
+    repository: egistry.gitlab.com/howtobuildup/phoenix/python/hugging_face_classifier
+    tag: latest
+
+
+# Use this to add a GCP service account mounted secret to all prefect jobs in the work pool.
+gcpServiceAccount:
+  enabled: false
+  secretName: "{{ .Release.Name }}-gcp-service-account"
+  secretKey: "gcp-service-account.json"
+  project: ~
+  # If no json the secret will not be created but the mount will be added to all prefect jobs
+  json: |
+    {
+      "add": "your-gcp-service-account-json"
+    }
+
+huggingFaceToken:
+  enabled: false
+  secretName: "{{ .Release.Name }}-hugging-face-token"
+  secretKey: "hf_token"
+  # If no token the secret will not be created but the environment variable from the secret will be
+  # added to all prefect jobs
+  token: ~

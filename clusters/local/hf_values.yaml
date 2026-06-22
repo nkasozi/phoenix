@@ -1,0 +1,22 @@
+  hfClassifierPrefectWorker:
+    enabled: true
+    worker:
+      apiConfig: "selfHostedServer"
+      selfHostedServerApiConfig:
+        apiUrl: "http://prefect-server.default.svc.cluster.local:4200/api"
+
+  baseJobTemplate:
+    enabled: true
+    nodeSelector:
+      enabled: false
+    tolerations:
+      enabled: false
+
+  prefectDeployments:
+    # This image is built in the Tiltfile
+    containerImage:
+      repository: "hugging-face-classifier-dev-image"
+      tag: "latest"
+    deploymentImage:
+      repository: "hugging-face-classifier-dev-image"
+      tag: "latest"

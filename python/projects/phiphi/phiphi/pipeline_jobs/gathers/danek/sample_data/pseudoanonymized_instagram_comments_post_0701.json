@@ -1,0 +1,29 @@
+[
+   {
+      "node":{
+         "parent_post_id": "post_0701",
+         "pk":"comment_0101",
+         "user":{
+            "is_verified":false,
+            "id":"pk_user_0001",
+            "pk":"pk_user_0001",
+            "is_unpublished":null,
+            "profile_pic_url":"https://example.com/link",
+            "username":"username_user_0001",
+            "fbid_v2":"meta_user_0001"
+         },
+         "is_covered":false,
+         "child_comment_count":0,
+         "restricted_status":null,
+         "has_translation":true,
+         "has_liked_comment":false,
+         "text":"Un esdeveniment incre\u00efble ! Moltes gr\u00e0cies username_user_0002 \ud83d\ude03\ud83d\ude4c\ud83c\udf05",
+         "giphy_media_info":null,
+         "created_at":1764847146,
+         "parent_comment_id":null,
+         "comment_like_count":2,
+         "__typename":"XDTCommentDict"
+      },
+      "cursor":""
+   }
+]

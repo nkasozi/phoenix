@@ -1,0 +1,71 @@
+#####
+# Chart Main gitlab ci
+#
+# Shared aspects of this CI are in .gitlab-ci.yml (root directory)
+#
+#
+
+variables:
+  PHOENIX_CHART_MAIN_DIR: charts/main
+  PHOENIX_CHART_MAIN_PACKAGE_PATH: phoenix_chart_main
+
+####
+# Shared rules that allow for jobs to be run only if charts/main code has been
+# changed but also have the same behavior as the parent workflow in
+# .gitlab-ci.yml
+.charts_main_only_workflow: &charts_main_only_workflow
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      changes:
+        - charts/main/**/*
+    - if: $CI_COMMIT_TAG
+    - if: $CI_COMMIT_REF_PROTECTED == "true"
+
+
+lint_phoenix_chart_main:
+  stage: test
+  image:
+    name: alpine/helm:3.11.1
+    # This is needed or will get an error that helm cannot be run
+    entrypoint: [""]
+  needs: [] # Allows to run this job without waiting for the previous ones
+  <<: *charts_main_only_workflow
+  script:
+    - helm lint $PHOENIX_CHART_MAIN_DIR
+
+package_phoenix_chart_main:
+  stage: build
+  image:
+    name: alpine/helm:3.11.1
+    # This is needed or will get an error that helm cannot be run
+    entrypoint: [""]
+  needs: ["lint_phoenix_chart_main"]
+  script:
+    - helm package $PHOENIX_CHART_MAIN_DIR -d $PHOENIX_CHART_MAIN_PACKAGE_PATH
+  <<: *charts_main_only_workflow
+  artifacts:
+    paths:
+      - $PHOENIX_CHART_MAIN_PACKAGE_PATH/*.tgz
+    # Going to pushed to package registry so it is fine to expire
+    expire_in: 1 hour
+
+publish_phoenix_chart_main:
+  stage: publish
+  image: curlimages/curl:7.70.0
+  script:
+    # There should only be one file in the PACKAGE_PATH directory
+    # This command gets the file name
+    - PACKAGE_FILE="$(ls -tr ${PHOENIX_CHART_MAIN_PACKAGE_PATH}/*.tgz | tail -1)"
+    - echo "Publishing $PACKAGE_FILE"
+    # Publish the package to the GitLab package registry
+    # https://docs.gitlab.com/ee/user/packages/helm_repository/#use-cicd-to-publish-a-helm-package
+    - curl --request POST --user gitlab-ci-token:$CI_JOB_TOKEN --form "chart=@${PACKAGE_FILE}" "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/helm/api/stable/charts"
+    - echo "Package published successfully. Use command"
+    - echo "helm repo add phoenix_chart_main ${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/helm/stable"
+  needs:
+    - job: package_phoenix_chart_main
+      artifacts: true
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+    # Adding this so that if we make a release the chart is published
+    - if: $CI_COMMIT_TAG

@@ -1,0 +1,136 @@
+[
+  {
+    "id": "anonymizedID1",
+    "text": "please help save [country's] water bodies. they are being destroyed by illegal mining activities",
+    "createdAt": "2024-09-09T18:40:45.000Z",
+    "likeCount": "1k",
+    "replyCount": 1,
+    "commentLanguage": "en",
+    "awemeId": "anonymizedAwemeID1",
+    "isAuthorLiked": false,
+    "user": {
+      "id": "anonymizedUserID1",
+      "username": "anonymizedUsername1",
+      "displayName": "anonymizedDisplayName1",
+      "url": "https://www.tiktok.com/@anonymizedUsername1",
+      "bio": "",
+      "avatarUrl": "https://p16-amd-va.tiktokcdn.com/anonymizedAvatarUrl1",
+      "region": "anonymizedRegion1",
+      "language": "en",
+      "hasEmail": false,
+      "hasPhone": false,
+      "coverImage": null
+    }
+  },
+  {
+    "id": "anonymizedID2",
+    "text": "",
+    "createdAt": "2024-09-10T06:29:28.000Z",
+    "likeCount": 0,
+    "replyCount": "1m",
+    "commentLanguage": "ms",
+    "awemeId": "anonymizedAwemeID2",
+    "isAuthorLiked": false,
+    "user": {
+      "id": "anonymizedUserID2",
+      "username": "anonymizedUsername2",
+      "displayName": "anonymizedDisplayName2",
+      "url": "https://www.tiktok.com/@anonymizedUsername2",
+      "bio": "",
+      "avatarUrl": "https://p77-sg.tiktokcdn.com/anonymizedAvatarUrl2",
+      "region": "anonymizedRegion2",
+      "language": "en",
+      "hasEmail": false,
+      "hasPhone": false,
+      "coverImage": null
+    }
+  },
+  {
+    "id": "anonymizedID3",
+    "text": "[International organization], please take care of the foreigners in [country]",
+    "createdAt": "2024-09-09T23:46:51.000Z",
+    "likeCount": 0,
+    "replyCount": 0,
+    "commentLanguage": "en",
+    "awemeId": "anonymizedAwemeID3",
+    "isAuthorLiked": false,
+    "user": {
+      "id": "anonymizedUserID3",
+      "username": "anonymizedUsername3",
+      "displayName": "anonymizedDisplayName3",
+      "url": "https://www.tiktok.com/@anonymizedUsername3",
+      "bio": "",
+      "avatarUrl": "https://p77-sg.tiktokcdn.com/anonymizedAvatarUrl3",
+      "region": "anonymizedRegion3",
+      "language": "th",
+      "hasEmail": false,
+      "hasPhone": false,
+      "coverImage": null
+    }
+  },
+  {
+    "parentId": "anonymizedParentID4",
+    "id": "anonymizedID4",
+    "text": "womp womp",
+    "createdAt": "2024-06-02T07:09:12.000Z",
+    "likeCount": 3,
+    "commentLanguage": "en",
+    "awemeId": "anonymizedAwemeID4",
+    "isAuthorLiked": false,
+    "user": {
+      "id": "anonymizedUserID4",
+      "username": "anonymizedUsername4",
+      "displayName": "anonymizedDisplayName4",
+      "url": "https://www.tiktok.com/@anonymizedUsername4",
+      "bio": "anonymizedBio4",
+      "avatarUrl": "https://p77-sg.tiktokcdn.com/anonymizedAvatarUrl4",
+      "region": "anonymizedRegion4",
+      "language": "en",
+      "hasEmail": false,
+      "hasPhone": false,
+      "coverImage": null
+    }
+  },
+  {
+    "id": "anonymizedID5",
+    "text": "This user has no username field",
+    "createdAt": "2024-10-23T01:12:13.000Z",
+    "likeCount": 0,
+    "replyCount": 0,
+    "commentLanguage": "en",
+    "awemeId": "anonymizedAwemeID5",
+    "isAuthorLiked": false,
+    "user": {
+      "id": "anonymizedUserID5",
+      "url": "https://www.tiktok.com/@undefined",
+      "avatarUrl": null,
+      "coverImage": null
+    }
+  },
+  {
+    "id": "anonymizedID6",
+    "text": "This user has empty username",
+    "createdAt": "2024-10-23T02:15:30.000Z",
+    "likeCount": 1,
+    "replyCount": 0,
+    "commentLanguage": "bn",
+    "awemeId": "anonymizedAwemeID6",
+    "isAuthorLiked": false,
+    "user": {
+      "id": "anonymizedUserID6",
+      "username": "",
+      "displayName": "User With Empty Username",
+      "url": "https://www.tiktok.com/@undefined",
+      "bio": "",
+      "avatarUrl": null,
+      "region": "BD",
+      "language": "en",
+      "hasEmail": false,
+      "hasPhone": false,
+      "coverImage": null
+    }
+  },
+  {
+    "noResults": true
+  }
+]

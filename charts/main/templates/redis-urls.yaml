@@ -1,0 +1,17 @@
+{{- if and .Values.redis.enabled (not .Values.redis.useManaged) .Values.redis.auth.existingSecret }}
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{ .Release.Name }}-redis-urls
+  labels:
+    app.kubernetes.io/name: redis
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/component: shared-cache
+type: Opaque
+stringData:
+  # Connection components for applications to construct URLs at runtime
+  REDIS_HOST: "{{ .Release.Name }}-redis"
+  REDIS_PORT: "6379"
+  SUPERSET_REDIS_DB: "{{ .Values.redis.databases.superset }}"
+  PREFECT_REDIS_DB: "{{ .Values.redis.databases.prefect }}"
+{{- end }}

@@ -1,0 +1,1343 @@
+{
+	"pages": {
+		"coming_soon": {
+			"title": "Coming Soon!",
+			"message": "We are working hard to bring you this page. Please check back soon.",
+			"link_text": "Check out our progress"
+		},
+		"login": {
+			"title": "Sign in to your account",
+			"signin": "Sign in",
+			"signup": "Sign up",
+			"divider": "or",
+			"fields": {
+				"email": "Email",
+				"password": "Password"
+			},
+			"errors": {
+				"validEmail": "Invalid email address"
+			},
+			"buttons": {
+				"submit": "Login",
+				"forgotPassword": "Forgot password?",
+				"noAccount": "Don’t have an account?",
+				"rememberMe": "Remember me"
+			}
+		},
+		"forgotPassword": {
+			"title": "Forgot your password?",
+			"fields": {
+				"email": "Email"
+			},
+			"errors": {
+				"validEmail": "Invalid email address"
+			},
+			"buttons": {
+				"submit": "Send reset instructions"
+			}
+		},
+		"register": {
+			"title": "Sign up for your account",
+			"fields": {
+				"email": "Email",
+				"password": "Password"
+			},
+			"errors": {
+				"validEmail": "Invalid email address"
+			},
+			"buttons": {
+				"submit": "Register",
+				"haveAccount": "Have an account?"
+			}
+		},
+		"updatePassword": {
+			"title": "Update password",
+			"fields": {
+				"password": "New Password",
+				"confirmPassword": "Confirm new password"
+			},
+			"errors": {
+				"confirmPasswordNotMatch": "Passwords do not match"
+			},
+			"buttons": {
+				"submit": "Update"
+			}
+		},
+		"profile": {
+			"profile": "Profile",
+			"email": "Email",
+			"created_at": "Created At",
+			"fields": {
+				"name": "Display Name",
+				"email": "Email",
+				"role": "Role"
+			},
+			"settings": {
+				"title": "Profile Settings",
+				"description": "This information will appear on your profile."
+			}
+		},
+		"error": {
+			"info": "You may have forgotten to add the {{action}} component to {{resource}} resource.",
+			"404": "Sorry, the page you visited does not exist.",
+			"resource404": "Are you sure you have created the {{resource}} resource.",
+			"backHome": "Back Home"
+		}
+	},
+	"errors": {
+		"default": "An error occurred"
+	},
+	"actions": {
+		"list": "List",
+		"create": "Create",
+		"edit": "Edit",
+		"show": "Show"
+	},
+	"buttons": {
+		"create": "Create",
+		"confirm_apply": "Confirm and Apply",
+		"create_apply": "Create and Apply",
+		"create_edit": "Create and start editing",
+		"create_add_keyword": "Create and start adding keywords",
+		"create_classifying": "Create and start classifying authors",
+		"save": "Save",
+		"logout": "Logout",
+		"delete": "Delete",
+		"duplicate": "Duplicate",
+		"edit": "Edit",
+		"cancel": "Cancel",
+		"close": "Close",
+		"confirm": "Are you sure?",
+		"filter": "Filter",
+		"clear": "Clear",
+		"refresh": "Refresh",
+		"show": "Show",
+		"undo": "Undo",
+		"import": "Import",
+		"clone": "Clone",
+		"start_run": "Start run",
+		"add_class": "Add Class",
+		"save_all": "Save All",
+		"update_basic_info": "Update Basic Info",
+		"notAccessTitle": "You don't have permission to access"
+	},
+	"inputs": {
+		"select": "Select"
+	},
+	"note": "Note!",
+	"warnWhenUnsavedChanges": "Are you sure you want to leave? You have unsaved changes.",
+	"notifications": {
+		"success": "Successful",
+		"unsaved_changes": "You have unsaved changes. Are you sure you want to leave?",
+		"error": "Error (status code: {{statusCode}})",
+		"undoable": "You have {{seconds}} seconds to undo",
+		"createSuccess": "Successfully created {{resource}}",
+		"createError": "There was an error creating {{resource}} (status code: {{statusCode}})",
+		"deleteSuccess": "Successfully deleted {{resource}}",
+		"deleteError": "Error when deleting {{resource}} (status code: {{statusCode}})",
+		"editSuccess": "Successfully edited {{resource}}",
+		"editError": "Error when editing {{resource}} (status code: {{statusCode}})",
+		"importProgress": "Importing: {{processed}}/{{total}}"
+	},
+	"loading": "Loading",
+	"tags": {
+		"clone": "Clone"
+	},
+	"projects": {
+		"projects": "Projects",
+		"more_info": "More Information",
+		"dataset_last_update": "Dashboard dataset last updated at",
+		"total_costs_and_allocated_credits": "Total costs / Total allocated credits",
+		"total_costs": "Total costs",
+		"no_more_allocated_credits": "You don't have any more credits allocated so you can't run any more Gathers",
+		"resources_provisioning_title": "Project Setup In Progress",
+		"resources_provisioning_message": "This project is still being set up. Some features may not be available until setup is complete. Please wait a few minutes and refresh the page.",
+		"fields": {
+			"id": "Unique ID",
+			"name": "Name",
+			"description": "Description",
+			"workspace_slug": "Workspace",
+			"days_until_pi_expiration": "Personal Information is deleted after (days)",
+			"days_until_all_data_expiration": "All data is deleted after (days)",
+			"has_unlimited_credits": "Project has unlimited credits",
+			"initial_credit_allocation_amount": "Initial credit allocation amount",
+			"initial_credit_allocation_description": "Initial credit allocation description",
+			"dashboard_id": "Dashboard ID",
+			"dashboard_id_tooltip": "The unique identifier for the target dashboard, which can be found in the dashboard's URL. When viewing a Superset dashboard, the URL typically follows this pattern: https://<some domain>/superset/dashboard/<dashboard_unique_id>. Copy the <dashboard_unique_id> portion from the URL to use in your configuration.",
+			"expected_usage": {
+				"title": "Help us: how often you wil look at the dashboard",
+				"options": {
+					"one_off": "One off analysis",
+					"monthly": "Monthly",
+					"weekly": "Weekly",
+					"daily": "Daily"
+				}
+			},
+			"inputs": {
+				"description": "Description (Optional)"
+			},
+			"status": "Status",
+			"created_at": "Created At",
+			"updated_at": "Updated At",
+			"validation": {
+				"required": "Required",
+				"invalid_name": "Use only letters, numbers, spaces, hyphens, and underscores",
+				"days_until_pi_expiration": "Value needs to fall between 30 - 365 days",
+				"days_until_all_data_expiration": "Value needs to fall between 30 - 365 days"
+			}
+		},
+		"titles": {
+			"create": "Create Project",
+			"edit": "Edit Project",
+			"list": "Projects",
+			"show": "Show Project",
+			"gathers": "View Gathers",
+			"tabulates": "View Tabulate Runs",
+			"dashboard": "Go to Dashboard"
+		},
+		"warnings": {
+			"create": "To extend 'Personal Information is deleted after' or 'All data is deleted after' days beyond 365, please contact support!",
+			"days_until_pi_expiration": "Text and account names are considered PI infromation and will be deleted x number of days after collection",
+			"days_until_all_data_expiration": "It is important for privacy compliance that data is only stored as long as you need it. Data will be deleted x days after it has been collected"
+		},
+		"tabs": {
+			"overview": {
+				"header": "Overview",
+				"title": "Welcome to your Phoenix project",
+				"description": {
+					"part1": {
+						"a": "Your Phoenix project gives you the tools to gather data from social media platforms, create classifications to organise that data, and visualise the data you have gathered and classified in an interactive dashboard. You will find these tools in the tabs above for ",
+						"b": "gather, classify and visualise."
+					},
+					"part2": {
+						"a": "Social media listening doesn't just require these tools, it also needs an analysis process. You may have your own process already! We have laid out our recommended social media analysis process for mediators and peacebuilders in ",
+						"b": "the Phoenix manual."
+					},
+					"part3": "Not sure how to get started? Use our standard checklist to guide you through the steps:"
+				},
+				"problem_statement": "Define a problem statement",
+				"source": "Define where you will get data from",
+				"gather": "Gather data from social media platforms",
+				"classify": "Classify the data you have gathered",
+				"explore": "Explore the data you have gathered and classified",
+				"insights": "Explore insights using your dashboard",
+				"tips": {
+					"manual": "see Phoenix Manual",
+					"gather": "go to Gather",
+					"classify": "go to Classify",
+					"explore": "go to Explore"
+				}
+			},
+			"classify": {
+				"header": "Classify",
+				"coming_soon": "Coming soon"
+			},
+			"explore": {
+				"header": "Explore",
+				"title": "Explore your data",
+				"description": {
+					"part1": {
+						"a": "All the data you have gathered for your project is in one database, with all the classifications you have created applied to the data. For details on how this database is structured, see ",
+						"b": "this section of the Phoenix manual"
+					},
+					"part2": {
+						"a": "Use the search bar below to explore data you have gathered. This will give you a sense of what is in your data and whether you need to gather additional / different data.",
+						"b": "SEARCH BAR COMING SOON"
+					},
+					"part3": {
+						"a": "Your Phoenix project also automatically creates an interactive dashboard. When you first open it, the dashboard will only show a few basic graphs and filters that we have created for you. You can create as many additional graphs and tables as you want. For tips on dashboarding, see ",
+						"b": "this section of the Phoenix manual"
+					}
+				}
+			},
+			"gather": {
+				"header": "Gather",
+				"title": "Gathers",
+				"description": {
+					"part1": {
+						"a": "On this page, you can gather data from social media platforms. You will need to make a number of decisions about what data you want to gather. Before you add your first gather, we recommend that you read ",
+						"b": "this section",
+						"c": " of the Phoenix manual."
+					},
+					"part2": {
+						"a": "Once you have added a gather, you will need to run the gather using the play button in the Action column. Each time you run a gather, you will use up some of your project credits (see ",
+						"b": "here",
+						"c": " for more information on project credits)."
+					}
+				}
+			},
+			"about": {
+				"header": "About"
+			},
+			"help": {
+				"header": "Help"
+			},
+			"classifier": {
+				"title": "Classifiers",
+				"description": {
+					"part1": {
+						"a": "On this page, you can add classifications to your data – essentially, another column containing information that is useful to you.",
+						"b": "Classifiers do not collect data.",
+						"c": "Classifiers apply classes (labels) to data you have already collected using a Gather. Before you add your first classifier, we recommend that you read ",
+						"d": "this section",
+						"e": " of the Phoenix manual."
+					}
+				}
+			}
+		}
+	},
+	"gathers": {
+		"gathers": "Gathers",
+		"details": "Gather details",
+		"titles": {
+			"create": "Create Gather",
+			"edit": "Edit Gather",
+			"list": "Gathers",
+			"show": "Show Gather",
+			"select_type": "Select the type of gather you would like to do"
+		},
+		"sub_titles": {
+			"list": "Defines platform, source and search parameters for data collection. Create your new gather and then run it. Once it has been completed you can run a tabulate to update the dashboard dataset."
+		},
+		"types": {
+			"proceed_text": "Proceed",
+			"apify_facebook_posts": {
+				"title": "Facebook Posts from a list of accounts",
+				"description": "Gather posts from a list of Facebook accounts. Accounts must be public pages or groups (no private accounts).",
+				"create": "Configure a new Facebook posts account gather",
+				"create_description": "Gather Facebook posts from a list of Facebook accounts. Accounts must be public pages or groups (no private accounts). Once you have configured your gather you will be able to run it to collect the data.",
+				"edit": "Edit new Facebook posts gather",
+				"edit_description": "Edit a gather of Facebook posts from a list of Facebook accounts. Accounts must be public pages or groups (no private accounts). Once you have created your gather your will be able to run it to collect the data.",
+				"fields": {
+					"posts_created_after": "Posts Created After",
+					"posts_created_before": "Posts Created Before",
+					"limit_posts_per_account": "Limit Posts Per Account",
+					"input": {
+						"url_list": "List all the Facebook accounts you want to gather from (Maximum of 200 accounts)"
+					},
+					"info": {
+						"limit_posts_per_account": "Limit the number of posts that are collected for each account.",
+						"posts_created_after": "Gather posts created after 0:00 of the day configured.",
+						"posts_created_before": "Gather posts created before 0:00 of the day configured."
+					},
+					"validation": {
+						"required": "Required",
+						"limit_posts_per_account": "Maximum number of post per account is 50,000",
+						"account_url_list": {
+							"too_many": "You have too many accounts in your list. Please reduce the number of accounts to 200 or less."
+						},
+						"posts_created_after": {
+							"less_than_today": "Start date cannot be in the future",
+							"less_than_end": "Start date cannot be after end date",
+							"max_days": "The maximum number of days you can gather posts from is 365 days."
+						},
+						"posts_created_before": {
+							"greater_than_start": "End date cannot be before start date",
+							"max_days": "The maximum number of days you can gather posts from is 365 days."
+						}
+					}
+				},
+				"view": {
+					"text": "This is a Facebook posts gather. It gathers posts from facebook accounts using the Apify web scraper.",
+					"accordion": {
+						"run": "Run",
+						"status": "Status",
+						"general": "General",
+						"source": "Facebook posts come from these accounts",
+						"source_title": "Facebook account URLs"
+					}
+				}
+			},
+			"apify_facebook_search_posts": {
+				"title": "Facebook Posts from a list of keywords (Apify)",
+				"description": "Gather posts from a list of keywords on Facebook. Keywords will be searched for public posts only (no private posts). (Uses the Apify Scraper)",
+				"create": "Configure a new Facebook keyword post gather",
+				"create_description": {
+					"part1": "Create a gather of Facebook posts that contain keywords.",
+					"part2": "If you enter more than one keyword, the search will find posts that contain all of them. For example, a gather for `junk food` would look for posts containing both words.",
+					"part3": "If you want to run a gather that contains either `junk` or `food`, then you will need to create two separate gathers: one for `food` and one for `junk`",
+					"part4": "Once you have created a gather you will be able to run it to collect the data."
+				},
+				"edit": "Edit new Facebook search posts gather",
+				"edit_description": {
+					"part1": "Edit a gather of Facebook posts that contain keywords.",
+					"part2": "If you enter more than one keyword, the search will find posts that contain all of them. For example, a gather for `junk food` would look for posts containing both words.",
+					"part3": "If you want to run a gather that contains either `junk` or `food`, then you will need to create two separate gathers: one for `food` and one for `junk`",
+					"part4": "Once you have created a gather you will be able to run it to collect the data."
+				},
+				"fields": {
+					"search_query": "What keywords do you want to search for",
+					"limit_posts": "Limit Posts",
+					"limit_retries": "Limit Retries",
+					"recent_posts": "Recent Posts",
+					"proxy_groups": "Country of search (not geolocation of posts)",
+					"residential_proxies": "Residential proxies",
+					"no_proxy": "No proxy",
+					"proxy_country": "Proxy country",
+					"anywhere": "Anywhere",
+					"info": {
+						"search_query": "The gather collects all posts containing these keywords.",
+						"search_query_results": "View possible results for the search query",
+						"results_tooltip": "Results vary depending on proxy and the user logged in. The Gather will use anonymous users and the proxy defined below.",
+						"limit_posts": "You cannot set a date limit for the posts you collect but you can limit the total number of posts collected.",
+						"limit_retries": "Sometimes Facebook blocks a gather and it fails. The more times you retry, the more credits your gather will cost.",
+						"recent_posts": "The order in which posts are collected is defined by Facebook. Use `Recent Posts` to indicate the search should be for the most recent posts or the most relevant.",
+						"proxy_groups": "You will still get posts from other countries, but the country you select should be the one where you think most posts will be found. If you have multiple countries you want to search from we recommend you pick one."
+					},
+					"validation": {
+						"required": "Required"
+					}
+				},
+				"view": {
+					"text": "This is a Facebook search posts gather. It gathers posts from a Facebook search using the Apify web scraper.",
+					"accordion": {
+						"status": "Status",
+						"general": "General",
+						"proxy_setting": "Proxy Setting"
+					}
+				},
+				"warnings": {
+					"create": "Currently, this gather is not fully functional and cannot collect likes, shares, or comment counts. We are actively working on a solution."
+				}
+			},
+			"apify_facebook_comments": {
+				"title": "Facebook Comments from a list of Facebook posts",
+				"description": "Gather comments from a list of Facebook posts. Comments will be gathered from public posts only (no private posts).",
+				"create": "Configure a new Facebook comments gather",
+				"create_description": {
+					"part1": "Gather comments from a list of Facebook posts. Comments will be gathered from public posts only (no private posts). Once you have configured your gather you will be able to run it to collect the data.",
+					"part2": {
+						"main": "IMPORTANT: Phoenix will only show you comments for posts you have already gathered. The best way to do this is to:",
+						"a": "1. Run a gather for Facebook posts (using accounts or keywords)",
+						"b": "2. Find the Facebook posts you want comments on using the Explore tab",
+						"c": "3. Then run a gather for the comments on those Facebook posts"
+					}
+				},
+				"edit": "Edit new Facebook comments gather",
+				"edit_description": {
+					"part1": "Edit a gather comments from a list of Facebook posts. Comments will be gathered from public posts only (no private posts). Once you have configured your gather you will be able to run it to collect the data.",
+					"part2": {
+						"main": "IMPORTANT: Phoenix will only show you comments for posts you have already gathered. The best way to do this is to:",
+						"a": "1. Run a gather for Facebook posts (using accounts or keywords)",
+						"b": "2. Find the Facebook posts you want comments on using the Explore tab",
+						"c": "3. Then run a gather for the comments on those Facebook posts"
+					}
+				},
+				"fields": {
+					"limit_replies": "Limit Replies",
+					"nested_replies": "Nested Replies",
+					"limit_comments_per_post": "Limit Comments Per Post",
+					"include_comment_replies": "Comment Replies",
+					"sort_comments_by": "Sort Comments By",
+					"sort_comments_by_options": {
+						"facebook_default": "Facebook Default",
+						"most_relevant": "Most Relevant",
+						"newest_first": "Newest First",
+						"non_filtered": "Non Filtered"
+					},
+					"input": {
+						"url_list": "List all the Facebook posts you want to gather comments from"
+					},
+					"info": {
+						"limit_comments_per_post": "Limit the number of comments that are collected for each post.",
+						"sort_comments_by": "The order in which you want comments to be collected."
+					},
+					"validation": {
+						"required": "Required",
+						"posts_created_after": {
+							"less_than_today": "Start date cannot be in the future",
+							"less_than_end": "Start date cannot be after end date"
+						},
+						"posts_created_before": {
+							"greater_than_start": "End date cannot be before start date"
+						}
+					}
+				},
+				"view": {
+					"text": "This is a Facebook comments gather. It gathers comments from facebook posts using the Apify web scraper.",
+					"accordion": {
+						"status": "Status",
+						"general": "General",
+						"source": "Facebook comments come from these posts",
+						"source_title": "Facebook post URLs"
+					}
+				}
+			},
+			"apify_tiktok_accounts_posts": {
+				"title": "TikTok Posts from a list of accounts",
+				"description": "Gather posts (videos) from a list of TikTok accounts (usernames). Accounts must be public.",
+				"create": "Configure a new TikTok posts accounts gather",
+				"create_description": "Gather posts (videos) from a list of TikTok accounts (usernames). Accounts must be public. Once you have created your gather you will be able to run it to collect the data.",
+				"edit": "Edit new TikTok Accounts posts gather",
+				"edit_description": "Edit a gather of posts (videos) from a list of TikTok accounts (usernames). Accounts must be public. Once you have created your gather you will be able to run it to collect the data.",
+				"fields": {
+					"posts_created_after": "Posts Created After - only editable if 'Posts created since (Number of days)' is empty",
+					"limit_posts_per_account": "Limit Posts Per Account",
+					"posts_created_since_num_days": "Posts created in the past (Number of days) - only editable if 'Posts Created After' is empty",
+					"proxy_country_to_gather_from": "Country to Gather From",
+					"input": {
+						"url_list": "List all the TikTok accounts (usernames) you want to gather from"
+					},
+					"info": {
+						"posts_created_after": "Gather posts created after 0:00 of the day configured. Use `x` on the far right to make the input empty. ",
+						"limit_posts_per_account": "Limit the number of posts that are collected for each account.",
+						"posts_created_since_num_days": "Specify how old the scraped videos should be (in days). Putting 1 will get you only today's posts, 2 - yesterday's and today's, and so on. If the 'Posts Created After' field was set, the most recent videos will be scraped.",
+						"proxy_country_to_gather_from": "If you want to gather from more than one country, run one gather for each country"
+					},
+					"validation": {
+						"required": "Required",
+						"created_since_num_days_and_created_after": "Both 'Posts created after' and 'Posts created since (Number of days)' cannot be set",
+						"created_since_num_days_or_created_after": "Set either 'Posts created after' or 'Posts created since (Number of days)'"
+					}
+				},
+				"view": {
+					"text": "This is a Tiktok Accounts posts gather. It gathers posts from tiktok accounts using the Apify web scraper.",
+					"accordion": {
+						"status": "Status",
+						"general": "General",
+						"source": "Tiktok posts come from these accounts",
+						"source_title": "Tiktok account URLs"
+					}
+				}
+			},
+			"apify_tiktok_hashtags_posts": {
+				"title": "TikTok Posts from a list of hashtags",
+				"description": "Gather posts (videos) from a list of TikTok hashtags. Hashtags will be searched in the video description of public videos (no private videos).",
+				"create": "Configure a new TikTok Hashtag post gather",
+				"create_description": {
+					"part1": "Create a gather of TikTok posts that contain hashtags.",
+					"part2": "It is possible to add a hashtag, for example #junkfood.",
+					"part3": "If you want to run a gather that contains either #junkfood or #healthyfood, then you can use a new line or comma to separate hashtag inputs.",
+					"part4": "Once you have created a gather you will be able to run it to collect the data."
+				},
+				"edit": "Edit new TikTok Hashtags posts gather",
+				"edit_description": "Edit a gather of posts (videos) from TikTok accounts (usernames) using the web scraper Apify. Once you have created your gather your will be able to run it to collect the data.",
+				"fields": {
+					"limit_posts_per_hashtag": "Limit Posts",
+					"proxy_country_to_gather_from": "Country to Gather From",
+					"input": {
+						"data_placeholder": "Type/paste inputs separated by <Enter> (new line) or ',' (comma)",
+						"url_list": "List all the hashtags you would like to gather from"
+					},
+					"info": {
+						"limit_posts_per_account": "Limit the number of posts that are collected for each hashtag.",
+						"proxy_country_to_gather_from": "Country to Gather From"
+					},
+					"validation": {
+						"required": "Required"
+					}
+				},
+				"view": {
+					"text": "This is a Tiktok Hashtags posts gather. It gathers posts from tiktok hashtags using the Apify web scraper.",
+					"accordion": {
+						"status": "Status",
+						"general": "General",
+						"source": "Tiktok posts come from these hashtags",
+						"source_title": "Tiktok hashtag (without '#')"
+					}
+				}
+			},
+			"apify_tiktok_comments": {
+				"title": "TikTok Comments from a list of TikTok posts",
+				"description": "Gather comments from a list of TikTok posts (videos). Comments will be gathered from public posts only (no private posts).",
+				"create": "Configure a new Tiktok comments gather",
+				"create_description": {
+					"part1": "Gather comments from a list of Tiktok posts. Comments will be gathered from public posts only (no private posts). Once you have configured your gather you will be able to run it to collect the data.",
+					"part2": {
+						"main": "IMPORTANT: Phoenix will only show you comments for posts you have already gathered. The best way to do this is to:",
+						"a": "1. Run a gather for Tiktok posts (using accounts or keywords)",
+						"b": "2. Find the Tiktok posts you want comments on using the Explore tab",
+						"c": "3. Then run a gather for the comments on those Tiktok posts"
+					}
+				},
+				"edit": "Edit new Tiktok comments gather",
+				"edit_description": "Edit a gather of comments from tiktok posts using the web scraper Apify. Once you have created your gather your will be able to run it to collect the data.",
+				"fields": {
+					"limit_total_comments": "Limit total number of comments",
+					"include_comment_replies": "Comment Replies",
+					"input": {
+						"url_list": "List all the Tiktok posts you want to gather comments from"
+					},
+					"info": {
+						"limit_total_comments": "Limit the total number of comments that are collected."
+					},
+					"validation": {
+						"required": "Required"
+					}
+				},
+				"view": {
+					"text": "This is a Tiktok comments gather. It gathers comments from tiktok posts using the Apify web scraper.",
+					"accordion": {
+						"status": "Status",
+						"general": "General",
+						"source": "Tiktok comments come from these posts",
+						"source_title": "Tiktok post URLs"
+					}
+				}
+			},
+			"apify_tiktok_searches_posts": {
+				"title": "TikTok Posts from a list of keywords",
+				"description": "Gather posts (videos) from a list of keywords on TikTok. Keywords will be searched in the video description of public videos (no private videos).",
+				"create": "Configure a new TikTok Keyword post gather",
+				"create_description": {
+					"part1": "Create a gather of TikTok posts that contain keywords.",
+					"part2": "It is possible to add a phrase as a keyword, for example, `junk food`. If you add a phrase, the search will find posts that contain all of the keywords. For example, a gather for `junk food` would look for posts containing both words.",
+					"part3": "If you want to run a gather that contains either `junk` or `food`, then you will need to add two separate keyword inputs below: one for `food` and one for `junk`. You can also use a new line or comma to seperate phrase inputs. For example, if you type “junk food, healthy food” then you will gather post that contain either “junk food” or “healthy food”",
+					"part4": "Once you have created a gather you will be able to run it to collect the data."
+				},
+				"edit": "Edit new TikTok Keyword post gather",
+				"edit_description": "Edit a gather of posts (videos) from TikTok searches using the web scraper Apify. Once you have created your gather your will be able to run it to collect the data.",
+				"fields": {
+					"limit_posts_per_search": "Limit Posts",
+					"proxy_country_to_gather_from": "Country to Gather From",
+					"input": {
+						"data_placeholder": "Type/paste inputs separated by <Enter> (new line) or ',' (comma)",
+						"url_list": "List all the keywords you would like to gather from"
+					},
+					"info": {
+						"limit_posts_per_search": "Limit the number of posts that are collected for each keyword.",
+						"proxy_country_to_gather_from": "Country to Gather From"
+					},
+					"validation": {
+						"required": "Required"
+					}
+				},
+				"view": {
+					"text": "This is a Tiktok Searches posts gather. It gathers posts from tiktok searches using the Apify web scraper.",
+					"accordion": {
+						"status": "Status",
+						"general": "General",
+						"source": "Tiktok posts come from these searches",
+						"source_title": "Tiktok search"
+					}
+				}
+			},
+			"danek_facebook_searches_posts": {
+				"title": "Facebook Posts from a list of keywords (Danek)",
+				"description": "Gather posts from a list of keywords on Facebook. Keywords will be searched for public posts only (no private posts). (Uses the Danek scraper)",
+				"create": "Configure a new Facebook Keyword post gather",
+				"create_description": {
+					"part1": "Create a gather of Facebook posts that contain keywords (using the Danek scraper).",
+					"part2": "It is possible to add a phrase as a keyword, for example, `junk food`. If you add a phrase, the search will find posts that contain all of the keywords. For example, a gather for `junk food` would look for posts containing both words.",
+					"part3": "If you want to run a gather that contains either `junk` or `food`, then you will need to add two separate keyword inputs below: one for `food` and one for `junk`. You can also use a new line or comma to separate phrase inputs. For example, if you type “junk food, healthy food” then you will gather post that contain either “junk food” or “healthy food”",
+					"part4": "Once you have created a gather you will be able to run it to collect the data."
+				},
+				"edit": "Edit new Facebook Keyword post gather",
+				"fields": {
+					"posts_created_after": "Posts Created After",
+					"posts_created_before": "Posts Created Before",
+					"recent_posts": "Recent Posts",
+					"stop_scraping_per_search_after_count": "Limit Posts",
+					"proxy_country_to_gather_from": "Country to Gather From",
+					"input": {
+						"data_placeholder": "Type/paste inputs separated by <Enter> (new line) or ',' (comma)",
+						"url_list": "List all the keywords you would like to gather from"
+					},
+					"info": {
+						"recent_posts": "The order in which posts are collected is defined by Facebook. Use `Recent Posts` to indicate the search should be for the most recent posts or the most relevant.",
+						"stop_scraping_per_search_after_count": "For each keyword input a minimum of this amount of posts will be gathered. Due to the way the gather is done you may get a few more then the given limit but never less.",
+						"proxy_country_to_gather_from": "You will still get posts from other countries, but the country you select should be the one where you think most posts will be found. If you have multiple countries you want to search from we recommend you pick one.",
+						"posts_created_after": "Gather posts created after 0:00, of your local time, of the day configured.",
+						"posts_created_before": "Gather posts created before 0:00, of your local time, of the day configured."
+					},
+					"validation": {
+						"required": "Required",
+						"posts_created_after": {
+							"less_than_today": "Start date cannot be in the future",
+							"less_than_end": "Start date cannot be after end date"
+						},
+						"posts_created_before": {
+							"greater_than_start": "End date cannot be before start date"
+						}
+					}
+				},
+				"view": {
+					"text": "This is a Facebook Searches posts gather. It gathers posts from Facebook searches using the Danek web scraper.",
+					"accordion": {
+						"status": "Status",
+						"general": "General",
+						"source": "Facebook posts come from these searches",
+						"source_title": "Facebook search"
+					}
+				}
+			},
+			"danek_instagram_posts": {
+				"title": "Instagram Posts from a list of accounts (Danek)",
+				"description": "Gather posts from a list of Instagram accounts. Accounts must be public. Optionally gather comments for each scraped post.",
+				"create": "Configure a new Instagram account posts gather",
+				"create_description": {
+					"part1": "Create a gather of Instagram posts from a list of public account usernames using the Danek scraper.",
+					"part2": "Posts are gathered in the order they appear on the account page at the time of the gather. You can also gather top-level comments for each scraped post, and optionally a limited number of child comments per comment.",
+					"part3": "Usernames can be found in the account URL: https://www.instagram.com/<username>. Enter them separated by a new line or comma. Duplicate usernames will be ignored."
+				},
+				"edit": "Edit Instagram account posts gather",
+				"fields": {
+					"limit_posts_per_account": "Limit Posts Per Account",
+					"account_username_list": "Instagram Usernames",
+					"posts_created_after": "Posts Created After",
+					"scrape_comments_count_per_post": "Top-level Comments Per Post",
+					"limit_child_comments_per_comment": "Child Comments Per Comment",
+					"input": {
+						"url_list": "List all the Instagram usernames you would like to gather from"
+					},
+					"info": {
+						"limit_posts_per_account": "Maximum number of posts to gather from each Instagram account.",
+						"posts_created_after": "The gather will stop after reaching a page of posts that contains a post created before this date. Note: pinned posts may still be collected regardless of this date. Use dashboard filters for precise date filtering.",
+						"scrape_comments_count_per_post": "Maximum number of top-level comments to gather per post. The actual number collected may be lower if fewer comments exist.",
+						"limit_child_comments_per_comment": "Maximum number of child comments (replies) to gather per top-level comment. The actual number collected may be lower if fewer replies exist."
+					},
+					"validation": {
+						"required": "Required",
+						"scrape_comments_count_per_post_max": "Must be 200 or less"
+					}
+				},
+				"view": {
+					"text": "This is an Instagram account posts gather. It gathers Instagram posts and optional comments using the Danek scraper.",
+					"accordion": {
+						"status": "Status",
+						"general": "General",
+						"source": "Instagram posts come from these accounts",
+						"source_title": "Instagram account"
+					}
+				}
+			},
+			"danek_instagram_comments": {
+				"title": "Instagram Comments from a list of post IDs (Danek)",
+				"description": "Gather comments from a list of Instagram post IDs. Optionally gather child comments for each top-level comment.",
+				"create": "Configure a new Instagram comments gather",
+				"create_description": {
+					"part1": "Create a gather of Instagram comments from a list of Instagram post IDs using the Danek scraper.",
+					"part2": "Each post ID must be a numeric ID (not the shortcode from the Instagram URL). You can find it in the 'post_platform_id_pi' column in the raw data on the dashboard. It is also possible to convert a post URL's shortcode to the numeric ID using online converter tools or through programmatic conversion. Separate IDs with a new line or comma.",
+					"part3": "Optionally gather child comments for each top-level comment."
+				},
+				"edit": "Edit Instagram comments gather",
+				"fields": {
+					"limit_comments_per_post": "Limit Comments Per Post",
+					"limit_child_comments_per_comment": "Child Comments Per Comment",
+					"input": {
+						"url_list": "List all the Instagram post IDs you would like to gather comments from",
+						"data_placeholder": "Type/paste numeric Instagram post IDs separated by <Enter> (new line) or ',' (comma)"
+					},
+					"info": {
+						"limit_comments_per_post": "Maximum number of top-level comments to gather from each Instagram post.",
+						"limit_child_comments_per_comment": "Maximum number of child comments to gather for each top-level comment."
+					},
+					"validation": {
+						"required": "Required",
+						"numeric_post_ids": "All Instagram post IDs must be numbers"
+					}
+				},
+				"view": {
+					"text": "This is an Instagram comments gather. It gathers comments from Instagram posts using the Danek scraper.",
+					"accordion": {
+						"status": "Status",
+						"general": "General",
+						"source": "Instagram comments come from these post IDs",
+						"source_title": "Instagram post ID"
+					}
+				}
+			},
+			"apify_x_simple_searches_posts_comments": {
+				"title": "x.com (twitter) Posts and Comments from a list of simple searches",
+				"description": "Gather tweets as posts and comments from a list of keywords and handles on x.com (twitter).",
+				"create": "Configure a new x.com (twitter) gather from simple searches",
+				"create_description": {
+					"part1": "Create a gather of x.com (twitter) for posts and comments. This gather will get all the keywords for a list of handles.",
+					"part2": "See manual for more information on how tweets are processed and what kinds of keywords can be used.",
+					"part3a": "generic x.com manual",
+					"part3b": "simple searches manual"
+				},
+				"edit": "Edit Configuration for a new x.com (twitter) gather from simple searches",
+				"edit_description": {
+					"part1": "Edit a gather of x.com (twitter) for posts and comments. This gather will get all the keywords for a list of handles.",
+					"part2": "See manual for more information on how tweets are processed and what kinds of keywords can be used.",
+					"part3a": "generic x.com manual",
+					"part3b": "simple searches manual"
+				},
+				"fields": {
+					"limit_results_per_search": "Limit Posts and Comments Per Query",
+					"posts_created_after": "Posts and Comments Created After",
+					"posts_created_before": "Posts and Comments Created Before",
+					"location": "Location",
+					"sort": "Sort By",
+					"sort_options": {
+						"top": "Interations",
+						"latest": "Latest"
+					},
+					"detail": "Info",
+					"keywords_list": "Keywords",
+					"handle_list": "x.com (Twitter) Handles",
+					"search_queries": "Search Queries",
+					"keyword_handle_placeholder": "Type/paste inputs separated by <Enter> (new line)",
+					"info": {
+						"limit_results_per_search": "Limit the number of Results that are collected Per Search",
+						"posts_created_after": "Gather posts and comments created after 0:00 of the day configured.",
+						"posts_created_before": "Gather posts and comments created before 0:00 of the day configured.",
+						"sort": "The order in which you want posts and comments to be collected.",
+						"location": "Add a location filter for all tweets. Be aware that lots of tweets don't have location meta data so using location can result in unexpected results. Location example: `Near Amsterdam`, `Kenya`",
+						"keyword_handle": {
+							"part1": "Set the keywords and or handles you would like to gather data from.",
+							"part2": "Both keywords and handles are optional.",
+							"part3": "If handles and keywords are both given then the tweets matching the keywords from the handles will be gathered.",
+							"part4": "Click on the tabs to switch between them.",
+							"part5a": "See ",
+							"part5b": "manual",
+							"part5c": " for more information on how tweets are processed and what kinds of keywords can be used."
+						}
+					},
+					"validation": {
+						"required": "Required",
+						"posts_created_after": {
+							"less_than_today": "Start date cannot be in the future",
+							"less_than_end": "Start date cannot be after end date",
+							"max_days": "The maximum number of days you can gather posts from is 365 days."
+						},
+						"posts_created_before": {
+							"greater_than_start": "End date cannot be before start date",
+							"max_days": "The maximum number of days you can gather posts from is 365 days."
+						}
+					}
+				},
+				"view": {
+					"text": "This is a x.com (twitter) Gather. It gathers tweets from x.com posts and comments from a list of handles and/or keywords using the Apify web scraper.",
+					"accordion": {
+						"run": "Run",
+						"status": "Status",
+						"general": "General",
+						"source": "x.com (twitter) posts and comments come from these queries"
+					},
+					"computed": {
+						"title": "Computed Search Queries",
+						"handle": "Handle",
+						"keyword": "Keyword",
+						"date": "Date Range",
+						"location": "Location",
+						"link": "Link",
+						"empty": "No computed queries found."
+					}
+				}
+			},
+			"apify_x_advanced_searches_posts_comments": {
+				"title": "x.com (twitter) Posts and Comments from a list of advanced search queries",
+				"description": "Gather tweets as posts and comments from a list of search queries on x.com (twitter).",
+				"create": "Configure a new x.com (twitter) gather from advanced searches",
+				"create_description": {
+					"part1": "Create a gather of x.com (twitter) for posts and comments. This gather will collected tweets for all search queries.",
+					"part2": "See manual for more information on how tweets are processed and what kinds of queries can be used.",
+					"part3a": "generic x.com manual",
+					"part3b": "advanced searches manual"
+				},
+				"edit": "Edit Configuration for a x.com (twitter) gather from advanced searches",
+				"edit_description": {
+					"part1": "Edit a gather of x.com (twitter) for posts and comments. This gather will collected tweets for all search queries.",
+					"part2": "See manual for more information on how tweets are processed and what kinds of queries can be used.",
+					"part3a": "generic x.com manual",
+					"part3b": "advanced searches manual"
+				},
+				"fields": {
+					"limit_results_per_search": "Limit Results Per Search",
+					"posts_created_after": "Posts Created After",
+					"posts_created_before": "Posts Created Before",
+					"sort_by": "Sort By",
+					"sort_by_options": {
+						"top": "Interactions",
+						"latest": "Latest"
+					},
+					"search_queries": "Search Queries",
+					"search_queries_placeholder": "Type/paste inputs separated by <Enter> (new line)",
+					"info": {
+						"limit_results_per_search": "Limit the number of Results that are collected Per Search",
+						"posts_created_after": "Gather posts and comments created after 0:00 of the day configured.",
+						"posts_created_before": "Gather posts and comments created before 0:00 of the day configured.",
+						"sort_by": "The order in which you want posts and comments to be collected.",
+						"search_queries": {
+							"part1": "Queries are not just key words and can includes and combine search terms and filters. See the ",
+							"part2": "manual",
+							"part3": " for more information."
+						}
+					},
+					"validation": {
+						"required": "Required",
+						"posts_created_after": {
+							"less_than_today": "Start date cannot be in the future",
+							"less_than_end": "Start date cannot be after end date",
+							"max_days": "The maximum number of days you can gather posts from is 365 days."
+						},
+						"posts_created_before": {
+							"greater_than_start": "End date cannot be before start date",
+							"max_days": "The maximum number of days you can gather posts from is 365 days."
+						}
+					}
+				},
+				"view": {
+					"text": "This is a X (twitter) Gather. It gathers posts from X Posts and Comments from a list of search queries using the Apify web scraper.",
+					"accordion": {
+						"run": "Run",
+						"status": "Status",
+						"general": "General",
+						"source": "X (twitter) posts and comments come from these queries",
+						"source_title": "X (twitter) Search Queries"
+					}
+				}
+			},
+			"apify_youtube_accounts_posts": {
+				"title": "YouTube Posts from a list of accounts",
+				"description": "Gather posts (videos) from a list of accounts on YouTube"
+			},
+			"apify_youtube_search_posts": {
+				"title": "YouTube Posts from a list of keywords",
+				"description": "Gather posts (videos) from a list of keywords on YouTube"
+			},
+			"apify_youtube_comments": {
+				"title": "YouTube Comments from a list of YouTube posts ",
+				"description": "Gather comments from a list of YouTube posts (videos)"
+			},
+			"apify_instagram_accounts_posts": {
+				"title": "Instagram Posts from a list of accounts",
+				"description": "Gather posts from a list of Instagram accounts. Accounts must be public pages or groups (no private accounts)."
+			},
+			"apify_instagram_search_posts": {
+				"title": "Instagram Posts from a list of keywords",
+				"description": "Gather posts from a list of keywords on Instagram. Keywords will be searched for public posts only (no private posts)."
+			},
+			"apify_instagram_comments": {
+				"title": "Instagram Comments from a list of Instagram posts",
+				"description": "Gather comments from a list of Instagram posts. Comments will be gathered from public posts only (no private posts)."
+			},
+			"apify_telegram_chats_posts": {
+				"title": "Telegram Posts from chats",
+				"description": "Gather posts from chats on Telegram"
+			},
+			"manual_upload": {
+				"title": "Manually upload gathered data",
+				"description": "Upload posts and comments in to the phoenix platform from a CSV file.",
+				"create": "Configure a new manual upload",
+				"create_description": {
+					"part1": "Upload data into the phoenix platform directly using a CSV.",
+					"part2": {
+						"a": "See instructions for formatting the CSV,",
+						"b": "here"
+					},
+					"part3": "This data will be classified in the same way as other gathers."
+				},
+				"fields": {
+					"name": "Gather Name",
+					"file": "File",
+					"validation": {
+						"required": "Required",
+						"invalid_file_type": "Invalid file type",
+						"file_too_large": "File too large"
+					}
+				},
+				"errors": {
+					"message": "Oops! There seems to be a problem with the uploaded file:",
+					"column_not_in_dataframe": "There are some columns missing",
+					"column_not_in_schema": "There are some additional columns",
+					"dataframe_check": "Some of the data is in the wrong format"
+				},
+				"view": {
+					"text": "This gather contains manually uploaded data.",
+					"file_name": "File name",
+					"file_size": "File size (in bytes)",
+					"no_rows": "Number of rows in file",
+					"accordion": {
+						"status": "Status",
+						"general": "General"
+					}
+				}
+			}
+		},
+		"fields": {
+			"id": "ID",
+			"name": "Name",
+			"platform": "Social Media Platform",
+			"data_type": "Type of Social Media Data",
+			"project_id": "Project",
+			"created_at": "Created At",
+			"updated_at": "Updated At",
+			"status": "Run status",
+			"from": "From",
+			"started_processing_at": "Started Processing At",
+			"started_run_at": "Started Run At",
+			"completed_at": "Completed At",
+			"latest_job_id": "Latest Job Run ID",
+			"total_cost": "Total Cost",
+			"result_count": "Result Count",
+			"result_count_tooltip": "Gathered result count include errors and duplicated results that are filtered out in the creation of the dashboard dataset.",
+			"error_count": "Error Count",
+			"error_count_tooltip": "Error count is the number of errors that occurred during the processing of the gathered data.",
+			"source": {
+				"label": "Gather Data From",
+				"apify": "Web scraper (Apify)",
+				"danek": "Web scraper (Danek)",
+				"input_values": "input values",
+				"facebook": "Facebook",
+				"posts": "Post",
+				"posts_comments": "Posts and Comments",
+				"account_posts": "Account Posts",
+				"hashtag_posts": "Hashtag Posts",
+				"comments": "Comment",
+				"tiktok": "Tiktok",
+				"x": "X (twitter)",
+				"instagram": "Instagram"
+			},
+			"input": {
+				"name": "Name",
+				"data_placeholder": "Type/paste inputs separated by <Enter> (new line) or ',' (comma)",
+				"button_text": "Add to inputs",
+				"search_placeholder": "Search for an input",
+				"edit_input_label": "Edit Item",
+				"select_placeholder": "Select an input"
+			},
+			"info": {
+				"name": "Short name so that you know what the goal of the gather was.",
+				"input": {
+					"type": "The type of input data that you want to gather on. See manual for more information.",
+					"data": "Add the input data you would like to gather. Type/paste inputs separated by (space)"
+				}
+			}
+		},
+		"actions": {
+			"titles": {
+				"run": "Run",
+				"view_and_run": "View and run"
+			}
+		},
+		"caution": {
+			"over_cost": "This gather looks too big to run for the credits that you have. Try editing it to reduce the number of result you are gathering or contact us for more credits.",
+			"no_credit": "You don't have any more credits allocated so you can't run this Gather",
+			"pending_cost": "The currently running gather(s) are estimated to use your allocated credits. Please wait for them to finish before starting this one."
+		},
+		"run_estimate": {
+			"title": "Are you sure you want to run this gather?",
+			"estimated_credit_cost": "Estimated credits for this run",
+			"estimated_duration_minutes": "Estimated time",
+			"cost": "The gather has estimates",
+			"max_no_results": "Estimated max number of results",
+			"max_credit_for_run": "Estimated max credits used for this run",
+			"max_credit_after_run": "Estimated credits used after the run",
+			"max_credit_after_run_tooltip": "Estimate can be slightly over the allocated credits to allow for an error margin in the estimate. The actual cost will be calculated after the run is completed."
+		},
+		"delete": {
+			"message": "Are you sure you want to delete this gather?",
+			"note": "Please note that by deleting this gather:",
+			"list": {
+				"a": "The gathered data for this gather will be deleted from the dashboard.",
+				"b": "This action can not be undone.",
+				"c": "This gather will still be left available to duplicate."
+			}
+		},
+		"success": {
+			"create": "Created successfully.",
+			"update": "Updated successfully.",
+			"delete": "Deleting gather."
+		},
+		"errors": {
+			"create": "Something went wrong while creating",
+			"delete": "An error occurred while deleting gather."
+		},
+		"cautions": {
+			"is_total_cost_estimated": "The cost of this gather is based on an estimate and needs to be manual updated by an admin. Please reach out to the administrator if this warning does not resolve in a number of working days."
+		}
+	},
+	"classifiers": {
+		"classifiers": "Classifiers",
+		"details": "Classifiers details",
+		"titles": {
+			"create": "Create Classifier",
+			"edit": "Edit Classifier",
+			"list": "Classifiers",
+			"show": "Show Classifier",
+			"select_type": "Select the type of classifier you would like to apply"
+		},
+		"fields": {
+			"class_name": "Class Name",
+			"name_placeholder": "My classifier",
+			"description_placeholder": "Classifier Description",
+			"class_name_placeholder": "Class name",
+			"class_description_placeholder": "Class Description",
+			"keywords": "Must contain all these words",
+			"keywords_placeholder": "e.g Keyword1 keyword2",
+			"latest_version_applyed_at": "Latest version applyed at",
+			"latest_edits_made_at": "Latest edits made at",
+			"is_regex": "Regex",
+			"keyword_count": "Keyword Count"
+		},
+		"info": {
+			"create_keywords": "Keywords added in one sequence have an `and` operator between them. To create `or` releationships for this class add more then one keyword sequence.",
+			"edit_keywords": "To create `or` releationships for this class add more then one keyword sequence.",
+			"unsaved_keyword": "Not yet added — click + or press Enter",
+			"is_regex": "When enabled, the keywords field is treated as a raw RE2 regex pattern.",
+			"is_regex_link": "Build and test regex patterns"
+		},
+		"no_gather": {
+			"text1": "You need to run and complete at least one gather before you can classify.",
+			"text2": "A classifier will never collect new data it will apply classes (labels) to gathered data.",
+			"text3a": "Click ",
+			"text3b": "here ",
+			"text3c": "to read more about classifiers in the Phoenix manual."
+		},
+		"run": "Run and apply to future Gathers",
+		"run_modal": {
+			"title": "Are you sure you want to run this classifier?",
+			"text1": "The classifier will be applied to all gathered data. It will add a class (or label) to all data that it matches.",
+			"text2": "The classifier will not collect any new data.",
+			"text3": "Once you run this classifier, any new data that you gather will have this classifier applied to it.",
+			"text4": "You can archive a classifier, and all the classes (labels) will be removed from your data. You can restore a classifier you have archived and the classes (lables) will be applied again to your data."
+		},
+		"types": {
+			"manual_post_authors": {
+				"create": "Create a post author classifier",
+				"create_description": "From the data that has been gathered you can add one or more classes to each author that has posts. The authors will be ordered by the number of posts gathered (highest first) and you will be able to add classes to each author.",
+				"create_description_2": "You first need to create the classifier with the classes before you can add classes to the authors.",
+				"proceed_text": "Start applying",
+				"edit": "Edit post authors classifier",
+				"edit_description": "Define a classifier that will automatically add classes to a post and/or comment when its text contains certain keywords. This will be applied to posts and/or comments that have been gathered, and data gathered in the future.",
+				"edit_description_2": "Edits will be automatically saved but you must `Run and apply to future Gathers` to have the classifier update the dashboard dataset.",
+				"fields": {
+					"classes": "Classes",
+					"author_name": "Author Name",
+					"author_link": "Author Link",
+					"no_of_posts": "Number of posts gathered for author",
+					"author_platform": "Author Platform",
+					"author_anon_id": "Author Anonymous Id",
+					"create": {
+						"class_section": "Classes (this can be amended later)",
+						"authors_section": "Authors (can be edited after create)"
+					}
+				},
+				"author_count": "Total number of authors that have posts:",
+				"author_edit": {
+					"title": "Classify a Post Author",
+					"instruction": "Each edit will automatically saved but you will need to `Run and apply to future Gathers` (on edit page) if you want your dashboard dataset to update.",
+					"count": "You are on author",
+					"processing": "Processing",
+					"go_to_next": "Go to next author",
+					"go_back_to_list": "Go back to author list"
+				},
+				"view": {
+					"text": "View your post authors classifier.",
+					"accordion": {
+						"status": "Status",
+						"general": "General",
+						"basic_setup": "Basic Setup",
+						"class_configuration": "Classes Configuration",
+						"author_configuration": "Authors Configuration"
+					}
+				}
+			},
+			"keyword_match": {
+				"create": "Create a keyword text classifier",
+				"create_description": "Define a classifier that will automatically add classes to a post and/or comment when its text contains certain keywords. This will be applied to posts and/or comments that have been gathered, and data gathered in the future.",
+				"create_description_2": "You will need to create the classifier with the classes before you edit the keywords.",
+				"proceed_text": "Start applying",
+				"edit": "Edit a keyword text classifier",
+				"edit_description": "Define a classifier that will automatically add classes to a post and/or comment when its text contains certain keywords. This will be applied to posts and/or comments that have been gathered, and data gathered in the future.",
+				"edit_description_2": "Edits will be automatically saved but you must `Run and apply to future Gathers` to have the classifier update the dashboard dataset.",
+				"view": {
+					"text": "View your keyword text classifier.",
+					"accordion": {
+						"status": "Status",
+						"general": "General",
+						"basic_setup": "Basic Setup",
+						"configuration": "Configuration (autosave)",
+						"create_configuration": "Configuration (can add keywords after creation)"
+					}
+				}
+			},
+			"perspective_api": {
+				"create": "Apply Perspective API to classify text (only one allowed)",
+				"create_description": "Perspective API is a free classifier that uses machine learning to identify `toxic` comments. You can use Perspective API to classify based on the text of a post and/or comment. This will be applied to all posts and/or comments that have been gathered, and data gathered in the future. For more information on the model check out ",
+				"proceed_text": "Start applying",
+				"create_page": {
+					"title": "Apply Perspective API classifier",
+					"description1a": "Perspective API",
+					"description1b": " uses a machine learning model, made by Google Jigsaw to identify toxic content online. In this context, toxic is defined as “a rude, disrespectful, or unreasonable comment that is likely to make you leave a discussion”.",
+					"description2": "By using this classifier, we will use this API to give the social media content you've scraped a toxicity score. To simplify working with this data, we transform the score into the classes `no_toxicity`, `low_toxicity`, `medium_toxicity`, and `high_toxicity`.",
+					"description3": "Please note that this API only works for the following languages, and you will get incorrect classifications if the data is in a different language: Arabic (ar), Chinese (zh), Czech (cs), Dutch (nl), English (en), French (fr), German (de), Hindi (hi), Hinglish (hi-Latn), Indonesian (id), Italian (it), Japanese (ja), Korean (ko), Polish (pl), Portuguese (pt), Russian (ru), Spanish (es), Swedish (sv).",
+					"description4": "Perspective API also has a few extra classifiers which you can apply to your data as well. Read more about them ",
+					"description5": "here"
+				},
+				"edit_page": {
+					"title": "Edit Perspective API classifier"
+				},
+				"view": {
+					"text": "View your perspective api classifier",
+					"edit_run": "Edit and Re-run",
+					"accordion": {
+						"status": "Status",
+						"general": "General",
+						"basic_setup": "Basic Setup",
+						"classes": "Selected sub classifiers"
+					}
+				},
+				"warnings": {
+					"create": "It is recommended to include all the classifiers that you think you might need and not to edit and re run the classifier to often. This is due to limitations on the rate limits of Perspective API."
+				}
+			},
+			"hugging_face": {
+				"create": "Apply an Open Source classifier",
+				"create_description": "Use Phoenix to classify your posts and comments using open source models from Hugging Face Hub. Simply choose a supported open-source model and Phoenix will automatically fetch it, run inference, and categorize results into intuitive labels like low_prob_toxicity, high_prob_toxicity, etc. ",
+				"proceed_text": "Start applying",
+				"create_page": {
+					"title": "Apply an Open Source classifier",
+					"description1a": "Hugging Face Hub",
+					"description1b": " contains a large number of open source classification models (and other kinds of models to). With Phoenix you can run all your gathered data through an open source classification model.",
+					"description2": "By using a classifier, Phoenix will download the model and using it to infer the score/probability that the post of comment is the predicting class(es). To simplify working with this data, we transform the probability into the class buckets `low_prob_<class_name>`, `medium_prob_<class_name>`, `high_prob_<class_name>`, and `very_high_prob_<class_name>`.",
+					"description3": "If the selected model outputs more then one class all these probability classes will be added for each model class. Eg. For examples if the model outputs `toxicity` and `intimidation` phoenix will output all the class buckets for `toxicity` and `intimidation`.",
+					"description4": "Look at our manual for a list of recommended models and how to search for models that Phoenix can work with. We can only run models that support the `<xxx>ForSequenceClassification` architecture and be `safetensors`. If you don't know how to check this then see manual."
+				},
+				"input": {
+					"model": "Model",
+					"hub_url": "Hugging face hub model name",
+					"hub_url_placeholder": "Copy the name or URL of the hugging face model here"
+				},
+				"errors": {
+					"model_not_found": "Model not found",
+					"invalid_model_id": "Invalid model id",
+					"invalid_architecture": "Model must be of type `<xxx>ForSequenceClassification`",
+					"list_repo_files_failed": "Failed to list repo files for model",
+					"no_safetensors": "Model must be of type `safetensors`. If you want to use this model please contact the administrator."
+				},
+				"view": {
+					"text": "View your Open Source classifier. Note it is not possible to edit the Open Source classifier. When active it will automatically run on all new gathered data. You archive this classifier or create a new one for an other model if you need.",
+					"accordion": {
+						"status": "Status",
+						"general": "General"
+					}
+				}
+			}
+		},
+		"actions": {
+			"button": "Yes, Proceed",
+			"titles": {
+				"archive": "Archive",
+				"view_and_run": "View and run",
+				"restore": "Restore"
+			},
+			"text": {
+				"archive": "Would you like to ARCHIVE this classifier?",
+				"restore": "Would you like to RESTORE this classifier?"
+			},
+			"tooltips": {
+				"save_class": "Save Class and Keywords data",
+				"add_keyword": "Add",
+				"delete_class": "Delete this class",
+				"delete_keyword": "Delete this keyword group"
+			}
+		},
+		"buttons": {
+			"finish": "Finish and view classifier"
+		},
+		"caution": "Your classifier has edits that have not been applied. Click icon to go to edit page and then click `Run and apply to future Gathers` to update dashboard dataset.",
+		"cautions": {
+			"not_run": {
+				"title": "Your classifier has not been applied.",
+				"description": "Edit and then click 'Run and apply to future Gathers' so your classifier to have the classifier applied to the dashboard dataset and future gathers."
+			},
+			"not_applied": {
+				"title": "Your classifier has edits that have not been applied.",
+				"description": "Click 'Run and apply to future Gathers' so your classifier to have the classifier applied to the dashboard dataset and future gathers."
+			},
+			"no_author_class": "You must have classified authors to run this classifier, edit and add classes to authors. If you want to remove the classifier you will need to archive it.",
+			"no_keyword_configurations": "You must have keyword configurations to run this classifier, edit and add keywords. If you want to remove the classifier you will need to archive it."
+		},
+		"or": "Or",
+		"keyword_configurations": "keyword configurations",
+		"export_csv": "Export CSV",
+		"import_csv": "Import CSV",
+		"import_export_recommendation": "We recommend using import and export functionality for larger numbers of keyword configurations. Use a spreadsheet editor that has more functionality than Phoenix and import the configurations.",
+		"import_modal": {
+			"title": "Import Keyword Configurations",
+			"description": "Upload a CSV file to import keyword configurations. The CSV must have columns: class_name, class_description, musts, nots, is_regex. Where musts is the keyword configuration. The nots and is_regex columns are advanced features that are only configurable via CSV import/export, not through the console UI. When is_regex is true, the musts and nots values are treated as regular expressions. View an example import by using the export functionality.",
+			"append_info": "New keyword configurations will be added alongside existing ones. Duplicate entries will be skipped.",
+			"replace_warning": "This will delete all existing classes and keyword configurations and replace them with the imported data.",
+			"mode": {
+				"label": "Import Mode",
+				"replace": "Replace",
+				"append": "Append"
+			}
+		},
+		"success": {
+			"success": "Success",
+			"archive": "Archiving Classifier.",
+			"restore": "Restoring Classifier.",
+			"export": "CSV exported successfully.",
+			"import": "CSV imported successfully."
+		},
+		"errors": {
+			"generic": "Something went wrong",
+			"create": "Something went wrong while creating"
+		}
+	},
+	"tabulate": {
+		"title": "Tabulate",
+		"sub_titles": {
+			"list": "A tabulate will create and update a dashboard dataset from the gathered data."
+		},
+		"tabulate": "Tabulate",
+		"run": "Run Tabulate",
+		"fields": {
+			"started_processing_at": "Started Processing At",
+			"completed_at": "Completed At"
+		}
+	},
+	"documentTitle": {
+		"default": "Console - Phoenix",
+		"suffix": " | Phoenix",
+		"projects": {
+			"list": "Projects | Phoenix",
+			"show": "#{{id}} Show Project | Phoenix",
+			"edit": "#{{id}} Edit Project | Phoenix",
+			"create": "Create new Project | Phoenix",
+			"clone": "#{{id}} Clone Project | Phoenix"
+		},
+		"gathers": {
+			"list": "Gathers | Phoenix",
+			"show": "#{{id}} Show gather | Phoenix",
+			"edit": "#{{id}} Edit gather | Phoenix",
+			"create": "Create new gather | Phoenix",
+			"clone": "#{{id}} Clone gather | Phoenix"
+		}
+	},
+	"table": {
+		"actions": "Actions"
+	},
+	"status": {
+		"success": "Success",
+		"error": "Error",
+		"in_queue": "In Queue",
+		"awaiting_start": "Awaiting Start",
+		"processing": "Processing",
+		"failed": "Failed",
+		"completed_successfully": "Completed Successfully",
+		"delete_status": {
+			"in_queue": "Delete In Queue",
+			"awaiting_start": "Delete Awaiting Start",
+			"processing": "Delete Processing",
+			"failed": "Delete Failed",
+			"completed_successfully": "Deleted"
+		},
+		"classify_tabulate": {
+			"in_queue": "In Queue",
+			"awaiting_start": "Awaiting Start",
+			"processing": "Processing",
+			"failed": "Failed",
+			"completed_successfully": "Completed Successfully"
+		},
+		"classifier_archive": {
+			"in_queue": "Archive in Queue",
+			"awaiting_start": "Awaiting Archive",
+			"processing": "Archive Processing",
+			"failed": "Archive Failed",
+			"completed_successfully": "Archived"
+		},
+		"classifier_restore": {
+			"in_queue": "Restore in Queue",
+			"awaiting_start": "Awaiting Restore",
+			"processing": "Restore Processing",
+			"failed": "Restore Failed",
+			"completed_successfully": "Restored"
+		}
+	}
+}

@@ -1,0 +1,1911 @@
+[
+  {
+    "type": "tweet",
+    "id": "tweet_id_1",
+    "url": "https://x.com/user_name_1/status/tweet_id_1",
+    "twitterUrl": "https://twitter.com/user_name_1/status/tweet_id_1",
+    "text": "Text tweet 1",
+    "fullText": "Full text tweet 1",
+    "source": "Sprinklr",
+    "retweetCount": 291,
+    "replyCount": 226,
+    "likeCount": 1290,
+    "quoteCount": 10,
+    "viewCount": 680505,
+    "createdAt": "Fri Jan 31 16:47:08 +0000 2025",
+    "lang": "en",
+    "bookmarkCount": 44,
+    "isReply": false,
+    "conversationId": "tweet_id_1",
+    "possiblySensitive": false,
+    "isPinned": false,
+    "author": {
+      "type": "user",
+      "userName": "user_name_1",
+      "url": "https://x.com/user_name_1",
+      "twitterUrl": "https://twitter.com/user_name_1",
+      "id": "author_id_1",
+      "name": "user_name_1",
+      "isBlueVerified": true,
+      "profilePicture": "https://pbs.twimg.com/profile_images/profile_image_id_1/profile_image_image_id_1.jpg",
+      "coverPicture": "https://pbs.twimg.com/profile_banners/author_id_1/profile_banner_image_id_1",
+      "description": "Author description 1",
+      "location": "Pale Blue Dot",
+      "followers": 87859482,
+      "following": 154,
+      "status": "",
+      "canDm": false,
+      "canMediaTag": true,
+      "createdAt": "Wed Dec 19 20:20:32 +0000 2007",
+      "entities": {
+        "description": {
+          "urls": [
+            {
+              "display_url": "author_1.gov/socialmedia",
+              "expanded_url": "http://author_1.gov/socialmedia",
+              "url": "https://t.co/short_url_id_1",
+              "indices": [
+                129,
+                152
+              ]
+            }
+          ]
+        },
+        "url": {
+          "urls": [
+            {
+              "display_url": "author_1.gov",
+              "expanded_url": "http://www.author_1.gov/",
+              "url": "https://t.co/short_url_id_2",
+              "indices": [
+                0,
+                23
+              ]
+            }
+          ]
+        }
+      },
+      "fastFollowersCount": 0,
+      "favouritesCount": 16400,
+      "hasCustomTimelines": true,
+      "isTranslator": false,
+      "mediaCount": 27585,
+      "statusesCount": 73054,
+      "withheldInCountries": [],
+      "affiliatesHighlightedLabel": {},
+      "possiblySensitive": false,
+      "pinnedTweetIds": [
+        "pinned_tweet_id_1"
+      ]
+    },
+    "extendedEntities": {
+      "media": [
+        {
+          "display_url": "pic.x.com/media_short_url_1",
+          "expanded_url": "https://x.com/user_name_1/status/status_url_id_1/photo/1",
+          "ext_alt_text": "extended_alt_text_1",
+          "id_str": "media_id_1",
+          "indices": [
+            220,
+            243
+          ],
+          "media_key": "media_key_1",
+          "media_url_https": "https://pbs.twimg.com/media/media_url_id_1.jpg",
+          "type": "photo",
+          "url": "https://t.co/media_short_url_1",
+          "ext_media_availability": {
+            "status": "Available"
+          },
+          "features": {
+            "large": {
+              "faces": []
+            },
+            "medium": {
+              "faces": []
+            },
+            "small": {
+              "faces": []
+            },
+            "orig": {
+              "faces": []
+            }
+          },
+          "sizes": {
+            "large": {
+              "h": 810,
+              "w": 1440,
+              "resize": "fit"
+            },
+            "medium": {
+              "h": 675,
+              "w": 1200,
+              "resize": "fit"
+            },
+            "small": {
+              "h": 383,
+              "w": 680,
+              "resize": "fit"
+            },
+            "thumb": {
+              "h": 150,
+              "w": 150,
+              "resize": "crop"
+            }
+          },
+          "original_info": {
+            "height": 810,
+            "width": 1440,
+            "focus_rects": [
+              {
+                "x": 0,
+                "y": 0,
+                "w": 1440,
+                "h": 806
+              },
+              {
+                "x": 567,
+                "y": 0,
+                "w": 810,
+                "h": 810
+              },
+              {
+                "x": 617,
+                "y": 0,
+                "w": 711,
+                "h": 810
+              },
+              {
+                "x": 770,
+                "y": 0,
+                "w": 405,
+                "h": 810
+              },
+              {
+                "x": 0,
+                "y": 0,
+                "w": 1440,
+                "h": 810
+              }
+            ]
+          },
+          "media_results": {
+            "result": {
+              "media_key": "media_key_1"
+            }
+          }
+        }
+      ]
+    },
+    "card": {},
+    "place": {},
+    "entities": {
+      "hashtags": [
+        {
+          "indices": [
+            4,
+            14
+          ],
+          "text": "hash_tag_text_1"
+        }
+      ],
+      "media": [
+        {
+          "display_url": "pic.x.com/media_short_url_1",
+          "expanded_url": "https://x.com/user_name_1/status/status_url_id_1/photo/1",
+          "ext_alt_text": "extended_alt_text_1",
+          "id_str": "media_id_1",
+          "indices": [
+            220,
+            243
+          ],
+          "media_key": "media_key_1",
+          "media_url_https": "https://pbs.twimg.com/media/media_url_id_1.jpg",
+          "type": "photo",
+          "url": "https://t.co/media_short_url_1",
+          "ext_media_availability": {
+            "status": "Available"
+          },
+          "features": {
+            "large": {
+              "faces": []
+            },
+            "medium": {
+              "faces": []
+            },
+            "small": {
+              "faces": []
+            },
+            "orig": {
+              "faces": []
+            }
+          },
+          "sizes": {
+            "large": {
+              "h": 810,
+              "w": 1440,
+              "resize": "fit"
+            },
+            "medium": {
+              "h": 675,
+              "w": 1200,
+              "resize": "fit"
+            },
+            "small": {
+              "h": 383,
+              "w": 680,
+              "resize": "fit"
+            },
+            "thumb": {
+              "h": 150,
+              "w": 150,
+              "resize": "crop"
+            }
+          },
+          "original_info": {
+            "height": 810,
+            "width": 1440,
+            "focus_rects": [
+              {
+                "x": 0,
+                "y": 0,
+                "w": 1440,
+                "h": 806
+              },
+              {
+                "x": 567,
+                "y": 0,
+                "w": 810,
+                "h": 810
+              },
+              {
+                "x": 617,
+                "y": 0,
+                "w": 711,
+                "h": 810
+              },
+              {
+                "x": 770,
+                "y": 0,
+                "w": 405,
+                "h": 810
+              },
+              {
+                "x": 0,
+                "y": 0,
+                "w": 1440,
+                "h": 810
+              }
+            ]
+          },
+          "media_results": {
+            "result": {
+              "media_key": "media_key_1"
+            }
+          }
+        }
+      ],
+      "symbols": [],
+      "timestamps": [],
+      "urls": [
+        {
+          "display_url": "redd.it/reddit_url_id_1",
+          "expanded_url": "https://redd.it/reddit_url_id_1",
+          "url": "https://t.co/short_url_id_3",
+          "indices": [
+            138,
+            161
+          ]
+        }
+      ],
+      "user_mentions": [
+        {
+          "id_str": "user_mention_id_1",
+          "name": "user_mention_name_1",
+          "screen_name": "user_mention_screen_name_1",
+          "indices": [
+            113,
+            120
+          ]
+        }
+      ]
+    },
+    "isRetweet": false,
+    "isQuote": false,
+    "media": [
+      "https://pbs.twimg.com/media/media_url_id_1.jpg"
+    ],
+    "isConversationControlled": false,
+    "searchTerm": "from:author_1 since:2025-01-01 until:2025-02-01"
+  },
+  {
+    "type": "tweet",
+    "id": "tweet_id_2",
+    "url": "https://x.com/user_name_1/status/tweet_id_2",
+    "twitterUrl": "https://twitter.com/user_name_1/status/tweet_id_2",
+    "text": "Text tweet 2",
+    "fullText": "Full text tweet 2",
+    "source": "Twitter Web App",
+    "retweetCount": 4,
+    "replyCount": 1,
+    "likeCount": 23,
+    "quoteCount": 0,
+    "viewCount": 2232,
+    "createdAt": "Thu Jan 30 23:05:43 +0000 2025",
+    "lang": "en",
+    "quoteId": "quote_tweet_id_1",
+    "bookmarkCount": 2,
+    "isReply": true,
+    "inReplyToId": "in_reply_to_id_1",
+    "conversationId": "con_tweet_id_3",
+    "inReplyToUserId": "in_reply_to_user_id_1",
+    "inReplyToUsername": "in_reply_to_username_1",
+    "possiblySensitive": false,
+    "isPinned": false,
+    "author": {
+      "type": "user",
+      "userName": "user_name_1",
+      "url": "https://x.com/user_name_1",
+      "twitterUrl": "https://twitter.com/user_name_1",
+      "id": "author_id_1",
+      "name": "user_name_1",
+      "isBlueVerified": true,
+      "profilePicture": "https://pbs.twimg.com/profile_images/profile_image_id_1/profile_image_image_id_1.jpg",
+      "coverPicture": "https://pbs.twimg.com/profile_banners/author_id_1/profile_banner_image_id_1",
+      "description": "Author description 1",
+      "location": "Pale Blue Dot",
+      "followers": 87859482,
+      "following": 154,
+      "status": "",
+      "canDm": false,
+      "canMediaTag": true,
+      "createdAt": "Wed Dec 19 20:20:32 +0000 2007",
+      "entities": {
+        "description": {
+          "urls": [
+            {
+              "display_url": "author_1.gov/socialmedia",
+              "expanded_url": "http://author_1.gov/socialmedia",
+              "url": "https://t.co/short_url_id_1",
+              "indices": [
+                129,
+                152
+              ]
+            }
+          ]
+        },
+        "url": {
+          "urls": [
+            {
+              "display_url": "author_1.gov",
+              "expanded_url": "http://www.author_1.gov/",
+              "url": "https://t.co/short_url_id_2",
+              "indices": [
+                0,
+                23
+              ]
+            }
+          ]
+        }
+      },
+      "fastFollowersCount": 0,
+      "favouritesCount": 16400,
+      "hasCustomTimelines": true,
+      "isTranslator": false,
+      "mediaCount": 27585,
+      "statusesCount": 73054,
+      "withheldInCountries": [],
+      "affiliatesHighlightedLabel": {},
+      "possiblySensitive": false,
+      "pinnedTweetIds": [
+        "pinned_tweet_id_1"
+      ]
+    },
+    "extendedEntities": {},
+    "card": {},
+    "place": {},
+    "entities": {
+      "hashtags": [],
+      "symbols": [],
+      "timestamps": [],
+      "urls": [
+        {
+          "display_url": "x.com/user_name_1/status/18…",
+          "expanded_url": "https://x.com/user_name_1/status/quote_tweet_id_1",
+          "url": "https://t.co/url_short_url_id_4",
+          "indices": [
+            34,
+            57
+          ]
+        }
+      ],
+      "user_mentions": [
+        {
+          "id_str": "user_mention_id_2",
+          "name": "user_mention_name_2",
+          "screen_name": "user_mention_screen_name_2",
+          "indices": [
+            0,
+            11
+          ]
+        }
+      ]
+    },
+    "isRetweet": false,
+    "isQuote": true,
+    "quote": {
+      "type": "tweet",
+      "id": "quote_tweet_id_1",
+      "text": "Quote text 1",
+      "source": "Sprinklr",
+      "retweetCount": 1383,
+      "replyCount": 428,
+      "likeCount": 7794,
+      "quoteCount": 146,
+      "viewCount": 4444840,
+      "createdAt": "Wed Jan 29 16:21:13 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 804,
+      "possiblySensitive": false,
+      "isPinned": false,
+      "author": {
+        "type": "user",
+        "userName": "user_name_1",
+        "url": "https://x.com/user_name_1",
+        "twitterUrl": "https://twitter.com/user_name_1",
+        "id": "author_id_1",
+        "name": "user_name_1",
+        "isBlueVerified": true,
+        "profilePicture": "https://pbs.twimg.com/profile_images/profile_image_id_1/profile_image_image_id_1.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/author_id_1/profile_banner_image_id_1",
+        "description": "Author description 1",
+        "location": "Pale Blue Dot",
+        "followers": 87859482,
+        "following": 154,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Wed Dec 19 20:20:32 +0000 2007",
+        "entities": {
+          "description": {
+            "urls": [
+              {
+                "display_url": "author_1.gov/socialmedia",
+                "expanded_url": "http://author_1.gov/socialmedia",
+                "url": "https://t.co/short_url_id_1",
+                "indices": [
+                  129,
+                  152
+                ]
+              }
+            ]
+          },
+          "url": {
+            "urls": [
+              {
+                "display_url": "author_1.gov",
+                "expanded_url": "http://www.author_1.gov/",
+                "url": "https://t.co/short_url_id_2",
+                "indices": [
+                  0,
+                  23
+                ]
+              }
+            ]
+          }
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 16400,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 27585,
+        "statusesCount": 73054,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "pinned_tweet_id_1"
+        ]
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/media_short_url_2",
+            "expanded_url": "https://x.com/user_name_1/status/quote_tweet_id_1/photo/1",
+            "ext_alt_text": "Extended alt text pic 2",
+            "id_str": "media_id_2",
+            "indices": [
+              240,
+              263
+            ],
+            "media_key": "media_key_2",
+            "media_url_https": "https://pbs.twimg.com/media/media_image_2.jpg",
+            "type": "photo",
+            "url": "https://t.co/media_short_url_2",
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "x": 1463,
+                    "y": 793,
+                    "h": 113,
+                    "w": 113
+                  },
+                  {
+                    "x": 1441,
+                    "y": 749,
+                    "h": 121,
+                    "w": 121
+                  }
+                ]
+              },
+              "medium": {
+                "faces": [
+                  {
+                    "x": 857,
+                    "y": 464,
+                    "h": 66,
+                    "w": 66
+                  },
+                  {
+                    "x": 844,
+                    "y": 439,
+                    "h": 70,
+                    "w": 70
+                  }
+                ]
+              },
+              "small": {
+                "faces": [
+                  {
+                    "x": 485,
+                    "y": 263,
+                    "h": 37,
+                    "w": 37
+                  },
+                  {
+                    "x": 478,
+                    "y": 248,
+                    "h": 40,
+                    "w": 40
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "x": 1463,
+                    "y": 793,
+                    "h": 113,
+                    "w": 113
+                  },
+                  {
+                    "x": 1441,
+                    "y": 749,
+                    "h": 121,
+                    "w": 121
+                  }
+                ]
+              }
+            },
+            "sizes": {
+              "large": {
+                "h": 1364,
+                "w": 2047,
+                "resize": "fit"
+              },
+              "medium": {
+                "h": 800,
+                "w": 1200,
+                "resize": "fit"
+              },
+              "small": {
+                "h": 453,
+                "w": 680,
+                "resize": "fit"
+              },
+              "thumb": {
+                "h": 150,
+                "w": 150,
+                "resize": "crop"
+              }
+            },
+            "original_info": {
+              "height": 1364,
+              "width": 2047,
+              "focus_rects": [
+                {
+                  "x": 0,
+                  "y": 218,
+                  "w": 2047,
+                  "h": 1146
+                },
+                {
+                  "x": 597,
+                  "y": 0,
+                  "w": 1364,
+                  "h": 1364
+                },
+                {
+                  "x": 681,
+                  "y": 0,
+                  "w": 1196,
+                  "h": 1364
+                },
+                {
+                  "x": 938,
+                  "y": 0,
+                  "w": 682,
+                  "h": 1364
+                },
+                {
+                  "x": 0,
+                  "y": 0,
+                  "w": 2047,
+                  "h": 1364
+                }
+              ]
+            },
+            "media_results": {
+              "result": {
+                "media_key": "media_key_2"
+              }
+            }
+          }
+        ]
+      },
+      "card": {},
+      "place": {},
+      "entities": {
+        "hashtags": [],
+        "media": [
+          {
+            "display_url": "pic.x.com/media_short_url_2",
+            "expanded_url": "https://x.com/user_name_1/status/quote_tweet_id_1/photo/1",
+            "ext_alt_text": "Extended alt text pic 2",
+            "id_str": "media_id_2",
+            "indices": [
+              240,
+              263
+            ],
+            "media_key": "media_key_2",
+            "media_url_https": "https://pbs.twimg.com/media/media_image_2.jpg",
+            "type": "photo",
+            "url": "https://t.co/media_short_url_2",
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "x": 1463,
+                    "y": 793,
+                    "h": 113,
+                    "w": 113
+                  },
+                  {
+                    "x": 1441,
+                    "y": 749,
+                    "h": 121,
+                    "w": 121
+                  }
+                ]
+              },
+              "medium": {
+                "faces": [
+                  {
+                    "x": 857,
+                    "y": 464,
+                    "h": 66,
+                    "w": 66
+                  },
+                  {
+                    "x": 844,
+                    "y": 439,
+                    "h": 70,
+                    "w": 70
+                  }
+                ]
+              },
+              "small": {
+                "faces": [
+                  {
+                    "x": 485,
+                    "y": 263,
+                    "h": 37,
+                    "w": 37
+                  },
+                  {
+                    "x": 478,
+                    "y": 248,
+                    "h": 40,
+                    "w": 40
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "x": 1463,
+                    "y": 793,
+                    "h": 113,
+                    "w": 113
+                  },
+                  {
+                    "x": 1441,
+                    "y": 749,
+                    "h": 121,
+                    "w": 121
+                  }
+                ]
+              }
+            },
+            "sizes": {
+              "large": {
+                "h": 1364,
+                "w": 2047,
+                "resize": "fit"
+              },
+              "medium": {
+                "h": 800,
+                "w": 1200,
+                "resize": "fit"
+              },
+              "small": {
+                "h": 453,
+                "w": 680,
+                "resize": "fit"
+              },
+              "thumb": {
+                "h": 150,
+                "w": 150,
+                "resize": "crop"
+              }
+            },
+            "original_info": {
+              "height": 1364,
+              "width": 2047,
+              "focus_rects": [
+                {
+                  "x": 0,
+                  "y": 218,
+                  "w": 2047,
+                  "h": 1146
+                },
+                {
+                  "x": 597,
+                  "y": 0,
+                  "w": 1364,
+                  "h": 1364
+                },
+                {
+                  "x": 681,
+                  "y": 0,
+                  "w": 1196,
+                  "h": 1364
+                },
+                {
+                  "x": 938,
+                  "y": 0,
+                  "w": 682,
+                  "h": 1364
+                },
+                {
+                  "x": 0,
+                  "y": 0,
+                  "w": 2047,
+                  "h": 1364
+                }
+              ]
+            },
+            "media_results": {
+              "result": {
+                "media_key": "media_key_2"
+              }
+            }
+          }
+        ],
+        "symbols": [],
+        "timestamps": [],
+        "urls": [
+          {
+            "display_url": "go.author_1.gov/short_url_id_3",
+            "expanded_url": "https://go.author_1.gov/short_url_id_3",
+            "url": "https://t.co/url_short_url_id_4",
+            "indices": [
+              216,
+              239
+            ]
+          }
+        ],
+        "user_mentions": []
+      }
+    },
+    "media": [],
+    "isConversationControlled": false,
+    "searchTerm": "from:author_1 since:2025-01-01 until:2025-02-01"
+  },
+  {
+    "type": "tweet",
+    "id": "tweet_id_3",
+    "url": "https://x.com/user_name_1/status/tweet_id_3",
+    "twitterUrl": "https://twitter.com/user_name_1/status/tweet_id_3",
+    "text": "Text tweet 3",
+    "fullText": "Full text tweet 3",
+    "source": "Sprinklr",
+    "retweetCount": 398,
+    "replyCount": 216,
+    "likeCount": 2104,
+    "quoteCount": 31,
+    "viewCount": 670785,
+    "createdAt": "Thu Jan 30 22:32:31 +0000 2025",
+    "lang": "en",
+    "bookmarkCount": 75,
+    "isReply": false,
+    "conversationId": "tweet_id_3",
+    "possiblySensitive": false,
+    "isPinned": false,
+    "author": {
+      "type": "user",
+      "userName": "user_name_1",
+      "url": "https://x.com/user_name_1",
+      "twitterUrl": "https://twitter.com/user_name_1",
+      "id": "author_id_1",
+      "name": "user_name_1",
+      "isBlueVerified": true,
+      "profilePicture": "https://pbs.twimg.com/profile_images/profile_image_id_1/profile_image_image_id_1.jpg",
+      "coverPicture": "https://pbs.twimg.com/profile_banners/author_id_1/profile_banner_image_id_1",
+      "description": "Author description 1",
+      "location": "Pale Blue Dot",
+      "followers": 87859482,
+      "following": 154,
+      "status": "",
+      "canDm": false,
+      "canMediaTag": true,
+      "createdAt": "Wed Dec 19 20:20:32 +0000 2007",
+      "entities": {
+        "description": {
+          "urls": [
+            {
+              "display_url": "author_1.gov/socialmedia",
+              "expanded_url": "http://author_1.gov/socialmedia",
+              "url": "https://t.co/short_url_id_1",
+              "indices": [
+                129,
+                152
+              ]
+            }
+          ]
+        },
+        "url": {
+          "urls": [
+            {
+              "display_url": "author_1.gov",
+              "expanded_url": "http://www.author_1.gov/",
+              "url": "https://t.co/short_url_id_2",
+              "indices": [
+                0,
+                23
+              ]
+            }
+          ]
+        }
+      },
+      "fastFollowersCount": 0,
+      "favouritesCount": 16400,
+      "hasCustomTimelines": true,
+      "isTranslator": false,
+      "mediaCount": 27585,
+      "statusesCount": 73054,
+      "withheldInCountries": [],
+      "affiliatesHighlightedLabel": {},
+      "possiblySensitive": false,
+      "pinnedTweetIds": [
+        "pinned_tweet_id_1"
+      ]
+    },
+    "extendedEntities": {
+      "media": [
+        {
+          "display_url": "pic.x.com/media_short_url_3",
+          "expanded_url": "https://x.com/user_name_1/status/tweet_id_3/photo/1",
+          "ext_alt_text": "Extended alt text pic 3",
+          "id_str": "media_id_3",
+          "indices": [
+            253,
+            276
+          ],
+          "media_key": "media_key_3",
+          "media_url_https": "https://pbs.twimg.com/media/media_short_url_https_3.jpg",
+          "type": "photo",
+          "url": "https://t.co/media_short_url_3",
+          "ext_media_availability": {
+            "status": "Available"
+          },
+          "features": {
+            "large": {
+              "faces": []
+            },
+            "medium": {
+              "faces": []
+            },
+            "small": {
+              "faces": []
+            },
+            "orig": {
+              "faces": []
+            }
+          },
+          "sizes": {
+            "large": {
+              "h": 1440,
+              "w": 1920,
+              "resize": "fit"
+            },
+            "medium": {
+              "h": 900,
+              "w": 1200,
+              "resize": "fit"
+            },
+            "small": {
+              "h": 510,
+              "w": 680,
+              "resize": "fit"
+            },
+            "thumb": {
+              "h": 150,
+              "w": 150,
+              "resize": "crop"
+            }
+          },
+          "original_info": {
+            "height": 1440,
+            "width": 1920,
+            "focus_rects": [
+              {
+                "x": 0,
+                "y": 87,
+                "w": 1920,
+                "h": 1075
+              },
+              {
+                "x": 240,
+                "y": 0,
+                "w": 1440,
+                "h": 1440
+              },
+              {
+                "x": 329,
+                "y": 0,
+                "w": 1263,
+                "h": 1440
+              },
+              {
+                "x": 600,
+                "y": 0,
+                "w": 720,
+                "h": 1440
+              },
+              {
+                "x": 0,
+                "y": 0,
+                "w": 1920,
+                "h": 1440
+              }
+            ]
+          },
+          "media_results": {
+            "result": {
+              "media_key": "media_key_3"
+            }
+          }
+        }
+      ]
+    },
+    "card": {},
+    "place": {},
+    "entities": {
+      "hashtags": [
+        {
+          "indices": [
+            37,
+            47
+          ],
+          "text": "hash_tag_text_1"
+        }
+      ],
+      "media": [
+        {
+          "display_url": "pic.x.com/media_short_url_3",
+          "expanded_url": "https://x.com/user_name_1/status/tweet_id_3/photo/1",
+          "ext_alt_text": "Extended alt text pic 3",
+          "id_str": "media_id_3",
+          "indices": [
+            253,
+            276
+          ],
+          "media_key": "media_key_3",
+          "media_url_https": "https://pbs.twimg.com/media/media_short_url_https_3.jpg",
+          "type": "photo",
+          "url": "https://t.co/media_short_url_3",
+          "ext_media_availability": {
+            "status": "Available"
+          },
+          "features": {
+            "large": {
+              "faces": []
+            },
+            "medium": {
+              "faces": []
+            },
+            "small": {
+              "faces": []
+            },
+            "orig": {
+              "faces": []
+            }
+          },
+          "sizes": {
+            "large": {
+              "h": 1440,
+              "w": 1920,
+              "resize": "fit"
+            },
+            "medium": {
+              "h": 900,
+              "w": 1200,
+              "resize": "fit"
+            },
+            "small": {
+              "h": 510,
+              "w": 680,
+              "resize": "fit"
+            },
+            "thumb": {
+              "h": 150,
+              "w": 150,
+              "resize": "crop"
+            }
+          },
+          "original_info": {
+            "height": 1440,
+            "width": 1920,
+            "focus_rects": [
+              {
+                "x": 0,
+                "y": 87,
+                "w": 1920,
+                "h": 1075
+              },
+              {
+                "x": 240,
+                "y": 0,
+                "w": 1440,
+                "h": 1440
+              },
+              {
+                "x": 329,
+                "y": 0,
+                "w": 1263,
+                "h": 1440
+              },
+              {
+                "x": 600,
+                "y": 0,
+                "w": 720,
+                "h": 1440
+              },
+              {
+                "x": 0,
+                "y": 0,
+                "w": 1920,
+                "h": 1440
+              }
+            ]
+          },
+          "media_results": {
+            "result": {
+              "media_key": "media_key_3"
+            }
+          }
+        }
+      ],
+      "symbols": [],
+      "timestamps": [],
+      "urls": [
+        {
+          "display_url": "reddit.com/r/reddit_user_1/",
+          "expanded_url": "https://www.reddit.com/r/reddit_user_1/",
+          "url": "https://t.co/short_url_id_5",
+          "indices": [
+            229,
+            252
+          ]
+        }
+      ],
+      "user_mentions": [
+        {
+          "id_str": "user_mention_id_3",
+          "name": "user_mention_name_3",
+          "screen_name": "user_mention_screen_name_3",
+          "indices": [
+            79,
+            86
+          ]
+        }
+      ]
+    },
+    "isRetweet": false,
+    "isQuote": false,
+    "media": [
+      "https://pbs.twimg.com/media/media_short_url_https_3.jpg"
+    ],
+    "isConversationControlled": false,
+    "searchTerm": "from:author_1 since:2025-01-01 until:2025-02-01"
+  },
+  {
+    "type": "tweet",
+    "id": "tweet_id_4",
+    "url": "https://x.com/tweet_author_4/status/tweet_id_4",
+    "twitterUrl": "https://twitter.com/tweet_author_4/status/tweet_id_4",
+    "text": "Text tweet 4",
+    "fullText": "Full text tweet 4",
+    "source": "Twitter Web App",
+    "retweetCount": 1,
+    "replyCount": 0,
+    "likeCount": 0,
+    "quoteCount": 0,
+    "createdAt": "Thu Sep 11 09:37:57 +0000 2025",
+    "lang": "en",
+    "bookmarkCount": 0,
+    "isReply": false,
+    "conversationId": "tweet_id_4",
+    "possiblySensitive": false,
+    "isPinned": false,
+    "author": {
+      "type": "user",
+      "userName": "tweet_author_4",
+      "url": "https://x.com/tweet_author_4",
+      "twitterUrl": "https://twitter.com/tweet_author_4",
+      "id": "author_id_4",
+      "name": "Author Name 4",
+      "isBlueVerified": false,
+      "profilePicture": "https://pbs.twimg.com/profile_images/profile_image_id_4/profile_image_pic_4.jpg",
+      "coverPicture": "https://pbs.twimg.com/profile_banners/author_id_4/profile_banner_image_id_4",
+      "description": "Author description 4",
+      "location": "Hong Kong",
+      "followers": 2266,
+      "following": 1217,
+      "status": "",
+      "canDm": false,
+      "canMediaTag": true,
+      "createdAt": "Tue Feb 04 03:21:38 +0000 2020",
+      "entities": {
+        "description": {
+          "urls": [
+            {
+              "display_url": "author_display_url_4",
+              "expanded_url": "author_expanded_url_4",
+              "url": "https://t.co/author_short_url_4",
+              "indices": [
+                136,
+                159
+              ]
+            }
+          ]
+        },
+        "url": {
+          "urls": [
+            {
+              "display_url": "author_display_url_4_2",
+              "expanded_url": "author_expanded_url_4_2",
+              "url": "https://t.co/author_short_url_4_2",
+              "indices": [
+                0,
+                23
+              ]
+            }
+          ]
+        }
+      },
+      "fastFollowersCount": 0,
+      "favouritesCount": 22368,
+      "hasCustomTimelines": true,
+      "isTranslator": false,
+      "mediaCount": 1261,
+      "statusesCount": 16047,
+      "withheldInCountries": [],
+      "affiliatesHighlightedLabel": {},
+      "possiblySensitive": false,
+      "pinnedTweetIds": [
+        "author_4_pinned_tweet_id_1"
+      ]
+    },
+    "extendedEntities": {},
+    "card": {},
+    "place": {},
+    "entities": {
+      "hashtags": [],
+      "symbols": [],
+      "timestamps": [],
+      "urls": [
+        {
+          "display_url": "author_display_url_4_3",
+          "expanded_url": "author_expanded_url_4_3",
+          "url": "https://t.co/author_short_url_4_3",
+          "indices": [
+            15,
+            38
+          ]
+        }
+      ],
+      "user_mentions": [
+        {
+          "id_str": "author_id_5",
+          "name": "Author Name 5",
+          "screen_name": "author_screen_name_5",
+          "indices": [
+            3,
+            13
+          ]
+        },
+        {
+          "id_str": "author_id_6",
+          "name": "Author Name 6",
+          "screen_name": "author_screen_name_6",
+          "indices": [
+            40,
+            49
+          ]
+        }
+      ]
+    },
+    "isRetweet": true,
+    "retweet": {
+      "type": "tweet",
+      "id": "retweeted_tweet_id_1",
+      "text": "Text tweet 5",
+      "source": "Twitter Web App",
+      "retweetCount": 1,
+      "replyCount": 0,
+      "likeCount": 0,
+      "quoteCount": 0,
+      "viewCount": 193,
+      "createdAt": "Thu Sep 11 08:59:37 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "possiblySensitive": false,
+      "isPinned": false,
+      "author": {
+        "type": "user",
+        "userName": "author_user_name_5",
+        "url": "https://x.com/author_user_name_5",
+        "twitterUrl": "https://twitter.com/author_user_name_5",
+        "id": "author_id_5",
+        "name": "Author Name 5",
+        "isBlueVerified": false,
+        "profilePicture": "https://pbs.twimg.com/profile_images/author_5_profile_id/author_5_profile_pic.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/author_id_5/author_5_banner_id",
+        "description": "Author 5 description",
+        "location": "Hong Kong",
+        "followers": 160405,
+        "following": 1941,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": false,
+        "createdAt": "Tue Sep 15 10:51:31 +0000 2009",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {
+            "urls": [
+              {
+                "display_url": "linktr.ee/author_5_display_url",
+                "expanded_url": "https://linktr.ee/author_5_display_url",
+                "url": "https://t.co/author_5_display_url_short",
+                "indices": [
+                  0,
+                  23
+                ]
+              }
+            ]
+          }
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 6824,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 2588,
+        "statusesCount": 8984,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "author_5_pinned_tweet_id_1"
+        ]
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/author_5_media_short_url",
+            "expanded_url": "https://x.com/author_user_name_5/status/author_5_status_id/photo/1",
+            "id_str": "author_5_status_id_str",
+            "indices": [
+              234,
+              257
+            ],
+            "media_key": "author_5_status_id_str_key",
+            "media_url_https": "https://pbs.twimg.com/media/author_5_media_pic_id.jpg",
+            "type": "photo",
+            "url": "https://t.co/author_5_media_short_url",
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "x": 573,
+                    "y": 432,
+                    "h": 133,
+                    "w": 133
+                  }
+                ]
+              },
+              "medium": {
+                "faces": [
+                  {
+                    "x": 573,
+                    "y": 432,
+                    "h": 133,
+                    "w": 133
+                  }
+                ]
+              },
+              "small": {
+                "faces": [
+                  {
+                    "x": 383,
+                    "y": 288,
+                    "h": 88,
+                    "w": 88
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "x": 573,
+                    "y": 432,
+                    "h": 133,
+                    "w": 133
+                  }
+                ]
+              }
+            },
+            "sizes": {
+              "large": {
+                "h": 891,
+                "w": 1017,
+                "resize": "fit"
+              },
+              "medium": {
+                "h": 891,
+                "w": 1017,
+                "resize": "fit"
+              },
+              "small": {
+                "h": 596,
+                "w": 680,
+                "resize": "fit"
+              },
+              "thumb": {
+                "h": 150,
+                "w": 150,
+                "resize": "crop"
+              }
+            },
+            "original_info": {
+              "height": 891,
+              "width": 1017,
+              "focus_rects": [
+                {
+                  "x": 0,
+                  "y": 0,
+                  "w": 1017,
+                  "h": 570
+                },
+                {
+                  "x": 0,
+                  "y": 0,
+                  "w": 891,
+                  "h": 891
+                },
+                {
+                  "x": 0,
+                  "y": 0,
+                  "w": 782,
+                  "h": 891
+                },
+                {
+                  "x": 158,
+                  "y": 0,
+                  "w": 446,
+                  "h": 891
+                },
+                {
+                  "x": 0,
+                  "y": 0,
+                  "w": 1017,
+                  "h": 891
+                }
+              ]
+            },
+            "media_results": {
+              "result": {
+                "media_key": "author_5_status_id_str_key"
+              }
+            }
+          }
+        ]
+      },
+      "card": {},
+      "place": {},
+      "entities": {
+        "hashtags": [],
+        "media": [
+          {
+            "display_url": "pic.x.com/author_5_media_short_url",
+            "expanded_url": "https://x.com/author_user_name_5/status/author_5_status_id/photo/1",
+            "id_str": "author_5_status_id_str",
+            "indices": [
+              234,
+              257
+            ],
+            "media_key": "author_5_status_id_str_key",
+            "media_url_https": "https://pbs.twimg.com/media/author_5_media_pic_id.jpg",
+            "type": "photo",
+            "url": "https://t.co/author_5_media_short_url",
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "x": 573,
+                    "y": 432,
+                    "h": 133,
+                    "w": 133
+                  }
+                ]
+              },
+              "medium": {
+                "faces": [
+                  {
+                    "x": 573,
+                    "y": 432,
+                    "h": 133,
+                    "w": 133
+                  }
+                ]
+              },
+              "small": {
+                "faces": [
+                  {
+                    "x": 383,
+                    "y": 288,
+                    "h": 88,
+                    "w": 88
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "x": 573,
+                    "y": 432,
+                    "h": 133,
+                    "w": 133
+                  }
+                ]
+              }
+            },
+            "sizes": {
+              "large": {
+                "h": 891,
+                "w": 1017,
+                "resize": "fit"
+              },
+              "medium": {
+                "h": 891,
+                "w": 1017,
+                "resize": "fit"
+              },
+              "small": {
+                "h": 596,
+                "w": 680,
+                "resize": "fit"
+              },
+              "thumb": {
+                "h": 150,
+                "w": 150,
+                "resize": "crop"
+              }
+            },
+            "original_info": {
+              "height": 891,
+              "width": 1017,
+              "focus_rects": [
+                {
+                  "x": 0,
+                  "y": 0,
+                  "w": 1017,
+                  "h": 570
+                },
+                {
+                  "x": 0,
+                  "y": 0,
+                  "w": 891,
+                  "h": 891
+                },
+                {
+                  "x": 0,
+                  "y": 0,
+                  "w": 782,
+                  "h": 891
+                },
+                {
+                  "x": 158,
+                  "y": 0,
+                  "w": 446,
+                  "h": 891
+                },
+                {
+                  "x": 0,
+                  "y": 0,
+                  "w": 1017,
+                  "h": 891
+                }
+              ]
+            },
+            "media_results": {
+              "result": {
+                "media_key": "author_5_status_id_str_key"
+              }
+            }
+          }
+        ],
+        "symbols": [],
+        "timestamps": [],
+        "urls": [
+        ],
+        "user_mentions": [
+          {
+            "id_str": "author_id_6",
+            "name": "Author Name 6",
+            "screen_name": "author_screen_name_6",
+            "indices": [
+              25,
+              34
+            ]
+          }
+        ]
+      }
+    },
+    "isQuote": false,
+    "media": [],
+    "isConversationControlled": false,
+    "searchTerm": "global warming include:nativeretweets"
+  },
+  {
+    "type": "tweet",
+    "id": "tweet_id_5",
+    "url": "https://x.com/user_name_5/status/tweet_id_5",
+    "twitterUrl": "https://twitter.com/user_name_5/status/tweet_id_5",
+    "text": "@user_name_1 This is a reply tweet",
+    "fullText": "@user_name_1 This is a reply tweet",
+    "source": "Twitter Web App",
+    "retweetCount": 2,
+    "replyCount": 0,
+    "likeCount": 15,
+    "quoteCount": 1,
+    "createdAt": "Fri Jan 31 18:30:12 +0000 2025",
+    "lang": "en",
+    "bookmarkCount": 0,
+    "isReply": true,
+    "inReplyToId": "in_reply_to_tweet_id_1",
+    "conversationId": "con_tweet_id_1",
+    "possiblySensitive": false,
+    "isPinned": false,
+    "author": {
+      "type": "user",
+      "userName": "user_name_5",
+      "url": "https://x.com/user_name_5",
+      "twitterUrl": "https://twitter.com/user_name_5",
+      "id": "author_id_5",
+      "name": "Author Name 5",
+      "isBlueVerified": false,
+      "profilePicture": "https://pbs.twimg.com/profile_images/profile_image_id_5/profile_image_pic_5.jpg",
+      "coverPicture": "https://pbs.twimg.com/profile_banners/author_id_5/profile_banner_image_id_5",
+      "description": "Author description 5",
+      "location": "Location 5",
+      "followers": 89,
+      "following": 145,
+      "status": "",
+      "canDm": true,
+      "canMediaTag": true,
+      "createdAt": "Tue Jul 12 09:15:33 +0000 2011",
+      "entities": {
+        "description": {
+          "urls": []
+        },
+        "url": {
+          "urls": []
+        }
+      },
+      "fastFollowersCount": 0,
+      "favouritesCount": 567,
+      "hasCustomTimelines": false,
+      "isTranslator": false,
+      "mediaCount": 23,
+      "statusesCount": 1234,
+      "withheldInCountries": [],
+      "affiliatesHighlightedLabel": {},
+      "possiblySensitive": false,
+      "pinnedTweetIds": []
+    },
+    "extendedEntities": {},
+    "card": {},
+    "place": {},
+    "entities": {
+      "hashtags": [],
+      "media": [],
+      "symbols": [],
+      "timestamps": [],
+      "urls": [],
+      "user_mentions": [
+        {
+          "id_str": "author_id_1",
+          "name": "Author Name 1",
+          "screen_name": "user_name_1",
+          "indices": [0, 12]
+        }
+      ]
+    },
+    "isRetweet": false,
+    "isQuote": false,
+    "media": [],
+    "isConversationControlled": false,
+    "searchTerm": "to:author_1 since:2025-01-01 until:2025-02-01"
+  },
+  {
+    "type": "tweet",
+    "id": "tweet_id_6",
+    "url": "https://x.com/user_name_6/status/tweet_id_6",
+    "twitterUrl": "https://twitter.com/user_name_6/status/tweet_id_6",
+    "text": "Text tweet 6",
+    "fullText": "Full text tweet 6",
+    "source": "Twitter for iPhone",
+    "retweetCount": 8,
+    "replyCount": 3,
+    "likeCount": 42,
+    "quoteCount": 2,
+    "createdAt": "Sat Feb 01 09:45:18 +0000 2025",
+    "lang": "en",
+    "bookmarkCount": 1,
+    "isReply": false,
+    "conversationId": "con_tweet_id_6",
+    "possiblySensitive": false,
+    "isPinned": false,
+    "author": {
+      "type": "user",
+      "userName": "user_name_6",
+      "url": "https://x.com/user_name_6",
+      "twitterUrl": "https://twitter.com/user_name_6",
+      "id": "author_id_6",
+      "name": "Author Name 6",
+      "isBlueVerified": false,
+      "profilePicture": "https://pbs.twimg.com/profile_images/profile_image_id_6/profile_image_pic_6.jpg",
+      "coverPicture": "https://pbs.twimg.com/profile_banners/author_id_6/profile_banner_image_id_6",
+      "description": "Author description 6",
+      "location": "Location 6",
+      "followers": 234,
+      "following": 567,
+      "status": "",
+      "canDm": true,
+      "canMediaTag": true,
+      "createdAt": "Wed Sep 08 16:22:45 +0000 2012",
+      "entities": {
+        "description": {
+          "urls": []
+        },
+        "url": {
+          "urls": []
+        }
+      },
+      "fastFollowersCount": 0,
+      "favouritesCount": 890,
+      "hasCustomTimelines": false,
+      "isTranslator": false,
+      "mediaCount": 45,
+      "statusesCount": 2345,
+      "withheldInCountries": [],
+      "affiliatesHighlightedLabel": {},
+      "possiblySensitive": false,
+      "pinnedTweetIds": []
+    },
+    "extendedEntities": {},
+    "card": {},
+    "place": {},
+    "entities": {
+      "hashtags": [],
+      "media": [],
+      "symbols": [],
+      "timestamps": [],
+      "urls": [],
+      "user_mentions": []
+    },
+    "isRetweet": false,
+    "isQuote": true,
+    "quote": {
+      "type": "tweet",
+      "id": "quote_tweet_id_6",
+      "text": "Text Quote tweet 6",
+      "fullText": "Full Quote text tweet 6",
+      "source": "Twitter for iPhone",
+      "retweetCount": 398,
+      "replyCount": 216,
+      "likeCount": 2104,
+      "quoteCount": 31,
+      "createdAt": "Thu Jan 30 22:32:31 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isPinned": false,
+      "author": {
+        "type": "user",
+        "userName": "quote_user_name_6",
+        "url": "https://x.com/quote_user_name_6",
+        "twitterUrl": "https://twitter.com/quote_user_name_6",
+        "id": "quote_author_id_6",
+        "name": "Quote Author Name 6",
+        "isBlueVerified": false,
+        "profilePicture": "https://pbs.twimg.com/profile_images/profile_image_id_1/profile_image_pic_1.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/author_id_1/profile_banner_image_id_1",
+        "description": "Author description 1",
+        "location": "Location 1",
+        "followers": 2156,
+        "following": 1003,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Sat Apr 18 10:40:48 +0000 2009"
+      },
+      "entities": {
+        "hashtags": [],
+        "symbols": [],
+        "timestamps": [],
+        "urls": [],
+        "user_mentions": []
+      }
+    },
+    "media": [],
+    "isConversationControlled": false,
+    "searchTerm": "from:author_6 since:2025-01-01 until:2025-02-01"
+  },
+  {
+    "type": "tweet",
+    "id": "tweet_id_7_no_author",
+    "url": "https://x.com/unknown/status/tweet_id_7_no_author",
+    "text": "Tweet with null author",
+    "fullText": "Tweet with null author - should be skipped",
+    "retweetCount": 0,
+    "replyCount": 0,
+    "likeCount": 0,
+    "quoteCount": 0,
+    "createdAt": "Mon Feb 03 10:00:00 +0000 2025",
+    "isReply": false,
+    "isQuote": false,
+    "isRetweet": false,
+    "author": null
+  },
+  {
+    "type": "tweet",
+    "id": "tweet_id_8_author_no_id",
+    "url": "https://x.com/unknown/status/tweet_id_8_author_no_id",
+    "text": "Tweet with author missing id",
+    "fullText": "Tweet with author missing id - should be skipped",
+    "retweetCount": 0,
+    "replyCount": 0,
+    "likeCount": 0,
+    "quoteCount": 0,
+    "createdAt": "Mon Feb 03 11:00:00 +0000 2025",
+    "isReply": false,
+    "isQuote": false,
+    "isRetweet": false,
+    "author": {
+      "userName": "user_without_id"
+    }
+  },
+  {
+    "type": "tweet",
+    "id": "tweet_id_9_no_username",
+    "url": "https://x.com/author_id_9/status/tweet_id_9_no_username",
+    "text": "Regular post with author id but no username",
+    "fullText": "Regular post with author id but no username - should use id as username",
+    "retweetCount": 5,
+    "replyCount": 2,
+    "likeCount": 10,
+    "quoteCount": 1,
+    "createdAt": "Mon Feb 03 12:00:00 +0000 2025",
+    "isReply": false,
+    "isQuote": false,
+    "isRetweet": false,
+    "conversationId": "tweet_id_9_no_username",
+    "author": {
+      "type": "user",
+      "id": "author_id_9"
+    }
+  },
+  {
+    "type": "tweet",
+    "id": "tweet_id_10_reply_no_username",
+    "url": "https://x.com/author_id_10/status/tweet_id_10_reply_no_username",
+    "text": "@someone Reply with author id but no username",
+    "fullText": "@someone Reply with author id but no username - should use id as username",
+    "retweetCount": 1,
+    "replyCount": 0,
+    "likeCount": 3,
+    "quoteCount": 0,
+    "createdAt": "Mon Feb 03 13:00:00 +0000 2025",
+    "isReply": true,
+    "inReplyToId": "parent_tweet_id_10",
+    "conversationId": "conv_id_10",
+    "isQuote": false,
+    "isRetweet": false,
+    "author": {
+      "type": "user",
+      "id": "author_id_10"
+    }
+  },
+  {
+    "type": "tweet",
+    "id": "tweet_id_11_quote_no_username",
+    "url": "https://x.com/author_id_11/status/tweet_id_11_quote_no_username",
+    "text": "Quote tweet with author id but no username",
+    "fullText": "Quote tweet with author id but no username - should use id as username",
+    "retweetCount": 2,
+    "replyCount": 1,
+    "likeCount": 8,
+    "quoteCount": 0,
+    "createdAt": "Mon Feb 03 14:00:00 +0000 2025",
+    "isReply": false,
+    "isQuote": true,
+    "isRetweet": false,
+    "conversationId": "conv_id_11",
+    "author": {
+      "type": "user",
+      "id": "author_id_11"
+    },
+    "quote": {
+      "type": "tweet",
+      "id": "quoted_tweet_id_11",
+      "text": "Original quoted tweet 11",
+      "fullText": "Original quoted tweet 11 full text",
+      "retweetCount": 100,
+      "replyCount": 50,
+      "likeCount": 500,
+      "quoteCount": 25,
+      "createdAt": "Sun Feb 02 10:00:00 +0000 2025",
+      "author": {
+        "type": "user",
+        "id": "quoted_author_id_11",
+        "userName": "quoted_user_11"
+      }
+    }
+  }
+]

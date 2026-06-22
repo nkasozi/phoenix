@@ -1,0 +1,743 @@
+# This is the base host that will be used for all ingress resources
+base_host: "phoenix.local"
+base_schema: "http"
+
+# The ingress class to use
+# Public is the one needed for microk8s
+ingressClassName: "public"
+
+ingress_cors:
+  enabled: true
+  # This is the allowed origin for the cors for the ingress
+  # This should be the same as the console api_url and the api cors_origins
+  # should also be the same
+  # Ie. if you have cert_issuer to true set to https
+  # You can have multiple origins separated by a ", "
+  allow_origin: "http://console.{{ .Values.base_host }}"
+
+
+# LOCAL NON AUTHENCIATED
+# This is the local insecure authenticated version of the platform
+# This is used for testing and development
+# It uses the api /oauth2/insecure_auth endpoint
+use_local_insecure_auth: false
+
+# Set to true when using Traefik as the ingress controller (e.g. microk8s local cluster).
+# Deploys a Traefik ForwardAuth Middleware alongside the nginx auth annotations so both
+# nginx (dev/prod) and Traefik (local) are supported from the same chart.
+traefik_ingress: false
+
+# Traefik ForwardAuth middlewares used when `traefik_ingress` is true.
+#
+# Each key renders as a Middleware named `{release}-{key}-forward-auth` (the `default`
+# key renders as `{release}-forward-auth` for backwards compatibility). Ingresses
+# reference the appropriate middleware via the
+# `traefik.ingress.kubernetes.io/router.middlewares` annotation.
+#
+# When `use_local_insecure_auth` is true, every entry's `address` is replaced with the
+# phiphi-api `/oauth2/insecure_auth` endpoint (group filtering is meaningless locally).
+# Otherwise the configured `address` is used — typically the in-cluster oauth2-proxy.
+# `address` is passed through `tpl` so it can reference `.Release.*` or other values.
+traefik_forward_auth:
+  default:
+    address: "http://{{ .Release.Name }}-oauth2-proxy.{{ .Release.Namespace }}.svc.cluster.local/oauth2/auth"
+    trustForwardHeader: true
+    authResponseHeaders:
+      - x-auth-request-user
+      - x-auth-request-email
+      - x-auth-request-groups
+  # Used by the Prefect server ingress to gate access by OIDC group membership.
+  # `allowed_groups` is read by oauth2-proxy from the configured `oidc_groups_claim`.
+  prefect:
+    address: "http://{{ .Release.Name }}-oauth2-proxy.{{ .Release.Namespace }}.svc.cluster.local/oauth2/auth?allowed_groups={{ .Values.prefectServerIngress.allowedRoles }}"
+    trustForwardHeader: true
+    authResponseHeaders:
+      - x-auth-request-user
+      - x-auth-request-email
+      - x-auth-request-groups
+
+# GCP Service Account JSON
+# This is used to store the GCP service account json
+###################
+gcp_service_account:
+  enabled: false
+  # This is the json for the service account
+  secret_name: "{{ .Release.Name }}-gcp-service-account"
+  secret_key: "service-account.json"
+  # json : |
+    # <JSON>
+
+# Perspective API secret config
+# Perspective API for the phoenix app should be set in api.perspectiveApiKey
+perspectiveApiKey:
+  secret_name: "{{ .Release.Name }}-perspective-api"
+  secret_key: "perspective-api-key"
+
+phiphiImage:
+  repository: registry.gitlab.com/howtobuildup/phoenix/python/phiphi
+  tag: "{{ .Chart.AppVersion }}"
+
+api:
+  enabled: true
+  version: "{{ .Chart.AppVersion }}"
+  # Replicas only work if the hpa is not enabled
+  replicas: 1
+  # Horizontal Pod Autoscaler for api
+  hpa:
+    enabled: true
+    minReplicas: 1
+    maxReplicas: 10
+    # target average CPU utilization (as a % of request)
+    targetCPUUtilizationPercentage: 80
+  # Proxy size
+  # 2 gigabytes allows for large file uploads
+  proxyBodySize: "2g"
+  proxyBufferSize: "512k"
+  proxyConnectTimeout: "3m"
+  # Other loggers in source code are:
+  # - /app/projects/phiphi/log_configs/phiphi.dev.yaml
+  phiphilogConfig: "/app/projects/phiphi/log_configs/phiphi.prod.yaml"
+  # --log-config option for uvicorn
+  # https://www.uvicorn.org/settings/#logging
+  # Others already in image:
+  # - /app/projects/phiphi/log_configs/uvicorn.dev.yaml
+  uvicornLogConfig: "/app/projects/phiphi/log_configs/uvicorn.prod.yaml"
+  image:
+    repository: "{{ .Values.phiphiImage.repository }}"
+    tag: "{{ tpl (.Values.phiphiImage.tag ) . }}"
+    pullPolicy: Never
+  # If you want unicorn to reload for development
+  reload: true
+  # Resource limits
+  # These are recommended
+  resources:
+    limits:
+      cpu: "2"
+      memory: "2Gi"
+    requests:
+      cpu: "0.5"
+      memory: "1Gi"
+  initResources:
+    limits:
+      cpu: "1"
+      memory: "1Gi"
+    requests:
+      cpu: "0.1"
+      memory: "256Mi"
+  # You can have multiple origins separated by a ", "
+  cors_origins: "http://console.{{ .Values.base_host }}"
+  first_admin_user_email: "buildup@datavaluepeople.com"
+  first_admin_user_display_name: "Buildup"
+  header_auth_name: "x-auth-request-email"
+  # Using * as since it is not possible to reach the api not via the
+  # ingress it is not a security risk
+  forwarded_allow_ips: "*"
+  # This should be False for production environments
+  use_mock_apify: true
+  useMockDanek: true
+  init_db_command: "/app/projects/phiphi/entrypoint_init_db.sh"
+  # ~ will use default
+  bqDefaultLocation: ~
+  # This has to be set to a bucket that the system has access to
+  # It is recommended to use a multi region bucket to avoid issues
+  hfGcsBucketName: "hugging_face_classifier_test_data"
+  # The hugging face flow default matches the default across projects
+  hfFlowName: ~
+  # See phiphi/config.py for default
+  hfFlowTimeoutSeconds: ~
+  # This override of the default prefect settings is needed for the
+  # uvicornLogConfig to work. Prefects defaults log config overrides the root
+  # and uvicorn :(
+  prefectLoggingSettingsPath: "/app/projects/phiphi/log_configs/prefect.prod.yaml"
+  # Prefect results storage:
+  # Default is that it does nothing
+  # Example of using pre-registered blocks:
+  # "gcp-bucket/bucket-name"
+  # "s3-bucket/bucket-name"
+  # More blocks here: https://docs.prefect.io/3.0/develop/blocks#blocks-in-prefect-integration-libraries
+  prefectDefaultResultStorageBlock: ~
+  # Sentry
+  sentryDsn: ~
+  sentryTracesSampleRate: 1.0
+  sentryProfilesSampleRate: 1.0
+  sentryEnvironment: ~
+  # Timeouts
+  # See the phiphi config for defaults
+  apifyTimeoutSecs: ~
+  apifyWaitSecs: ~
+  innerFlowTimeoutSecs: ~
+  # Batch processing
+  defaultBatchOfBatchesSize: ~
+  # Perspective API
+  perspectiveApiKey: ~
+  perspectiveApiMaxParallelWorkers: ~
+  perspectiveApiRequestLimitForPeriod: ~
+  perspectiveApiRequestLimitPeriodSeconds: ~
+  # 3 is the recommended default for when using the platform
+  addBigQueryRateLimitsOnProjectCreation: true
+  # Superset
+  # This value MUST be set to the internal FQDN of the Superset Service in the cluster
+  # else, the custom auth we've implemented for Superset will not work.
+  # Note that: "http://{{ .Release.Name }}-superset..." <- superset is hardcoded because we don't
+  # explicitly set the service name, if we did that, we would need to use {{ .Values.superset.name }} instead
+  supersetApiUrl: "http://{{ .Release.Name }}-superset.{{ .Release.Namespace }}.svc.cluster.local:{{ .Values.superset.service.port }}"
+  supersetDatabaseUuid: ~
+  supersetServiceAccountEmail: ~
+  supersetDatabaseSqlalchemyUri: ~
+  huggingFaceModelsWhitelist: ~
+  danekCostPer100kResultsDict: ~
+  danekApiTokens:
+    enabled: false
+    secretName: "{{ .Release.Name }}-danek-api-tokens"
+    secretKey: "danek-api-tokens"
+  huggingFaceToken:
+    enabled: false
+    secretName: "{{ .Release.Name }}-hugging-face-api-token"
+    secretKey: "hugging-face-api-token"
+  apify_api_keys:
+    enabled: false
+    secret_name: "{{ .Release.Name }}-apify-api-keys"
+    secret_key: "apify-api-keys"
+    ###############
+    # APIFY_API_KEYS
+    #
+    # This is used to store the apify api keys
+    # The json needs to be a dictionary with the key being the name of the phoenix workspace and the
+    # key. Example:
+    # {
+    #  "main": "<key>",
+    #  "phoenix_workspace_1": "<key>"
+    # }
+    # json : |
+      # <JSON>
+
+  ###################
+  # Example secrets
+  #
+  # Please replace the values with your own
+  # If you are using platformdb they need to match the auth there
+  ################
+  # Use your own secrets see the secrets.yaml template for required data
+  secretKey: "{{ .Release.Name }}-api-secrets"
+  db_auth:
+    host: "{{ .Release.Name }}-platformdb"
+    port: "5432"
+    # If using the platformdb these need to match the platformdb.auth variables with the same name
+    username: "phiphi"
+    password: "phiphi_password"
+    database: "platform"
+  manualUploadStorageUrl: ~
+  maxManualUploadFileSize: ~
+
+
+#######################
+# Platform DB
+#
+# Development database for the platform. It is recommended to use a more reliable db for production.
+#
+# Be aware the name is platformdb as we can't use an _ or a - in the name to to a number of
+# different complex reasons: helm can't process - and _ can be used for a Service annotation
+#######################
+# Based on superset values:
+# https://github.com/apache/superset/blob/master/helm/superset/values.yaml#L771-L811
+# ref: https://github.com/bitnami/charts/tree/main/bitnami/postgresql
+platformdb:
+  ##
+  ## Use the PostgreSQL chart dependency.
+  ## Set to false if bringing your own PostgreSQL.
+  enabled: true
+
+  ## Storage configuration for CNPG Cluster
+  storage: {}
+
+  image:
+    repository: bitnamilegacy/postgresql
+
+  ## Authentication parameters
+  auth:
+    ## PostgreSQL name for a custom user to create
+    username: phiphi
+    ## PostgreSQL password for the custom user to create. Ignored if `auth.existingSecret` with key `password` is provided
+    password: phiphi_password
+    ## PostgreSQL name for a custom database to create
+    database: platform
+    postgresqlPassword: postgres_pass
+
+  ## PostgreSQL Primary parameters
+  primary:
+    ##
+    ## Persistent Volume Storage configuration.
+    ## ref: https://kubernetes.io/docs/user-guide/persistent-volumes
+    persistence:
+      ##
+      ## Enable PostgreSQL persistence using Persistent Volume Claims.
+      enabled: true
+      ##
+      ## Persistent class
+      # storageClass: classname
+      ##
+      ## Access modes:
+      accessModes:
+        - ReadWriteOnce
+    ## PostgreSQL port
+    service:
+      ports:
+        postgresql: "5432"
+
+#######################
+# Shared Redis
+#
+# Shared Redis service for Superset, Prefect, and Phiphi API.
+# Can be deployed as a StatefulSet or use external managed Redis (AWS ElastiCache).
+#######################
+redis:
+  # Shared Redis service for Superset, Prefect, and PhiPhi API caching.
+  #
+  # Architecture Decision: Single instance (no HA/Sentinel)
+  # - All services use Redis for CACHING ONLY, not as primary data store
+  # - Cache misses cause slower responses, not failures
+  # - Pod restart recovery (~30s) is acceptable for caching use case
+  # - Kubernetes StatefulSet provides auto-restart and PV persistence
+  # - HA would add 3x resource cost with minimal benefit
+  # See: docs/shared_redis_architecture.md
+  #
+  # When enabling Redis, you must also set extraEnvVarsSecret in your cluster values:
+  #   prefect-worker.worker.extraEnvVarsSecret: "redis-app-secrets"
+  #   prefect-server.server.extraEnvVarsSecret: "redis-app-secrets"
+  #   prefect-server.backgroundServices.extraEnvVarsSecret: "redis-app-secrets"
+  # See clusters/local/values.yaml for an example.
+  enabled: false
+
+  # Set to true to use external managed Redis (AWS ElastiCache)
+  # When true, no StatefulSet/Service/Secret/ConfigMap will be created
+  useManaged: false
+
+  # URL for managed Redis (only used when useManaged: true)
+  # Format: redis://:password@host:port or rediss://:password@host:port (TLS)
+  managedUrl: ""
+
+  # Use an existing ConfigMap for redis.conf
+  # If set, the template will NOT create a new ConfigMap
+  # The ConfigMap must contain a key named "redis.conf"
+  existingConfigMap: ""
+
+  # Memory configuration (ignored if existingConfigMap is set)
+  # Sizing: 1gb supports ~400MB Superset + ~200MB Prefect + ~200MB PhiPhi + headroom
+  maxmemory: "1gb"
+  maxmemoryPolicy: "allkeys-lru"
+
+  # Authentication
+  auth:
+    # Password for Redis (ignored if existingSecret is set)
+    password: ""
+    # Use an existing secret for Redis password
+    # If set, the template will NOT create a new secret
+    existingSecret: ""
+    # Key within the existing secret that contains the password
+    existingSecretKey: "REDIS_PASSWORD"
+
+  # Image settings
+  image:
+    repository: redis
+    tag: "8-alpine"
+    pullPolicy: IfNotPresent
+
+  # Persistence settings
+  # AOF (append-only file) is always enabled for durability.
+  # RDB snapshots provide faster restart times and point-in-time backups.
+  persistence:
+    enabled: true
+    # Sizing: 1GB dataset + 3GB AOF (before rewrite) + 2GB RDB snapshots + buffer
+    size: 8Gi
+    # Storage class - uses cluster default if empty
+    storageClass: ""
+    # Enable RDB snapshots in addition to AOF for faster restarts
+    rdbEnabled: true
+
+  # Resource limits
+  # Memory limit should be ~2x maxmemory for Redis overhead (AOF rewrite, COW, buffers)
+  resources:
+    requests:
+      cpu: 250m
+      memory: 512Mi
+    limits:
+      cpu: "1"
+      memory: 2Gi
+
+  # Database allocation for services
+  # Each service uses a different DB number for isolation
+  databases:
+    superset: 0
+    prefect: 1
+
+#######################
+# Console
+#
+# The console is a web application that is used to manage the platform
+#######################
+console:
+  # In general the console should be deployed by a third-party service with edge servers
+  # Amplify, Netlify, Vercel, etc
+  enabled: false
+  replicas: 1
+  image:
+    repository: phoenix_console
+    tag: latest
+  # Make sure that the schema (http/https) matches the ingress
+  # Ie. if you have cert_issuer to true set to https
+  api_url: "http://api.{{ .Values.base_host }}"
+  # If set to `dev` the console will use in secure cookie auth
+  env: "local_cluster"
+  # Should be the same as the first_admin_user_email for api
+  dev_admin_email: "buildup@datavaluepeople"
+  user_info_cookie_name: "phoenix_user_info"
+  # If you set cookie_httponly to false you can use the cookie in the console
+  # env_auth_cookie = "_oauth2_proxy"
+  env_auth_url: "http://oauth.{{ .Values.base_host }}/oauth2/auth"
+  env_login_url: "http://oauth.{{ .Values.base_host }}/oauth2/start"
+  env_logout_url: "http://oauth.{{ .Values.base_host }}/oauth2/sign_out"
+  ## Sentry
+  sentryDsn: ~
+  sentryOrg: ~
+  sentryProject: ~
+  sentryAuthToken: ~
+  sentryDebug: "true"
+  sentryEnvironment: "development"
+  sentryRelease: "local"
+  sentryTracesSampleRate: "0.1"
+  sentryReplaysOnErrorSampleRate: "0.1"
+
+# Cert Manager
+#
+# !!!!!!!!!!!!!!!!!!!!!!!!
+# It is highly recommended to have the cert manager be installed separately and not part of this chart
+# !!!!!!!!!!!!!!!!!!!!!!!!
+# Be aware that only one cert-manager can be installed in a cluster
+# If you have one already installed, set this to false
+cert-manager:
+  enabled: false
+  # This is needed to install the CRDs
+  # Default is true to make the quick start installation easier
+  # https://cert-manager.io/docs/installation/helm/#3-install-customresourcedefinitions
+  installCRDs: true
+
+# Cert Issuer
+# Needs a cert-manager to be installed either the subchart or a custom one
+cert_issuer:
+  enabled: false
+  # Use `letsencrypt-staging` for testing
+  # Use `letsencrypt-prod` for production/working certificates
+  issuer: "letsencrypt-staging"
+  issuer_email: ""
+
+# Superset
+superset:
+  enabled: true
+  image:
+    repository: registry.gitlab.com/howtobuildup/phoenix/phoenix_superset
+    # Default is the chart version of the sub chart :(
+    tag: 2.35.1
+  postgresql:
+    image:
+      repository: "bitnamilegacy/postgresql"
+  # Disable embedded Redis - use shared Redis instead when redis.enabled=true
+  redis:
+    enabled: false
+  # It is problematic to change the init image
+
+  # Configure Superset to use shared Redis
+  supersetNode:
+    connections:
+      redis_host: phoenix-redis
+      redis_port: "6379"
+
+##############
+# Example secrets
+#
+# Please replace the values with your own
+###################
+  extraSecretEnv:
+    # Generate with:
+    # openssl rand -base64 42
+
+    SUPERSET_SECRET_KEY: "<SET>"
+
+  # Inject shared Redis URL when redis is enabled
+  extraEnvRaw:
+    - name: SUPERSET_REDIS_URL
+      valueFrom:
+        secretKeyRef:
+          name: redis-app-secrets
+          key: SUPERSET_REDIS_URL
+
+  # If you have enabled postgres
+  # Using defaults for superset
+  # postgresql:
+    # auth:
+      # These need to match supersetNode.connections:
+      # - db_user: postgresql.auth.username
+      # - db_pass: postgresql.auth.password
+      # - db_name: postgresql.auth.database
+      # DEFAULTS
+      # https://github.com/apache/superset/blob/master/helm/superset/values.yaml#L778-L786
+      # username: "superset"
+      # password: "superset"
+      # database: "superset"
+      # Set the postgres password
+      # postgresPassword: "postgres_pass"
+
+
+  #########################################
+  # Phoenix Superset specific configurations
+  #
+  # A number of default overrides has been setup for the chart. These will
+  # configure superset to work with the Phoenix platform.
+  #
+  # It is recommended that the `general` override is configured in each use of the chart and the
+  # other overrides are configured as needed. Copy the `general` override in to
+  # custom values and change as needed.
+  #
+  # This aims to avoid unpredictable behaviour when the different overrides are used together. Due
+  # to the fact there is no certainty of the order in which the overrides are applied.
+  # #########################################
+  configOverrides:
+
+
+    # General override includes the configurations that will most likely be changed for each chart
+    # use.
+    # Copy and change as needed
+    general: |
+      APP_NAME = "Dashboard - Phoenix"
+
+      # This must be change in conjunction with the ingress auth-response-headers
+      # Something in superset rewrites the header to uppercase and adds HTTP_ to the front and replaces - with _
+      AUTH_REMOTE_USER_ENV_VAR = "HTTP_X_AUTH_REQUEST_EMAIL"
+
+      # This is needed to test the system without the authentication layer
+      # With false superset is configured to throw error if user can't log in
+      LOGIN_REDIRECT_URL = False
+
+
+    # This will configure the branding of the application
+    brand: |
+      # White label settings
+      APP_ICON = "/static/assets/images/logo_buildup_short_200.png"
+      APP_ICON_WIDTH = 200
+      FAVICONS = [
+          {
+              "rel": "apple-touch-icon",
+              "sizes": "180x180",
+              "href": "/static/assets/images/apple-touch-icon.png",
+          },
+          {"rel": "icon", "sizes": "32x32", "href": "/static/assets/images/favicon-32x32.png"},
+          {"rel": "icon", "sizes": "16x16", "href": "/static/assets/images/favicon-16x16.png"},
+      ]
+
+
+    # Security API override
+    # Enables the Flask-AppBuilder security API endpoints
+    # Required for role and permission provisioning via the Superset REST API
+    security_api: |
+      FAB_ADD_SECURITY_API = True
+
+    # Proxy override
+    # This configures the redirect_uri correctly, even with SSL offloading
+    proxy: |
+      ENABLE_PROXY_FIX = True
+
+
+    # Auth override
+    # Configures the application to use the Phoenix custom SSO manager
+    auth: |
+      from flask_appbuilder.security.manager import AUTH_REMOTE_USER  # type: ignore[import-untyped]
+      from phoenix_superset import custom_sso_manager
+
+      AUTH_TYPE = AUTH_REMOTE_USER
+
+      CUSTOM_SECURITY_MANAGER = custom_sso_manager.PhoenixCustomSSOSecurityManager
+
+    ## Logging
+    # For some reason that Benjamin really can't find there the root logger gets overridden to
+    # default after the automatically created config has been loaded
+    # This default logging sets it to INFO so that no debug logs are printed
+    logging: |
+      import logging
+      # This seems to set the log level
+      # https://github.com/apache/superset/blob/d5c0506faa3df97601e2003eb3f7bd24a0d41d82/superset/config.py#L898C1-L898C10
+      LOG_LEVEL = logging.INFO
+      # https://github.com/apache/superset/blob/35da6ac2707514aa9b5f203529bd296f91a89d84/superset/config.py#L1185
+      SILENCE_FAB = True
+      # https://github.com/apache/superset/blob/35da6ac2707514aa9b5f203529bd296f91a89d84/superset/config.py#L264
+      FLASK_DEBUG = False
+      DEBUG = False
+
+oauth2-proxy:
+  enabled: true
+  ###################
+  # Example secrets
+  #
+  # Please replace the values with your own
+  # ###################
+  config:
+    cookieSecret: "<SET>"
+    clientID: "<SET>"
+    clientSecret: "<SET>"
+
+prefect-worker:
+  enabled: false
+  commonAnnotations:
+    # This is for the reloading of the worker if the base job template changes
+    reloader.stakater.com/auto: "true"
+  worker:
+    config:
+      baseJobTemplate:
+        existingConfigMapName: "phoenix-base-job-template"
+    # Inject shared Redis URL from secret (contains PREFECT_REDIS_URL)
+    # Note: Only set when redis.enabled is true - clusters with redis should override this
+    extraEnvVarsSecret: ""
+
+baseJobTemplate:
+  enabled: false
+  defaultImage: "registry.gitlab.com/howtobuildup/phoenix/python/phiphi:latest"
+  defaultImagePullPolicy: "Always"
+  defaultPodWatchTimeoutSeconds: 60
+  defaultFinishedJobTTL: 1800
+  # Recommended to use the same memory for request and limits
+  # As this pod can't be moved to a different node. It should be killed if it
+  # exceeds the limits.
+  defaultResources:
+    requests:
+      cpu: "0.5"
+      memory: "2Gi"
+    limits:
+      cpu: "4"
+      memory: "2Gi"
+
+# To expose this use the command:
+# kubectl port-forward svc/prefect-server 4200:4200
+prefect-server:
+  enabled: false
+  server:
+    # Note: When using Redis messaging (backgroundServices.runAsSeparateDeployment: true),
+    # you should configure server.command in cluster-specific values to wait for Redis.
+    # See clusters/local/values.yaml for an example.
+    env:
+      # Database timeout configuration to handle connection pool saturation
+      - name: PREFECT_API_DATABASE_CONNECTION_TIMEOUT
+        value: "10"
+      - name: PREFECT_API_DATABASE_TIMEOUT
+        value: "30"
+      # Redis messaging configuration
+      # See: https://docs.prefect.io/v3/advanced/self-hosted
+      - name: PREFECT_MESSAGING_BROKER
+        value: "prefect_redis.messaging"
+      - name: PREFECT_MESSAGING_CACHE
+        value: "prefect_redis.messaging"
+      - name: PREFECT_SERVER_EVENTS_CAUSAL_ORDERING
+        value: "prefect_redis.ordering"
+      - name: PREFECT_SERVER_CONCURRENCY_LEASE_STORAGE
+        value: "prefect_redis.lease_storage"
+      - name: PREFECT_REDIS_MESSAGING_HOST
+        value: "phoenix-redis"
+      - name: PREFECT_REDIS_MESSAGING_PORT
+        value: "6379"
+      - name: PREFECT_REDIS_MESSAGING_DB
+        value: "1"
+      # PREFECT_REDIS_MESSAGING_PASSWORD is injected via redis-app-secrets (extraEnvVarsSecret)
+    # Inject shared Redis URL and PREFECT_REDIS_MESSAGING_PASSWORD from secret
+    # Note: Only set when redis.enabled is true - clusters with redis should override this
+    extraEnvVarsSecret: ""
+  # Separate background services from the API server so they don't compete
+  # for database connections. This helps prevent 500 errors under load.
+  # Requires shared Redis to be enabled (redis.enabled: true)
+  # When enabled, configure backgroundServices.command in cluster-specific values
+  # to wait for Redis before starting. See clusters/local/values.yaml for an example.
+  backgroundServices:
+    runAsSeparateDeployment: false
+    # Note: When runAsSeparateDeployment is true, configure these in cluster-specific values:
+    # - command: (wait-for-redis script)
+    messaging:
+      redis:
+        host: "phoenix-redis"
+        port: 6379
+        db: 1
+        # Password injected via extraEnvVarsSecret (PREFECT_REDIS_MESSAGING_PASSWORD)
+        password: ""
+    env:
+      - name: PREFECT_SERVER_EVENTS_CAUSAL_ORDERING
+        value: "prefect_redis.ordering"
+      - name: PREFECT_SERVER_CONCURRENCY_LEASE_STORAGE
+        value: "prefect_redis.lease_storage"
+    # Inject PREFECT_REDIS_MESSAGING_PASSWORD and PREFECT_SERVER_DOCKET_URL from secret
+    # Note: Only set when redis.enabled is true - clusters with redis should override this
+    extraEnvVarsSecret: ""
+  # Disable the bitnami redis subchart - we use the shared Redis
+  redis:
+    enabled: false
+  postgresql:
+    # By defaul this is disabled becuase there are
+    nameOverride: "prefectdb"
+    image:
+      repository: "bitnamilegacy/postgresql"
+
+# Prefect Server Ingress
+# Exposes the prefect server UI with role-based authentication
+# Requires prefect-server.enabled: true and oauth2-proxy with oidc_groups_claim configured
+# See docs/prefect_ingress_setup.md for full setup guide with Auth0 example
+prefectServerIngress:
+  enabled: false
+  # Comma-separated list of roles allowed to access prefect server
+  # These roles must match the roles configured in your OIDC provider (e.g., Auth0)
+  # oauth2-proxy reads roles from the claim configured in oidc_groups_claim
+  allowedRoles: "admin"
+
+
+## Prefect deployment
+prefectInit:
+  enabled: false
+  # Using IMAGE_URI as tilt will replace the environment variable with the correct image
+  # This environment variable is in the api _helpers template
+  image: "$(IMAGE_URI)"
+  enable_health_check: false
+  health_check_deployment_name: "health_check/health_check-workspace-main"
+  # Reinitialised the concurrency limits for all projects
+  reinitAllProjectConcurrencyLimits: ~
+  # Default jobs are deleted after 30 minutes
+  ttlSecondsAfterFinished: 1800
+  resources:
+    limits:
+      cpu: "1"
+      memory: "1Gi"
+    requests:
+      cpu: "0.1"
+      memory: "256Mi"
+
+
+# Phoenix Hugging Face Classifier
+# See the phoenix_hugging_face_classifier/values.yaml for more information
+phoenix_hugging_face_classifier:
+  enabled: true
+  hfClassifierPrefectWorker:
+    enabled: true
+    # worker:
+      ## to use the local prefect service in phoenix main chart
+      # apiConfig: "selfHostedServer"
+      # selfHostedServerApiConfig:
+        # Need to use the correct namespace
+        # apiUrl: "http://prefect-server.<namespace>.svc.cluster.local:4200/api"
+  baseJobTemplate:
+    enabled: true
+
+  prefectDeployments:
+    enabled: true
+    # Need to set the correct images
+    containerImage:
+      repository: registry.gitlab.com/howtobuildup/phoenix/python/hugging_face_classifier
+      # Default is to use nivida image
+      # Default is the chart version of the sub chart :(
+      tag: "nvidia-2.35.1"
+    deploymentImage:
+      repository: registry.gitlab.com/howtobuildup/phoenix/python/hugging_face_classifier
+      # Default is to use nivida image
+      # Default is the chart version of the sub chart :(
+      tag: "nvidia-2.35.1"

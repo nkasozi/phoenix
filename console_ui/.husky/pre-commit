@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+cd console_ui/ "$(dirname -- "$0")/_/husky.sh"
+
+npm run lint:staged

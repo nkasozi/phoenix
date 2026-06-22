@@ -1,0 +1,129 @@
+# All phiphi-related CI/CD jobs are defined in this file.
+.phiphi_environment_variables: &phiphi_environment_variables
+  SQLALCHEMY_DATABASE_URI: "postgresql+psycopg://postgres:password@postgres:5432/dev_db"
+  TESTING_SQLALCHEMY_DATABASE_URI: "postgresql+psycopg://postgres:password@postgres_test:5432/test_db"
+  USE_COOKIE_AUTH: "true"
+  COOKIE_AUTH_NAME: "phiphi-user-email"
+  CORS_ORIGINS: "http://localhost:3000"
+  APIFY_API_KEYS: '{"main":"dummy_key"}'
+  USE_MOCK_APIFY: "true"
+  USE_MOCK_DANEK: "true"
+  USE_MOCK_BQ: "true"
+  MOCK_BQ_ROOT_DIR: "/app/projects/phiphi/mock_bq_data"
+  MANUAL_UPLOAD_STORAGE_URL: "/app/projects/phiphi/mock_bq_data/manual_uploads/"
+  HF_GCS_BUCKET_NAME: "hugging_face_classifier_test_data"
+  HF_GCS_PATH_PREFIX: "phiphi_integration_tests"
+
+#####
+# Shared rules that allow for jobs to be run only if phiphi code has been
+# changed but also have the same behavior as the parent workflow in
+# .gitlab-ci.yml
+.phiphi_only_workflow: &phiphi_only_workflow
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      changes:
+        - python/projects/phiphi/**/*
+    - if: $CI_COMMIT_TAG
+    - if: $CI_COMMIT_REF_PROTECTED == "true"
+
+phiphi_images_build:
+  extends: .docker_template
+  stage: pre_build
+  variables:
+    CACHE_TAG: dev
+  script:
+    - cd python
+    # For some unknown reason the caching doesn't work and docker rebuilds the full image
+    # Here are the commands that should be working
+    # - docker pull $PYTHON_IMAGE_REGISTRY/phiphi:$CACHE_TAG || true
+    # - docker build --build-arg PROJECT=phiphi --cache-from $PYTHON_IMAGE_REGISTRY/phiphi:$CACHE_TAG -t phiphi .
+    - docker build --build-arg PROJECT=phiphi -t phiphi .
+    - cd ..
+    - mkdir -p $PRE_BUILD_IMAGE_FOLDER
+    - docker save phiphi -o $PRE_BUILD_IMAGE_FOLDER/phiphi.tar
+    - docker tag phiphi $PYTHON_IMAGE_REGISTRY/phiphi:$CI_COMMIT_SHORT_SHA
+    - docker tag phiphi $PYTHON_IMAGE_REGISTRY/phiphi:latest
+      # Will tag if there is a tag other wise will do the same as the branch name
+    - docker tag phiphi $PYTHON_IMAGE_REGISTRY/phiphi:${CI_COMMIT_TAG:-$CI_COMMIT_REF_SLUG}
+    - docker tag phiphi $PYTHON_IMAGE_REGISTRY/phiphi:$CI_COMMIT_REF_SLUG
+    - docker push $PYTHON_IMAGE_REGISTRY/phiphi:$CI_COMMIT_SHORT_SHA
+    - docker push $PYTHON_IMAGE_REGISTRY/phiphi:$CI_COMMIT_REF_SLUG
+      # Will tag if there is a tag other wise will do the same as the branch name
+    - docker push $PYTHON_IMAGE_REGISTRY/phiphi:${CI_COMMIT_TAG:-$CI_COMMIT_REF_SLUG}
+    - docker push $PYTHON_IMAGE_REGISTRY/phiphi:latest
+  artifacts:
+    paths:
+      - $PRE_BUILD_IMAGE_FOLDER/phiphi.tar
+    expire_in: 1 hour
+
+###
+# Splitting the tests in to 2 stages optimises the run so that there can be low
+# compute cost checks and the high compute cost checks (integration tests) can
+# be done in parallel.
+phiphi_ci_test_stage_1:
+  stage: test
+  # No extra services needed so simplifying the run to use the PhiPhi image directly
+  image:
+    name: $PYTHON_IMAGE_REGISTRY/phiphi:$CI_COMMIT_SHORT_SHA
+    entrypoint: [""]
+  variables:
+    <<: *phiphi_environment_variables
+  script:
+    - cd /app
+    - make lint path=projects/phiphi/
+    - make typecheck path=projects/phiphi/
+  <<: *phiphi_only_workflow
+  needs:
+    - job: phiphi_images_build
+      artifacts: true
+
+# This test uses the docker compose files that is in phiphi to build all the
+# services that it needs saving the need to duplicate the services definitions
+# in the "service" keyword
+phiphi_ci_test_stage_2:
+  extends: .docker_template
+  stage: test_stage_2
+  script:
+    - docker load -i $PRE_BUILD_IMAGE_FOLDER/phiphi.tar
+    - docker network create phoenix_shared 2>/dev/null || true
+    - apk update && apk add make
+    - cd python/projects/phiphi/
+    - make test
+  <<: *phiphi_only_workflow
+  needs:
+    - job: phiphi_ci_test_stage_1
+    - job: phiphi_images_build
+      artifacts: true
+
+# It is much simpler to authenticate when running the PhiPhi directly as the
+# job. Since the integration tests don't need to extra services (like Postgres)
+# this is works fine
+phiphi_ci_test_integration:
+  extends: .google-oidc:auth
+  stage: test_stage_2
+  image:
+    name: $PYTHON_IMAGE_REGISTRY/phiphi:$CI_COMMIT_SHORT_SHA
+    entrypoint: [""]
+  variables:
+    <<: *phiphi_environment_variables
+    USE_MOCK_BQ: "false"
+  script:
+    - export PYTEST_ARGS_OVERRIDE="tests/integration/"
+    - cd /app
+    - make test path=projects/phiphi/
+  <<: *phiphi_only_workflow
+  needs:
+    - job: phiphi_ci_test_stage_1
+
+publish_phiphi_images:
+  extends: .docker_template
+  stage: publish
+  script:
+    - docker load -i $PRE_BUILD_IMAGE_FOLDER/phiphi.tar
+    - docker tag phiphi $PYTHON_IMAGE_REGISTRY/phiphi:stable
+    - docker push $PYTHON_IMAGE_REGISTRY/phiphi:stable
+  needs:
+    - job: phiphi_images_build
+      artifacts: true
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH

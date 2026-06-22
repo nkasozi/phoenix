@@ -1,0 +1,29 @@
+
+# Python mono repo pre-commit configuration
+files: ^python
+repos:
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.14.5
+    hooks:
+      - id: ruff
+        args: [--fix, --exit-non-zero-on-fix]
+        types_or: [python, pyi, jupyter]
+      - id: ruff-format
+        types_or: [python, pyi, jupyter]
+
+  # Currently disabled mypy precommit hook until we figured how to make it work properly (see
+  # `typecheck` in the makefile).
+  #
+  # We do not use the standard pre-commit/mirrors-mypy, as it comes with opinionated defaults
+  # (like --ignore-missing-imports) and is difficult to configure to run with the config specified
+  # for the project. Instad we use a custom hook, which uses the local system (i.e. whatever
+  # python (virtual) env is currently active, and runs type checking as per the make command
+  #- repo: local
+  #  hooks:
+  #    - id: mypy_custom
+  #      name: mypy_custom
+  #      language: system
+  #      entry: "./python/.pre-commit-run-custom-mypy.sh"
+  #      require_serial: true
+  #      pass_filenames: false
+  #      types_or: [python, pyi, jupyter]

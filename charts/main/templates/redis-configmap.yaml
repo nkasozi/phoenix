@@ -1,0 +1,50 @@
+{{- if and .Values.redis.enabled (not .Values.redis.useManaged) (not .Values.redis.existingConfigMap) }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-redis-config
+  labels:
+    app.kubernetes.io/name: redis
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/component: shared-cache
+data:
+  redis.conf: |
+    # Memory management
+    maxmemory {{ .Values.redis.maxmemory | default "1gb" }}
+    maxmemory-policy {{ .Values.redis.maxmemoryPolicy | default "allkeys-lru" }}
+
+    # Persistence
+    {{- if .Values.redis.persistence.enabled }}
+    # AOF (primary persistence)
+    appendonly yes
+    appendfsync everysec
+    dir /data
+    auto-aof-rewrite-percentage 100
+    auto-aof-rewrite-min-size 64mb
+    aof-use-rdb-preamble yes
+
+    # RDB snapshots (faster restarts, point-in-time backups)
+    {{- if .Values.redis.persistence.rdbEnabled }}
+    save 900 1
+    save 300 10
+    save 60 10000
+    dbfilename dump.rdb
+    rdbcompression yes
+    {{- else }}
+    save ""
+    {{- end }}
+    {{- else }}
+    appendonly no
+    save ""
+    {{- end }}
+
+    # Security - password is replaced at runtime
+    requirepass REDIS_PASSWORD_PLACEHOLDER
+
+    # Performance
+    tcp-keepalive 300
+    timeout 0
+
+    # Logging
+    loglevel notice
+{{- end }}

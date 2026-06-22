@@ -1,0 +1,65 @@
+# Tilefile for phoenix
+print("Phoenix TiltFile is being evaluated")
+load('ext://namespace', 'namespace_create', 'namespace_inject')
+
+allow_k8s_contexts(os.getenv('KUBE_DEV_CONTEXT'))
+namespace_create(os.getenv('DEV_NAMESPACE'))
+
+# Set up the default registry
+# If using EKS you need to set up a ECR repository
+default_registry(
+  os.getenv("DEFAULT_REGISTRY"),
+  single_name=os.getenv("DEFAULT_REGISTRY_SINGLE_NAME")
+)
+
+set_base_host = 'base_host=%s' % os.getenv('DEV_BASE_HOST')
+
+# Image for the hugging face classifier deployments
+sync_hugging_face_classifier = sync(
+  './python/projects/hugging_face_classifier/hugging_face_classifier/',
+  '/app/projects/hugging_face_classifier/hugging_face_classifier/'
+)
+
+docker_build(
+  'hugging-face-classifier-dev-image',
+  './python/',
+  build_args={'PROJECT': 'hugging_face_classifier'},
+  live_update=[
+    sync_hugging_face_classifier,
+  ],
+  match_in_env_vars=True,
+)
+
+docker_build(
+  'hugging-face-classifier-dev-nvidia-image',
+  './python/',
+  build_args={'PROJECT': 'hugging_face_classifier'},
+  dockerfile='./python/Dockerfile.nvidia',
+  live_update=[
+    sync_hugging_face_classifier,
+  ],
+  match_in_env_vars=True,
+)
+
+k8s_yaml(helm(
+  './charts/phoenix_hugging_face_classifier/',
+  name='phoenix-hf-classifier',
+  namespace=os.getenv('DEV_NAMESPACE'),
+  values=['./clusters/dev/hf_values.yaml'],
+))
+
+k8s_yaml(helm(
+  './charts/main/',
+  name='phoenix',
+  set=[set_base_host],
+  namespace=os.getenv('DEV_NAMESPACE'),
+  values=['./clusters/dev/values.yaml', './clusters/dev/secrets.yaml'],
+))
+
+k8s_resource(workload='prefect-server', port_forwards=4200)
+
+has_prefect_server = read_yaml('./clusters/dev/values.yaml').get('prefect-server')
+if has_prefect_server:
+  if has_prefect_server.get('enabled'):
+    print("Prefect Server is enabled")
+    k8s_resource(workload='prefect-server', port_forwards=4200)

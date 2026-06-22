@@ -1,0 +1,12 @@
+# This is the overrider for the default prefect.yaml file.
+# Can be set using --set-file prefect.yaml=./my-local-prefect.yaml
+deployments:
+- name: phoenix_hugging_face_classifier_health_check_gpu
+  description: "Health check GPU for hugging face classifier"
+  flow_name: health_check
+  entrypoint: projects/hugging_face_classifier/hugging_face_classifier/health_check_flows.py:health_check_gpu
+  work_pool:
+    name: 'hf-work-pool'
+    work_queue_name: null
+    job_variables:
+      image: 'hugging-face-classifier-dev-image'

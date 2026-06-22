@@ -1,0 +1,43 @@
+{{- if index (index .Values "prefect-server") "enabled" }}
+{{- if .Values.prefectServerIngress.enabled }}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ .Release.Name }}-prefect-server-ingress
+  annotations:
+    kubernetes.io/ingress.class: {{ .Values.ingressClassName }}
+    {{- include "phoenixmain.authSignin" . | nindent 4 }}
+    {{- if .Values.use_local_insecure_auth }}
+    nginx.ingress.kubernetes.io/auth-url: http://{{ .Release.Name }}-api-service.{{ .Release.Namespace }}.svc.cluster.local/oauth2/insecure_auth
+    {{- else }}
+    nginx.ingress.kubernetes.io/auth-url: http://{{ .Release.Name }}-oauth2-proxy.{{ .Release.Namespace }}.svc.cluster.local/oauth2/auth?allowed_groups={{ .Values.prefectServerIngress.allowedRoles }}
+    {{- end }}
+    nginx.ingress.kubernetes.io/auth-response-headers: "x-auth-request-user, x-auth-request-groups, x-auth-request-email"
+    {{- if .Values.traefik_ingress }}
+    traefik.ingress.kubernetes.io/router.middlewares: {{ .Release.Namespace }}-{{ .Release.Name }}-prefect-forward-auth@kubernetescrd
+    {{- end }}
+    {{- if .Values.cert_issuer.enabled }}
+    cert-manager.io/issuer: {{ .Values.cert_issuer.issuer_name }}
+    {{- end }}
+    {{- include "phoenixmain.ingress_cors" . | nindent 4 }}
+spec:
+  ingressClassName: {{ .Values.ingressClassName }}
+  {{- if .Values.cert_issuer.enabled }}
+  tls:
+  - hosts:
+      - prefect.{{ .Values.base_host }}
+    secretName: prefect-ingress-phoenix-tls
+  {{- end }}
+  rules:
+    - host: prefect.{{ .Values.base_host }}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: prefect-server
+                port:
+                  number: 4200
+{{- end }}
+{{- end }}

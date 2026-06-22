@@ -1,0 +1,21 @@
+version: 1
+disable_existing_loggers: false
+formatters:
+  default:
+    # Using pathname and lineno to see where the log is coming from
+    # It seems like a good thing to always have in the logs.
+    format: "%(levelname)s | %(asctime)s | %(name)s | %(pathname)s:%(lineno)d | %(message)s"
+handlers:
+  default:
+    formatter: default
+    class: logging.StreamHandler
+    stream: ext://sys.stdout
+loggers:
+  phiphi:
+    level: DEBUG
+    handlers: [default]
+    propagate: false
+  __main__:
+    level: DEBUG
+    handlers: [default]
+    propagate: false

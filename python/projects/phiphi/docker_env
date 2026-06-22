@@ -1,0 +1,10 @@
+SQLALCHEMY_DATABASE_URI = "postgresql+psycopg://postgres:password@postgres:5432/dev_db"
+TESTING_SQLALCHEMY_DATABASE_URI = "postgresql+psycopg://postgres:password@postgres_test:5432/test_db"
+
+# For testing superset ingreation tests.
+SUPERSET_API_URL="http://dashboard.main.phoenix.local"
+# You will need to create a database on the dashboard, export it and look at the yaml to get the
+# UUID
+SUPERSET_DATABASE_UUID="8024285d-ed66-4454-a3d0-462c333badf7"
+# This is the default account email for the local cluster
+SUPERSET_SERVICE_ACCOUNT_EMAIL="buildup@datavaluepeople.com"

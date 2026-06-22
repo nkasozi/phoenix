@@ -1,0 +1,38 @@
+# This file is used to override the default compose.yaml file to use the
+# development environment. This is useful for local development with the
+# frontend and backend services. It is also means that the CI does not have
+# USE_COOKIE_AUTH set to true and matches closer the production environment.
+
+services:
+  api:
+    env_file:
+      - docker_env
+      - docker_env.dev
+    volumes:
+      # this is so prefect run in the container uses the host authentication
+      # This might need to change for the CICD to work
+      - ~/.prefect:/app/.prefect
+      - $HOME/.config/gcloud:/gcp/config:ro
+    environment:
+      PREFECT_HOME: /app/.prefect
+      # Removing the API KEY and URL from the environment variables so they are taken from the
+      # /app/.prefect/config
+      PREFECT_API_KEY:
+      PREFECT_API_URL:
+      CLOUDSDK_CONFIG: /gcp/config
+      GOOGLE_APPLICATION_CREDENTIALS: /gcp/config/application_default_credentials.json
+      # Be careful with the GOOGLE_CLOUD_PROJECT as resources in this project will be created and used.
+      GOOGLE_CLOUD_PROJECT: ${GOOGLE_CLOUD_PROJECT}
+      PHIPHI_LOG_CONFIG: /app/projects/phiphi/log_configs/phiphi.dev.yaml
+      # DO NOT USE SENTRY_DSN in the development environment when running tests
+      # This is only if you want to debug the sentry init code
+      # SENTRY_DSN: ${SENTRY_DSN}
+    entrypoint: ["/app/projects/phiphi/entrypoint_test_seed.sh"]
+    command: [
+      "uvicorn",
+      "phiphi.api.main:app",
+      "--reload",
+      "--host", "0.0.0.0",
+      "--port", "80",
+      "--log-config", "/app/projects/phiphi/log_configs/uvicorn.dev.yaml"
+    ]

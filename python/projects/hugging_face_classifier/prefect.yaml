@@ -1,0 +1,34 @@
+# Welcome to your prefect.yaml file! You can use this file for storing and managing
+# configuration for deploying your flows. We recommend committing this file to source
+# control along with your flow code.
+
+# Use the environment variables:
+# $HF_WORK_POOL and $HF_IMAGE to set the work pool and image for the deployment.
+
+# Generic metadata about this project
+name: hugging_face_classifier
+prefect-version: 3.3.4
+
+definition:
+  work_pools:
+    default_work_pool_config: &default_work_pool_config
+      name: "{{ $HF_WORK_POOL }}"
+      work_queue_name: null
+      job_variables:
+        image: "{{ $HF_IMAGE }}"
+
+# the deployments section allows you to provide configuration for deploying flows
+deployments:
+- name: phoenix_hugging_face_classifier_health_check_gpu
+  description: "Health check for GPU hugging face classifier"
+  flow_name: health_check_gpu
+  entrypoint: projects/hugging_face_classifier/hugging_face_classifier/health_check_flows.py:health_check_gpu
+  parameters: {}
+  work_pool: *default_work_pool_config
+
+- name: phoenix_hugging_face_classifier_inference
+  description: "Inference deployment for Hugging Face classifier"
+  flow_name: inference_classify_flow
+  entrypoint: projects/hugging_face_classifier/hugging_face_classifier/inference_flows.py:inference_classify_flow
+  parameters: {}
+  work_pool: *default_work_pool_config

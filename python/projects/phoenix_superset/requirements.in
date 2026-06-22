@@ -1,0 +1,9 @@
+# Development requirements - all projects need these.
+# Note: for `-r` option the path should be relative to this file.
+-r ../../dev-requirements.txt
+
+# Third party deps
+# Superset version must be the same as in Dockerfile
+apache-superset==5.0.0
+
+-r docker.requirements.in

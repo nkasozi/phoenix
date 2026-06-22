@@ -1,0 +1,4 @@
+# This file is used for test_config.py tests only but required settings will need to be added or
+# the tests will not pass.
+SQLALCHEMY_DATABASE_URI = "sqlite:///test_config.env.db"
+TESTING_SQLALCHEMY_DATABASE_URI = "sqlite:///test_config.env.db"

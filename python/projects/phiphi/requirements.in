@@ -1,0 +1,52 @@
+# Development requirements - all projects need these.
+# Note: for `-r` option the path should be relative to this file.
+-r ../../dev-requirements.txt
+
+# Third party deps
+
+## Dev deps
+pytest-asyncio
+pytest-freezegun
+pytest-mock
+
+## DB management deps
+alembic
+
+## App deps
+annotated-types
+python-dateutil
+fastapi[all]
+sqlalchemy
+psycopg
+prefect[gcp]
+python-slugify
+PyYAML
+# Pydantic extra types for country codes
+pydantic-extra-types
+pycountry
+uuid7
+fsspec[gcs]
+huggingface-hub
+
+# Stubs :(
+types-requests
+types-PyYAML
+sentry-sdk[fastapi]
+types-python-dateutil
+
+## Pipeline deps
+apify-client
+google-re2
+pandas
+pandas-gbq
+pandas-stubs
+pandera
+pyarrow
+google-cloud-bigquery
+pandas-gbq
+sqlalchemy-bigquery
+ratelimit
+requests-mock
+
+## Hidden requirement for pandera
+hypothesis

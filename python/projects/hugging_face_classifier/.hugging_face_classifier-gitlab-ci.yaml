@@ -1,0 +1,134 @@
+# Hugging face classifier gitlab ci
+
+
+#####
+# Shared rules that allow for jobs to be run only if hugging_face_classifier code has been
+# changed but also have the same behavior as the parent workflow in
+# .gitlab-ci.yml
+.hugging_face_classifier_only_workflow: &hugging_face_classifier_only_workflow
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      changes:
+        - python/projects/hugging_face_classifier/**/*
+    - if: $CI_COMMIT_TAG
+    - if: $CI_COMMIT_REF_PROTECTED == "true"
+
+# Generate cache rotation key that changes every 2 days
+# This job runs in the .pre stage to make the variable available to all subsequent jobs
+generate_hf_cache_key:
+  stage: .pre
+  script:
+    - echo "CACHE_ROTATION=$(( $(date +%s) / 172800 ))" >> build.env
+  artifacts:
+    reports:
+      dotenv: build.env
+  <<: *hugging_face_classifier_only_workflow
+
+# This job is used to build the hugging_face_classifier image with a CPU base
+# image The CPU image will be used to run tests in the CI for
+# hugging_face_classifier Currently due to limitations it is not possible to
+# run tests in the CI with the Nvidia image We are working towards a solution
+# for this and then the CPU image will be deprecated
+hugging_face_classifier_images_build:
+  extends: .docker_template
+  stage: pre_build
+  variables:
+    CACHE_TAG: dev
+  script:
+    - cd python
+    # For some unknown reason the caching doesn't work and docker rebuilds the full image
+    # Here are the commands that should be working
+    # - docker pull $PYTHON_IMAGE_REGISTRY/hugging_face_classifier:$CACHE_TAG || true
+    # - docker build --build-arg PROJECT=hugging_face_classifier --cache-from $PYTHON_IMAGE_REGISTRY/phiphi:$CACHE_TAG -t phiphi .
+    - docker build --build-arg PROJECT=hugging_face_classifier -t hugging_face_classifier .
+    - cd ..
+    - mkdir -p $PRE_BUILD_IMAGE_FOLDER
+    - docker tag hugging_face_classifier $PYTHON_IMAGE_REGISTRY/hugging_face_classifier:$CI_COMMIT_SHORT_SHA
+    - docker tag hugging_face_classifier $PYTHON_IMAGE_REGISTRY/hugging_face_classifier:latest
+      # Will tag if there is a tag other wise will do the same as the branch name
+    - docker tag hugging_face_classifier $PYTHON_IMAGE_REGISTRY/hugging_face_classifier:${CI_COMMIT_TAG:-$CI_COMMIT_REF_SLUG}
+    - docker tag hugging_face_classifier $PYTHON_IMAGE_REGISTRY/hugging_face_classifier:$CI_COMMIT_REF_SLUG
+    - docker push $PYTHON_IMAGE_REGISTRY/hugging_face_classifier:$CI_COMMIT_SHORT_SHA
+    - docker push $PYTHON_IMAGE_REGISTRY/hugging_face_classifier:$CI_COMMIT_REF_SLUG
+      # Will tag if there is a tag other wise will do the same as the branch name
+    - docker push $PYTHON_IMAGE_REGISTRY/hugging_face_classifier:${CI_COMMIT_TAG:-$CI_COMMIT_REF_SLUG}
+    - docker push $PYTHON_IMAGE_REGISTRY/hugging_face_classifier:latest
+  <<: *hugging_face_classifier_only_workflow
+
+# This test uses the docker compose files that are in hugging_face_classifier to build all the
+# services. So that the CI `make all` is very similar to local run of `make all`
+hugging_face_classifier_test:
+  extends: .docker_template
+  stage: test
+  cache:
+    key: hf-models-cache-${CACHE_ROTATION}
+    paths:
+      - .hf_cache/
+  variables:
+    # Set cache directory to use GitLab CI cache location
+    HF_CACHE_DIR: ${CI_PROJECT_DIR}/.hf_cache
+    # Use reduced model list (2 smallest models) to speed up CI
+    REDUCE_TEST_HF_MODELS: "true"
+  before_script:
+    # Create cache directory if it doesn't exist
+    - mkdir -p ${CI_PROJECT_DIR}/.hf_cache
+  script:
+    - docker pull $PYTHON_IMAGE_REGISTRY/hugging_face_classifier:$CI_COMMIT_SHORT_SHA
+    - docker tag $PYTHON_IMAGE_REGISTRY/hugging_face_classifier:$CI_COMMIT_SHORT_SHA hugging_face_classifier
+    - apk update && apk add make
+    - cd python/projects/hugging_face_classifier/
+    # Make sure the HF_TOKEN is available for the tests
+    - export HF_TOKEN=$HF_TOKEN
+    # Pass through cache directory to compose
+    - export HF_CACHE_DIR=$HF_CACHE_DIR
+    - make all
+  <<: *hugging_face_classifier_only_workflow
+  needs:
+    - job: generate_hf_cache_key
+    - job: hugging_face_classifier_images_build
+      artifacts: true
+
+hugging_face_classifier_integration_test:
+  extends: .google-oidc:auth
+  stage: test_stage_2
+  image:
+    name: $PYTHON_IMAGE_REGISTRY/hugging_face_classifier:$CI_COMMIT_SHORT_SHA
+    entrypoint: [""]
+  cache:
+    key: hf-models-cache-${CACHE_ROTATION}
+    paths:
+      - .hf_cache/
+  variables:
+    # Set Hugging Face cache directory
+    HF_HOME: ${CI_PROJECT_DIR}/.hf_cache
+    # Use reduced model list (2 smallest models) to speed up CI
+    REDUCE_TEST_HF_MODELS: "true"
+  before_script:
+    # First run the parent .google-oidc:auth before_script for GCS authentication
+    - !reference [.google-oidc:auth, before_script]
+    # Then create cache directory if it doesn't exist
+    - mkdir -p ${CI_PROJECT_DIR}/.hf_cache
+  script:
+    - export PYTEST_ARGS_OVERRIDE="tests/integration/"
+    - cd /app
+    # Make sure the HF_TOKEN is available for the tests
+    - export HF_TOKEN=$HF_TOKEN
+    - make test path=projects/hugging_face_classifier/
+  <<: *hugging_face_classifier_only_workflow
+  needs:
+    - job: generate_hf_cache_key
+    - job: hugging_face_classifier_test
+
+publish_hugging_face_classifier_image:
+  extends: .docker_template
+  stage: publish
+  script:
+    - docker pull $PYTHON_IMAGE_REGISTRY/hugging_face_classifier:$CI_COMMIT_SHORT_SHA
+    - docker tag $PYTHON_IMAGE_REGISTRY/hugging_face_classifier:$CI_COMMIT_SHORT_SHA $PYTHON_IMAGE_REGISTRY/hugging_face_classifier:stable
+    - docker push $PYTHON_IMAGE_REGISTRY/hugging_face_classifier:stable
+  needs:
+    - job: hugging_face_classifier_images_build
+      artifacts: true
+  <<: *hugging_face_classifier_only_workflow
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH

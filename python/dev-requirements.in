@@ -1,0 +1,6 @@
+pip-tools
+ruff
+mypy
+pytest
+pytest-cov
+pre-commit

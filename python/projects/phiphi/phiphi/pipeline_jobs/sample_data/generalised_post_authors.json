@@ -1,0 +1,110 @@
+[
+  {
+    "phoenix_platform_message_author_id": "id_1",
+    "pi_platform_message_author_id": "pi_id_1",
+    "pi_platform_message_author_name": "pi_author name 1",
+    "phoenix_processed_at": "2023-10-23T15:34:01Z",
+    "platform": "facebook",
+    "post_count": 123,
+    "comment_count": 45
+  },
+  {
+    "phoenix_platform_message_author_id": "id_2",
+    "pi_platform_message_author_id": "pi_id_2",
+    "pi_platform_message_author_name": "pi_author name 2",
+    "phoenix_processed_at": "2023-10-23T15:34:02Z",
+    "platform": "tiktok",
+    "post_count": 1,
+    "comment_count": 0
+  },
+  {
+    "phoenix_platform_message_author_id": "id_3",
+    "pi_platform_message_author_id": "pi_id_3",
+    "pi_platform_message_author_name": "pi_author name 3",
+    "phoenix_processed_at": "2023-10-23T15:34:03Z",
+    "platform": "facebook",
+    "post_count": 45,
+    "comment_count": 10
+  },
+  {
+    "phoenix_platform_message_author_id": "id_4",
+    "pi_platform_message_author_id": "pi_id_4",
+    "pi_platform_message_author_name": "pi_author name 4",
+    "phoenix_processed_at": "2023-10-23T15:34:04Z",
+    "platform": "tiktok",
+    "post_count": 200,
+    "comment_count": 30
+  },
+  {
+    "phoenix_platform_message_author_id": "id_5",
+    "pi_platform_message_author_id": "pi_id_5",
+    "pi_platform_message_author_name": "pi_author name 5",
+    "phoenix_processed_at": "2023-10-23T15:34:05Z",
+    "platform": "facebook",
+    "post_count": 75,
+    "comment_count": 12
+  },
+  {
+    "phoenix_platform_message_author_id": "id_6",
+    "pi_platform_message_author_id": "pi_id_6",
+    "pi_platform_message_author_name": "pi_author name 6",
+    "phoenix_processed_at": "2023-10-23T15:34:06Z",
+    "platform": "tiktok",
+    "post_count": 300,
+    "comment_count": 50
+  },
+  {
+    "phoenix_platform_message_author_id": "id_7",
+    "pi_platform_message_author_id": "pi_id_7",
+    "pi_platform_message_author_name": "pi_author name 7",
+    "phoenix_processed_at": "2023-10-23T15:34:07Z",
+    "platform": "facebook",
+    "post_count": 56,
+    "comment_count": 8
+  },
+  {
+    "phoenix_platform_message_author_id": "id_8",
+    "pi_platform_message_author_id": "pi_id_8",
+    "pi_platform_message_author_name": "pi_author name 8",
+    "phoenix_processed_at": "2023-10-23T15:34:08Z",
+    "platform": "tiktok",
+    "post_count": 92,
+    "comment_count": 15
+  },
+  {
+    "phoenix_platform_message_author_id": "id_9",
+    "pi_platform_message_author_id": "pi_id_9",
+    "pi_platform_message_author_name": "pi_author name 9",
+    "phoenix_processed_at": "2023-10-23T15:34:09Z",
+    "platform": "facebook",
+    "post_count": 102,
+    "comment_count": 27
+  },
+  {
+    "phoenix_platform_message_author_id": "id_10",
+    "pi_platform_message_author_id": "pi_id_10",
+    "pi_platform_message_author_name": "pi_author name 10",
+    "phoenix_processed_at": "2023-10-23T15:34:10Z",
+    "platform": "tiktok",
+    "post_count": 18,
+    "comment_count": 3
+  },
+  {
+    "phoenix_platform_message_author_id": "id_11",
+    "pi_platform_message_author_id": "pi_id_11",
+    "pi_platform_message_author_name": "pi_author name 11",
+    "phoenix_processed_at": "2023-10-23T15:34:11Z",
+    "platform": "facebook",
+    "post_count": 98,
+    "comment_count": 22
+  },
+  {
+    "phoenix_platform_message_author_id": "id_12",
+    "pi_platform_message_author_id": "pi_id_12",
+    "pi_platform_message_author_name": "pi_author name 12",
+    "phoenix_processed_at": "2023-10-23T15:34:12Z",
+    "platform": "tiktok",
+    "post_count": 67,
+    "comment_count": 9
+  }
+]

@@ -1,0 +1,16 @@
+
+{% extends "appbuilder/base.html" %}
+
+{% block navbar %}
+{% endblock %}
+
+{% block content %}
+<h2><center>401<center></h2>
+<h3><center>Not Authorized<center></h3>
+<p><center>Sorry, you are not authorized to view this page.<center></p>
+<p><center>Please try logging in an out again.<center></p>
+{% if login_url %}
+<p><center><a href="{{ login_url }}">Back to Login</a><center></p>
+{% endif %}
+<p><center>If you are still having problems contact your administrator.<center></p>
+{% endblock %}

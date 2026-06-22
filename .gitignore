@@ -1,0 +1,16 @@
+clusters/local_with_auth/secrets.yaml
+clusters/local/secrets.yaml
+clusters/dev/secrets.yaml
+
+.dev.env
+
+# Mock data when `USE_MOCK_BQ` is `True` for phiphi
+python/projects/phiphi/mock_bq_data/
+
+# IDE
+.idea/
+.vscode/
+*.code-workspace
+
+# System files
+*.DS_Store

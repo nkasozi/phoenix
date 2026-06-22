@@ -1,0 +1,27 @@
+x-phoenix-bind: &default-bind
+  type: bind
+  source: ../../
+  target: /app
+  consistency: cached
+
+services:
+  hugging_face:
+    image: "hugging_face_classifier"
+    user: "${HOST_UID:-root}:${HOST_GID:-root}"
+    build:
+      context: ../../
+      args:
+        PROJECT: hugging_face_classifier
+    volumes:
+      - *default-bind
+      - ${HF_CACHE_DIR:-~/.cache/huggingface}:/root/.cache/huggingface
+      - ~/.prefect:/app/.prefect
+      - $HOME/.config/gcloud:/gcp/config:ro
+    environment:
+      CLOUDSDK_CONFIG: /gcp/config
+      GOOGLE_APPLICATION_CREDENTIALS: /gcp/config/application_default_credentials.json
+      # Be careful with the GOOGLE_CLOUD_PROJECT as resources in this project will be created and used.
+      GOOGLE_CLOUD_PROJECT: ${GOOGLE_CLOUD_PROJECT}
+      HF_WORK_POOL: ${HF_WORK_POOL:-hugging_face_classifier}
+      HF_IMAGE: ${HF_IMAGE:-hugging_face_classifier}
+      HF_TOKEN: ${HF_TOKEN:-}

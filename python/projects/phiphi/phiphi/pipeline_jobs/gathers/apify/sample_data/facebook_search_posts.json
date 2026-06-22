@@ -1,0 +1,138 @@
+[
+  {
+    "post_id": "facebook_search_posts-postId1",
+    "url": "https://www.facebook.com/authorId1/posts/urlId1",
+    "message": "ONE MORE HELLO OR ONE LAST GOODBYE! \\ud83d",
+    "timestamp": 1728388135,
+    "comments_count": "15k",
+    "reactions_count": 560,
+    "reactions": {
+      "angry": 1,
+      "care": 39,
+      "haha": 2,
+      "like": "91m",
+      "love": 418,
+      "sad": 7,
+      "wow": 2
+    },
+    "author": {
+      "id": "facebook_search_posts-authorID1",
+      "name": "facebook_search_posts-authorName1",
+      "url": "https://www.facebook.com/authorId1",
+      "profile_picture_url": "https://scontent.xx.fbcdn.net/v/profile_picture_url1"
+    },
+    "image": null,
+    "video": null,
+    "album_preview": [
+      {
+        "image_file_uri": "https://scontent.xx.fbcdn.net/v/image_file_uri1",
+        "url": "https://www.facebook.com/photo.php?fbid=photoId1&set=a.albumId1&type=3"
+      },
+      {
+        "image_file_uri": "https://scontent.xx.fbcdn.net/v/image_file_uri2",
+        "url": "https://www.facebook.com/photo.php?fbid=photoId2&set=a.albumId2&type=3"
+      },
+      {
+        "image_file_uri": "https://scontent.xx.fbcdn.net/v/image_file_uri3",
+        "url": "https://www.facebook.com/photo.php?fbid=photoId3&set=a.albumId3&type=3"
+      },
+      {
+        "image_file_uri": "https://scontent.xx.fbcdn.net/v/image_file_uri4",
+        "url": "https://www.facebook.com/photo.php?fbid=photoId4&set=a.albumId4&type=3"
+      }
+    ],
+    "video_files": null,
+    "attached_post_url": null,
+    "type": "post"
+  },
+  {
+    "post_id": "facebook_search_posts-postId2",
+    "url": "https://www.facebook.com/authorId2/videos/urlId2",
+    "message": "One more hello or one last goodbye? \\n\\nWitness their new world.",
+    "timestamp": 1728387357,
+    "comments_count": 43,
+    "reactions_count": 837,
+    "reactions": {
+      "angry": 0,
+      "care": 27,
+      "haha": 0,
+      "like": 125,
+      "love": 675,
+      "sad": 4,
+      "wow": 6
+    },
+    "author": {
+      "id": "facebook_search_posts-authorID2",
+      "name": "facebook_search_posts-authorName2",
+      "url": "https://www.facebook.com/authorId2",
+      "profile_picture_url": "https://scontent.xx.fbcdn.net/v/profile_picture_url2"
+    },
+    "image": null,
+    "video": "https://www.facebook.com/authorId2/videos/urlId2/",
+    "album_preview": null,
+    "video_files": {
+      "video_sd_file": "https://video.xx.fbcdn.net/v/t42.1790-2/video_sd_file2.mp4",
+      "video_hd_file": "https://video.xx.fbcdn.net/v/t2/video_hd_file2.mp4"
+    },
+    "attached_post_url": null,
+    "type": "post"
+  },
+  {
+    "post_id": "facebook_search_posts-postId3",
+    "url": "https://www.facebook.com/authorId3/videos/urlId3",
+    "message": "test",
+    "timestamp": 1728385343,
+    "comments_count": 0,
+    "reactions_count": 15,
+    "reactions": {
+      "angry": 0,
+      "care": 0,
+      "haha": 0,
+      "like": 3,
+      "love": 12,
+      "sad": 0,
+      "wow": 0
+    },
+    "author": {
+      "id": "facebook_search_posts-authorID3",
+      "name": "facebook_search_posts-authorName3",
+      "url": null,
+      "profile_picture_url": "https://scontent.xx.fbcdn.net/v/profile_picture_url3"
+    },
+    "image": null,
+    "video": "https://www.facebook.com/authorId3/videos/urlId3",
+    "album_preview": null,
+    "video_files": {
+      "video_sd_file": "https://video.xx.fbcdn.net/v/t42.1790-2/video_sd_file3.mp4",
+      "video_hd_file": "https://video.xx.fbcdn.net/v/t2/video_hd_file3.mp4"
+    },
+    "attached_post_url": null,
+    "type": "post"
+  },
+  {
+    "post_id": "facebook_search_posts-postId4",
+    "url": "https://www.facebook.com/authorId4/videos/urlId4",
+    "message": "One more hello or one last goodbye? \\u2708\\ufe0f",
+    "timestamp": 1728387354,
+    "comments_count": 3,
+    "reactions_count": 190,
+    "author": {
+      "id": "facebook_search_posts-authorID4",
+      "name": "facebook_search_posts-authorName4",
+      "url": "https://www.facebook.com/authorId4",
+      "profile_picture_url": "https://scontent.xx.fbcdn.net/v/profile_picture_url4"
+    },
+    "image": null,
+    "video": "https://www.facebook.com/authorId4/videos/urlId4/",
+    "album_preview": null,
+    "video_files": {
+      "video_sd_file": "https://video.xx.fbcdn.net/v/t42.1790-2/video_sd_file4.mp4",
+      "video_hd_file": "https://video.xx.fbcdn.net/v/t2/video_hd_file4.mp4"
+    },
+    "attached_post_url": null,
+    "type": "post"
+  },
+  {
+    "message":"No results. Try with proxy"
+  }
+]

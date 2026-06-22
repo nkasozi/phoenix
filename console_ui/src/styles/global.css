@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.form-wrapper .mantine-Paper-root {
+	position: inherit !important;
+}
+
+.mantine-Switch-body {
+	justify-content: space-between;
+}
+
+input:checked + .mantine-Switch-track {
+	background-color: #40c057 !important;
+}
+
+input:checked ~ .mantine-Switch-labelWrapper .mantine-Switch-label {
+	color: #000 !important;
+}

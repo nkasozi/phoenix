@@ -1,0 +1,63 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hugging_face_classifier"
+version = "0.1.0"
+requires-python = ">=3.11"
+
+
+###############################3
+# WARNING THE MYPY CONFIGURATION IS OVERRIDDEN as there are a number of
+# problems with transformers
+#
+# disallow_untyped_defs and check_untyped_defs don't work for transformers and
+# cannot be overridden for a specific module
+################################
+[tool.mypy]
+python_version = "3.11"
+# enforce all functions need type hints
+# Unfortunately this doesn't work for transformers
+# disallow_untyped_defs = true
+# all imported defs must have type hinds
+disallow_any_unimported = true
+# my uses a cache to speed up checking
+incremental = true
+# mypy will error if a config is set but not necessary
+warn_unused_configs = true
+# mypy will error if ignore comment is used on a non-erroring line
+warn_unused_ignores = true
+# mypy check Any values returned from functions
+warn_return_any = true
+# mypy will check the body of defs even if they don't have type sig
+# Unfortunately this doesn't work for transformers
+# check_untyped_defs = true
+# mypy with error if an unnecessary cast is used
+warn_redundant_casts = true
+# setting default arg to None still requires `Optional`
+no_implicit_optional = true
+# mypy checks the use of None values
+strict_optional = true
+# mypy follows and checks imported modules, gives more coverage
+follow_imports = "normal"
+# mypy follows and checks imported modules even without __init__.py
+# WARN: this will still miss non-imported modules like test files with __init__.py
+namespace_packages = true
+# mypy prepends errors with the corresponding error code
+show_error_codes = true
+
+[[tool.mypy.overrides]]
+module = "*.tests.*"
+# remove enforce all functions need type hints within tests dir
+disallow_untyped_defs = false
+
+[[tool.mypy.overrides]]
+module = "ruamel"
+ignore_missing_imports = true
+
+# datasets repo is still working how how to do this:
+# https://github.com/huggingface/datasets/issues/7390
+[[tool.mypy.overrides]]
+module = "datasets"
+ignore_missing_imports = true

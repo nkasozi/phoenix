@@ -1,0 +1,130 @@
+base_host: "phoenix.local"
+base_schema: "https"
+ingress_cors:
+  enabled: true
+  allow_origin: "https://console.{{ .Values.base_host }}"
+use_local_insecure_auth: false
+phiphiImage:
+  repository: phiphi-dev-image
+  tag: latest
+api:
+  cors_origins: "https://console.{{ .Values.base_host }}"
+console:
+  enabled: true
+  # Default oauth2 cookie name
+  # Has to have cookie_httponly false
+  env_auth_cookie: "_oauth2_proxy"
+  dev_admin_email: "buildup@datavaluepeople"
+  user_info_cookie_name: "user"
+  api_url: "https://api.{{ .Values.base_host }}"
+  # Using the insecure auth for the console
+  env_auth_url: "https://oauth.{{ .Values.base_host }}/oauth2/auth"
+  # So there is no redirect for the local cluster if there is an error
+  env_login_url: "https://oauth.{{ .Values.base_host }}/oauth2/start"
+  env_logout_url: "https://oauth.{{ .Values.base_host }}/oauth2/sign_out"
+oauth2-proxy:
+  config:
+    configFile: |
+      # Settings for Auth0
+      provider="oidc"
+      provider_display_name="Auth0"
+      oidc_issuer_url="https://dev-2ii4bfcaymdes14b.uk.auth0.com/"
+      code_challenge_method="S256"
+      http_address="0.0.0.0:4180"
+      upstreams="file:///dev/null"
+      email_domains="*"
+      cookie_httponly=false
+      # Important that this machtes the domain being used for the cluster
+      cookie_domains=".phoenix.local"
+      whitelist_domains=["*.phoenix.local:*", "dev-2ii4bfcaymdes14b.uk.auth0.com"]
+      # email is needed as is not in default openid scrop
+      scope="openid email"
+      pass_access_token = true
+      pass_authorization_header = true
+      pass_user_headers = true
+      set_xauthrequest = true
+      cookie_samesite = "lax"
+      # To remove when secure version is used
+      show_debug_on_error = true
+      insecure_oidc_allow_unverified_email = true
+      ssl_insecure_skip_verify=true
+      cookie_secure="true"
+      # Claim containing user roles from Auth0
+      # Requires Auth0 Action to add roles to this custom claim
+      oidc_groups_claim="https://phoenix.local/roles"
+
+# Enable prefect server ingress with admin role restriction
+prefectServerIngress:
+  enabled: true
+  allowedRoles: "admin"
+superset:
+  enabled: true
+  # These secrets must be created before the first apply of the chart
+  init:
+    adminUser:
+      email: buildup@datavaluepeople.com
+  image:
+    repository: phoenix_superset
+    tag: latest
+  supersetNode:
+    # For debugging it can be useful to remove the Probe
+    # Uncomment to remove the probe
+    # livenessProbe: ""
+    # readinessProbe: ""
+    # startupProbe: ""
+    # This is for auto reload and debugging
+    command:
+      - "/bin/sh"
+      - "-c"
+      - ". {{ .Values.configMountPath }}/superset_bootstrap.sh; flask run --reload --debugger -p 8088 --host=0.0.0.0"
+  configOverrides:
+    general: |
+      APP_NAME = "Dashboard - Phoenix"
+
+      # This must be change in conjunction with the ingress auth-response-headers
+      AUTH_REMOTE_USER_ENV_VAR = "HTTP_X_AUTH_REQUEST_EMAIL"
+
+      # Throw error if got past the auth layer
+      LOGIN_REDIRECT_URL = False
+    # Override the default logging
+    logging: |
+      import logging
+      LOG_LEVEL = logging.DEBUG
+      FLASK_DEBUG = True
+      DEBUG = True
+      SILENCE_FAB = False
+  extraSecretEnv:
+    SUPERSET_SECRET_KEY: "this_is_an_in_secure_secret_key"
+
+######### WITH SELF SIGNED CERTIFICATES #########
+cert_issuer:
+ enabled: true
+ issuer_name: "selfsigned-issuer"
+ issuer_email: "buildup@datavaluepeople.com"
+cert-manager:
+  enabled: true
+
+prefect-worker:
+  enabled: true
+  worker:
+    apiConfig: "selfHostedServer"
+    config:
+      workPool: "main-work-pool"
+    selfHostedServerApiConfig:
+      apiUrl: "http://prefect-server.default.svc.cluster.local:4200/api"
+
+baseJobTemplate:
+  enabled: true
+
+prefect-server:
+  enabled: true
+
+prefectInit:
+  enabled: true
+  enable_health_check: true
+  reinitAllProjectConcurrencyLimits: true
+
+phoenix_hugging_face_classifier:
+  # Currently the phoenix_hugging_face_classifier chart is added as a seperate helm install
+  # in the local cluster to allow for easier development and testing.
+  enabled: false

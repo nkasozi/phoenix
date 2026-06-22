@@ -1,0 +1,14 @@
+# Development requirements - all projects need these.
+# Note: for `-r` option the path should be relative to this file.
+-r ../../dev-requirements.txt
+
+
+## # Third party deps
+--extra-index-url https://download.pytorch.org/whl/cpu
+# Fixing version to avoid dependency conflicts
+torch==2.6
+--extra-index-url https://download.pytorch.org/whl/cpu
+transformers[torch]
+
+# Add new requirements to requirements.shared.in so both are in CPU and GPU images
+-r requirements.shared.in

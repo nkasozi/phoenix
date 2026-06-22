@@ -1,0 +1,18 @@
+hfClassifierPrefectWorker:
+  enabled: true
+  worker:
+    apiConfig: "selfHostedServer"
+    selfHostedServerApiConfig:
+      # This uses the Prefect Server server that is set up in the dev cluster not
+      # The one for dev chart.
+      apiUrl: "http://prefect-server.phoenix-main.svc.cluster.local:4200/api"
+
+baseJobTemplate:
+  enabled: true
+
+prefectDeployments:
+  # This image is built in the Tiltfile
+  containerImage:
+    repository: "hugging-face-classifier-dev-image"
+  # Using the nvidia image to be able to check the Cuda is available
+  deploymentImage: "hugging-face-classifier-dev-nvidia-image"

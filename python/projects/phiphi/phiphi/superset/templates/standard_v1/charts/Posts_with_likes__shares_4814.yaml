@@ -1,0 +1,123 @@
+slice_name: Posts with likes & shares
+description: null
+certified_by: null
+certification_details: null
+viz_type: table
+params:
+  datasource: 245__table
+  viz_type: table
+  slice_id: 4814
+  query_mode: aggregate
+  groupby:
+  - expressionType: SQL
+    label: Post link
+    sqlExpression: post_link_pi
+    datasourceWarning: false
+  - expressionType: SQL
+    label: Post Text
+    sqlExpression: post_text_pi
+    datasourceWarning: false
+  - expressionType: SQL
+    label: Author Name
+    sqlExpression: post_author_name_pi
+    datasourceWarning: false
+  - post_class
+  temporal_columns_lookup:
+    post_date: true
+    post_datetime: true
+    comment_date: true
+    comment_datetime: true
+    phoenix_processed_at: true
+  metrics:
+  - aggregate: MAX
+    column:
+      advanced_data_type: null
+      certification_details: null
+      certified_by: null
+      column_name: post_share_count
+      description: null
+      expression: null
+      filterable: true
+      groupby: true
+      id: 1296
+      is_certified: false
+      is_dttm: false
+      python_date_format: null
+      type: INT64
+      type_generic: 0
+      verbose_name: null
+      warning_markdown: null
+    datasourceWarning: false
+    expressionType: SIMPLE
+    hasCustomLabel: true
+    label: Shares
+    optionName: metric_xabiihn81ld_v8sejfy736j
+    sqlExpression: null
+  - aggregate: MAX
+    column:
+      advanced_data_type: null
+      certification_details: null
+      certified_by: null
+      column_name: post_like_count
+      description: null
+      expression: null
+      filterable: true
+      groupby: true
+      id: 1294
+      is_certified: false
+      is_dttm: false
+      python_date_format: null
+      type: INT64
+      type_generic: 0
+      verbose_name: null
+      warning_markdown: null
+    datasourceWarning: false
+    expressionType: SIMPLE
+    hasCustomLabel: true
+    label: Likes
+    optionName: metric_54gqa2dnq03_127iyiepg7fg
+    sqlExpression: null
+  all_columns: []
+  percent_metrics: []
+  adhoc_filters:
+  - clause: WHERE
+    comparator: No filter
+    datasourceWarning: false
+    expressionType: SIMPLE
+    filterOptionName: filter_d0e6ub9nftt_by9ukigaat9
+    isExtra: false
+    isNew: false
+    operator: TEMPORAL_RANGE
+    sqlExpression: null
+    subject: comment_date
+  order_by_cols: []
+  server_pagination: true
+  server_page_length: 10
+  table_timestamp_format: smart_date
+  include_search: true
+  allow_render_html: true
+  show_cell_bars: true
+  color_pn: true
+  comparison_color_scheme: Green
+  conditional_formatting: []
+  comparison_type: values
+  extra_form_data: {}
+  dashboards:
+  - 336
+query_context: '{"datasource":{"id":245,"type":"table"},"force":false,"queries":[{"filters":[{"col":"comment_date","op":"TEMPORAL_RANGE","val":"No
+  filter"}],"extras":{"having":"","where":""},"applied_time_extras":{},"columns":[{"expressionType":"SQL","label":"Post
+  link","sqlExpression":"post_link_pi","datasourceWarning":false},{"expressionType":"SQL","label":"Post
+  Text","sqlExpression":"post_text_pi","datasourceWarning":false},{"expressionType":"SQL","label":"Author
+  Name","sqlExpression":"post_author_name_pi","datasourceWarning":false},"post_class"],"metrics":[{"aggregate":"MAX","column":{"advanced_data_type":null,"certification_details":null,"certified_by":null,"column_name":"post_share_count","description":null,"expression":null,"filterable":true,"groupby":true,"id":1296,"is_certified":false,"is_dttm":false,"python_date_format":null,"type":"INT64","type_generic":0,"verbose_name":null,"warning_markdown":null},"datasourceWarning":false,"expressionType":"SIMPLE","hasCustomLabel":true,"label":"Shares","optionName":"metric_xabiihn81ld_v8sejfy736j","sqlExpression":null},{"aggregate":"MAX","column":{"advanced_data_type":null,"certification_details":null,"certified_by":null,"column_name":"post_like_count","description":null,"expression":null,"filterable":true,"groupby":true,"id":1294,"is_certified":false,"is_dttm":false,"python_date_format":null,"type":"INT64","type_generic":0,"verbose_name":null,"warning_markdown":null},"datasourceWarning":false,"expressionType":"SIMPLE","hasCustomLabel":true,"label":"Likes","optionName":"metric_54gqa2dnq03_127iyiepg7fg","sqlExpression":null}],"orderby":[[{"aggregate":"MAX","column":{"advanced_data_type":null,"certification_details":null,"certified_by":null,"column_name":"post_share_count","description":null,"expression":null,"filterable":true,"groupby":true,"id":1296,"is_certified":false,"is_dttm":false,"python_date_format":null,"type":"INT64","type_generic":0,"verbose_name":null,"warning_markdown":null},"datasourceWarning":false,"expressionType":"SIMPLE","hasCustomLabel":true,"label":"Shares","optionName":"metric_xabiihn81ld_v8sejfy736j","sqlExpression":null},false]],"annotation_layers":[],"row_limit":10,"row_offset":0,"series_limit":0,"order_desc":true,"url_params":{},"custom_params":{},"custom_form_data":{},"post_processing":[],"time_offsets":[]},{"filters":[{"col":"comment_date","op":"TEMPORAL_RANGE","val":"No
+  filter"}],"extras":{"having":"","where":""},"applied_time_extras":{},"columns":[{"expressionType":"SQL","label":"Post
+  link","sqlExpression":"post_link_pi","datasourceWarning":false},{"expressionType":"SQL","label":"Post
+  Text","sqlExpression":"post_text_pi","datasourceWarning":false},{"expressionType":"SQL","label":"Author
+  Name","sqlExpression":"post_author_name_pi","datasourceWarning":false},"post_class"],"metrics":[{"aggregate":"MAX","column":{"advanced_data_type":null,"certification_details":null,"certified_by":null,"column_name":"post_share_count","description":null,"expression":null,"filterable":true,"groupby":true,"id":1296,"is_certified":false,"is_dttm":false,"python_date_format":null,"type":"INT64","type_generic":0,"verbose_name":null,"warning_markdown":null},"datasourceWarning":false,"expressionType":"SIMPLE","hasCustomLabel":true,"label":"Shares","optionName":"metric_xabiihn81ld_v8sejfy736j","sqlExpression":null},{"aggregate":"MAX","column":{"advanced_data_type":null,"certification_details":null,"certified_by":null,"column_name":"post_like_count","description":null,"expression":null,"filterable":true,"groupby":true,"id":1294,"is_certified":false,"is_dttm":false,"python_date_format":null,"type":"INT64","type_generic":0,"verbose_name":null,"warning_markdown":null},"datasourceWarning":false,"expressionType":"SIMPLE","hasCustomLabel":true,"label":"Likes","optionName":"metric_54gqa2dnq03_127iyiepg7fg","sqlExpression":null}],"orderby":[[{"aggregate":"MAX","column":{"advanced_data_type":null,"certification_details":null,"certified_by":null,"column_name":"post_share_count","description":null,"expression":null,"filterable":true,"groupby":true,"id":1296,"is_certified":false,"is_dttm":false,"python_date_format":null,"type":"INT64","type_generic":0,"verbose_name":null,"warning_markdown":null},"datasourceWarning":false,"expressionType":"SIMPLE","hasCustomLabel":true,"label":"Shares","optionName":"metric_xabiihn81ld_v8sejfy736j","sqlExpression":null},false]],"annotation_layers":[],"row_limit":0,"row_offset":0,"series_limit":0,"order_desc":true,"url_params":{},"custom_params":{},"custom_form_data":{},"post_processing":[],"time_offsets":[],"is_rowcount":true}],"form_data":{"datasource":"245__table","viz_type":"table","slice_id":4814,"query_mode":"aggregate","groupby":[{"expressionType":"SQL","label":"Post
+  link","sqlExpression":"post_link_pi","datasourceWarning":false},{"expressionType":"SQL","label":"Post
+  Text","sqlExpression":"post_text_pi","datasourceWarning":false},{"expressionType":"SQL","label":"Author
+  Name","sqlExpression":"post_author_name_pi","datasourceWarning":false},"post_class"],"temporal_columns_lookup":{"post_date":true,"post_datetime":true,"comment_date":true,"comment_datetime":true,"phoenix_processed_at":true},"metrics":[{"aggregate":"MAX","column":{"advanced_data_type":null,"certification_details":null,"certified_by":null,"column_name":"post_share_count","description":null,"expression":null,"filterable":true,"groupby":true,"id":1296,"is_certified":false,"is_dttm":false,"python_date_format":null,"type":"INT64","type_generic":0,"verbose_name":null,"warning_markdown":null},"datasourceWarning":false,"expressionType":"SIMPLE","hasCustomLabel":true,"label":"Shares","optionName":"metric_xabiihn81ld_v8sejfy736j","sqlExpression":null},{"aggregate":"MAX","column":{"advanced_data_type":null,"certification_details":null,"certified_by":null,"column_name":"post_like_count","description":null,"expression":null,"filterable":true,"groupby":true,"id":1294,"is_certified":false,"is_dttm":false,"python_date_format":null,"type":"INT64","type_generic":0,"verbose_name":null,"warning_markdown":null},"datasourceWarning":false,"expressionType":"SIMPLE","hasCustomLabel":true,"label":"Likes","optionName":"metric_54gqa2dnq03_127iyiepg7fg","sqlExpression":null}],"all_columns":[],"percent_metrics":[],"adhoc_filters":[{"clause":"WHERE","comparator":"No
+  filter","datasourceWarning":false,"expressionType":"SIMPLE","filterOptionName":"filter_d0e6ub9nftt_by9ukigaat9","isExtra":false,"isNew":false,"operator":"TEMPORAL_RANGE","sqlExpression":null,"subject":"comment_date"}],"order_by_cols":[],"server_pagination":true,"server_page_length":10,"table_timestamp_format":"smart_date","include_search":true,"allow_render_html":true,"show_cell_bars":true,"color_pn":true,"comparison_color_scheme":"Green","conditional_formatting":[],"comparison_type":"values","extra_form_data":{},"dashboards":[336],"force":false,"result_format":"json","result_type":"full"},"result_format":"json","result_type":"full"}'
+cache_timeout: null
+uuid: 02254d5e-65a6-4951-a9c6-2e5150ba6170
+version: 1.0.0
+dataset_uuid: dd3e9568-93f9-4cbd-8ec7-001ce0758de4
