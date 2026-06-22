@@ -4,7 +4,6 @@
 /node_modules
 /.pnp
 .pnp.js
-package-lock.json
 
 # testing
 /coverage
@@ -36,6 +35,5 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 .idea
-package-lock.json
 # Sentry Config File
 .env.sentry-build-plugin
