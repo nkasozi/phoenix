@@ -31,4 +31,4 @@ COPY --from=builder /app/environment.d.ts ./environment.d.ts
 
 EXPOSE 3000
 
-CMD ["npm", "run", "start"]
+CMD ["./node_modules/.bin/next", "start"]
