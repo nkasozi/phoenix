@@ -1,0 +1,105 @@
+name: deploy
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  attestations: write
+  contents: read
+  id-token: write
+  packages: read
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
+
+jobs:
+  # Pull infra config straight from the Pulumi stack at deploy time.
+  # Only two stable settings are needed in this app repo:
+  #   - var    PHOENIX_PULUMI_STACK   fully-qualified stack name
+  #   - secret PULUMI_ACCESS_TOKEN   read access to the Pulumi Cloud stack
+  resolve_infra:
+    runs-on: ubuntu-24.04
+    outputs:
+      deployment-mode: ${{ steps.resolve.outputs.deployment-mode }}
+      aws-region: ${{ steps.resolve.outputs.aws-region }}
+      aws-role-to-assume: ${{ steps.resolve.outputs.aws-role-to-assume }}
+      ecr-repository: ${{ steps.resolve.outputs.ecr-repository }}
+      ecs-cluster-name: ${{ steps.resolve.outputs.ecs-cluster-name }}
+      ecs-service-name: ${{ steps.resolve.outputs.ecs-service-name }}
+      task-family: ${{ steps.resolve.outputs.task-family }}
+      app-url: ${{ steps.resolve.outputs.app-url }}
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v5
+
+      - name: Install Pulumi CLI
+        run: |
+          set -euo pipefail
+          echo "[resolve] Installing Pulumi CLI..."
+          curl -fsSL https://get.pulumi.com | sh
+          echo "$HOME/.pulumi/bin" >> "$GITHUB_PATH"
+          echo "[resolve] OK - Pulumi CLI installed ($("$HOME/.pulumi/bin/pulumi" version))."
+
+      - name: Resolve infrastructure config from Pulumi stack
+        id: resolve
+        env:
+          PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
+          PHOENIX_PULUMI_STACK: ${{ vars.PHOENIX_PULUMI_STACK }}
+        run: bash scripts/resolve-infra-config.sh
+
+  validate_deployment_mode:
+    needs:
+      - resolve_infra
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Validate resolved deployment mode
+        env:
+          DEPLOYMENT_MODE: ${{ needs.resolve_infra.outputs.deployment-mode }}
+        run: |
+          set -euo pipefail
+
+          echo "[validate] Checking deployment mode '$DEPLOYMENT_MODE' (resolved from Pulumi)..."
+          case "$DEPLOYMENT_MODE" in
+            fargate)
+              echo "[validate] OK - deployment mode 'fargate' is supported. Proceeding to deploy."
+              ;;
+            *)
+              echo "[validate] ERROR - Unsupported deployment mode: '$DEPLOYMENT_MODE' (must be 'fargate')" >&2
+              exit 1
+              ;;
+          esac
+
+  deploy_fargate:
+    needs:
+      - resolve_infra
+      - validate_deployment_mode
+    if: ${{ needs.resolve_infra.outputs.deployment-mode == 'fargate' }}
+    uses: nkasozi/iac-cfa-pulumi/.github/workflows/deploy-fargate-service.yml@main
+    secrets: inherit
+    with:
+      aws-region: ${{ needs.resolve_infra.outputs.aws-region }}
+      aws-role-to-assume: ${{ needs.resolve_infra.outputs.aws-role-to-assume }}
+      build-context: console_ui
+      container-name: web
+      dockerfile-path: console_ui/Dockerfile
+      ecr-repository: ${{ needs.resolve_infra.outputs.ecr-repository }}
+      ecs-cluster-name: ${{ needs.resolve_infra.outputs.ecs-cluster-name }}
+      ecs-service-name: ${{ needs.resolve_infra.outputs.ecs-service-name }}
+      task-family: ${{ needs.resolve_infra.outputs.task-family }}
+
+  verify_health:
+    needs:
+      - resolve_infra
+      - deploy_fargate
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v5
+
+      - name: Verify public health endpoints
+        run: bash scripts/ci/verify-phoenix-health.sh
+        env:
+          APP_URL: ${{ needs.resolve_infra.outputs.app-url }}
