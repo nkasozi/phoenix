@@ -77,7 +77,7 @@ jobs:
       - resolve_infra
       - validate_deployment_mode
     if: ${{ needs.resolve_infra.outputs.deployment-mode == 'fargate' }}
-    uses: nkasozi/iac-cfa-pulumi/.github/workflows/deploy-fargate-service.yml@main
+    uses: ./.github/workflows/deploy-fargate-service.yml
     secrets: inherit
     with:
       aws-region: ${{ needs.resolve_infra.outputs.aws-region }}

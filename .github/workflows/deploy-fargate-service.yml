@@ -1,0 +1,201 @@
+name: deploy-fargate-service
+
+on:
+  workflow_call:
+    inputs:
+      aws-region:
+        required: false
+        type: string
+        default: eu-west-1
+      aws-role-to-assume:
+        required: false
+        type: string
+        default: ""
+      build-context:
+        required: false
+        type: string
+        default: .
+      container-name:
+        required: true
+        type: string
+      dockerfile-path:
+        required: false
+        type: string
+        default: Dockerfile
+      ecr-repository:
+        required: true
+        type: string
+      ecs-cluster-name:
+        required: true
+        type: string
+      ecs-service-name:
+        required: true
+        type: string
+      task-family:
+        required: true
+        type: string
+
+permissions:
+  attestations: write
+  contents: read
+  id-token: write
+  packages: read
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-24.04
+    concurrency:
+      group: deploy-${{ inputs.ecs-service-name }}
+      cancel-in-progress: false
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v5
+
+      - name: Report AWS role source
+        run: bash scripts/ci/report-aws-role-source.sh
+        env:
+          ROLE_FROM_INPUT: ${{ inputs.aws-role-to-assume }}
+          ROLE_FROM_VAR: ${{ vars.AWS_ROLE_TO_ASSUME }}
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v6
+        with:
+          aws-region: ${{ inputs.aws-region }}
+          # Prefer the live Pulumi output; keep the GitHub var fallback for older callers.
+          role-to-assume: ${{ inputs.aws-role-to-assume != '' && inputs.aws-role-to-assume || vars.AWS_ROLE_TO_ASSUME }}
+
+      - name: Scan workflows with zizmor
+        if: ${{ vars.SKIP_SUPPLY_CHAIN_STEPS != 'true' && vars.SKIP_ZIZMOR != 'true' }}
+        run: |
+          set -euo pipefail
+
+          echo "::group::Workflow security scan"
+          echo "[zizmor] Scanning repository workflows for common GitHub Actions security issues."
+          docker run --rm \
+            -v "$GITHUB_WORKSPACE:/repo" \
+            -w /repo \
+            ghcr.io/zizmorcore/zizmor:v1.25.2 \
+            --collect=workflows \
+            --no-progress \
+            --color never \
+            .github/workflows
+          echo "[zizmor] OK - workflow scan completed."
+          echo "::endgroup::"
+
+      - name: Skip zizmor notice
+        if: ${{ vars.SKIP_SUPPLY_CHAIN_STEPS == 'true' || vars.SKIP_ZIZMOR == 'true' }}
+        run: |
+          set -euo pipefail
+          echo "::group::Workflow security scan"
+          if [[ "${SKIP_SUPPLY_CHAIN_STEPS:-}" == "true" ]]; then
+            echo "[zizmor] SKIPPED - workflow scan because SKIP_SUPPLY_CHAIN_STEPS=true."
+          else
+            echo "[zizmor] SKIPPED - workflow scan because SKIP_ZIZMOR=true."
+          fi
+          echo "[zizmor] To enable this step, remove the skip variable or set it to 'false'."
+          echo "::endgroup::"
+        env:
+          SKIP_SUPPLY_CHAIN_STEPS: ${{ vars.SKIP_SUPPLY_CHAIN_STEPS }}
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v4
+
+      - name: Authenticate to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Set image tag
+        id: image-tag
+        run: bash scripts/ci/write-image-tag.sh
+
+      - name: Build and push image
+        id: build-image
+        uses: docker/build-push-action@v7
+        with:
+          context: ${{ inputs.build-context }}
+          file: ${{ inputs.dockerfile-path }}
+          provenance: false
+          push: true
+          tags: ${{ steps.login-ecr.outputs.registry }}/${{ inputs.ecr-repository }}:${{ steps.image-tag.outputs.tag }}
+
+      - name: Set image reference
+        id: image-ref
+        run: bash scripts/ci/write-image-ref.sh
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_REPOSITORY: ${{ inputs.ecr-repository }}
+          IMAGE_DIGEST: ${{ steps.build-image.outputs.digest }}
+
+      # Supply-chain checks fail the deploy before ECS receives a new task revision.
+      - name: Scan image
+        uses: aquasecurity/trivy-action@v0.36.0
+        with:
+          exit-code: '1'
+          ignore-unfixed: true
+          image-ref: ${{ steps.image-ref.outputs.image }}
+          severity: CRITICAL,HIGH
+
+      - name: Generate SBOM
+        uses: anchore/sbom-action@v0
+        with:
+          image: ${{ steps.image-ref.outputs.image }}
+          output-file: sbom.spdx.json
+          format: spdx-json
+
+      - name: Upload SBOM artifact
+        uses: actions/upload-artifact@v6
+        with:
+          name: sbom-${{ github.sha }}
+          path: sbom.spdx.json
+
+      - name: Install Cosign
+        uses: sigstore/cosign-installer@v3
+
+      - name: Sign image
+        run: cosign sign --yes "${{ steps.image-ref.outputs.image }}"
+
+      - name: Attest build provenance
+        uses: actions/attest-build-provenance@v1
+        with:
+          subject-name: ${{ steps.login-ecr.outputs.registry }}/${{ inputs.ecr-repository }}
+          subject-digest: ${{ steps.build-image.outputs.digest }}
+          push-to-registry: true
+
+      - name: Capture current task definition
+        id: current-task-definition
+        run: bash scripts/ci/capture-current-ecs-task.sh
+        env:
+          ECS_CLUSTER_NAME: ${{ inputs.ecs-cluster-name }}
+          ECS_SERVICE_NAME: ${{ inputs.ecs-service-name }}
+
+      - name: Register next task definition revision
+        id: next-task-definition
+        run: bash scripts/ci/register-next-ecs-task.sh
+        env:
+          CONTAINER_NAME: ${{ inputs.container-name }}
+          IMAGE_REF: ${{ steps.image-ref.outputs.image }}
+          TASK_FAMILY: ${{ inputs.task-family }}
+
+      - name: Update ECS service to new revision
+        run: bash scripts/ci/update-ecs-service.sh
+        env:
+          ECS_CLUSTER_NAME: ${{ inputs.ecs-cluster-name }}
+          ECS_SERVICE_NAME: ${{ inputs.ecs-service-name }}
+          TASK_DEFINITION_ARN: ${{ steps.next-task-definition.outputs.arn }}
+
+      - name: Wait for ECS service stability
+        run: bash scripts/ci/wait-for-ecs-service.sh
+        env:
+          ECS_CLUSTER_NAME: ${{ inputs.ecs-cluster-name }}
+          ECS_SERVICE_NAME: ${{ inputs.ecs-service-name }}
+
+      - name: Roll back ECS service
+        if: failure()
+        run: bash scripts/ci/rollback-ecs-service.sh
+        env:
+          ECS_CLUSTER_NAME: ${{ inputs.ecs-cluster-name }}
+          ECS_SERVICE_NAME: ${{ inputs.ecs-service-name }}
+          TASK_DEFINITION_ARN: ${{ steps.current-task-definition.outputs.arn }}
