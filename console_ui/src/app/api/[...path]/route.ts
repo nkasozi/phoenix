@@ -65,15 +65,27 @@ async function proxyRequest(request: NextRequest, context: RouteContext) {
 		);
 	}
 
-	const upstreamResponse = await fetch(targetUrl, {
-		body:
-			request.method === "GET" || request.method === "HEAD"
-				? undefined
-				: await request.arrayBuffer(),
-		headers: buildRequestHeaders(request),
-		method: request.method,
-		redirect: "follow",
-	});
+	const requestBody =
+		request.method === "GET" || request.method === "HEAD"
+			? undefined
+			: Buffer.from(await request.arrayBuffer());
+
+	const proxyFetch = async (url: URL) =>
+		fetch(url, {
+			body: requestBody,
+			headers: buildRequestHeaders(request),
+			method: request.method,
+			redirect: "manual",
+		});
+
+	let upstreamResponse = await proxyFetch(targetUrl);
+	const redirectLocation = upstreamResponse.headers.get("location");
+	if (
+		(redirectLocation?.length ?? 0) > 0 &&
+		(upstreamResponse.status === 307 || upstreamResponse.status === 308)
+	) {
+		upstreamResponse = await proxyFetch(new URL(redirectLocation!, targetUrl));
+	}
 
 	return new Response(upstreamResponse.body, {
 		headers: buildResponseHeaders(upstreamResponse.headers),
