@@ -42,10 +42,20 @@ print_target_health() {
   fi
 
   echo "[ecs] Target group health:"
-  aws elbv2 describe-target-health \
+  local target_health_output
+  if ! target_health_output="$(aws elbv2 describe-target-health \
     --target-group-arn "$target_group_arn" \
     --query 'TargetHealthDescriptions[*].{target:Target.Id,port:Target.Port,state:TargetHealth.State,reason:TargetHealth.Reason,description:TargetHealth.Description}' \
-    --output table || true
+    --output table 2>&1)"; then
+    if echo "$target_health_output" | grep -q "AccessDenied"; then
+      echo "[ecs] SKIPPED - target health unavailable; deploy role needs elasticloadbalancing:DescribeTargetHealth."
+    else
+      echo "[ecs] WARNING - target health lookup failed."
+      echo "$target_health_output"
+    fi
+    return
+  fi
+  echo "$target_health_output"
 }
 
 print_recent_task_details() {
@@ -175,9 +185,44 @@ is_initial_stopped_task_id() {
   return 1
 }
 
+count_running_primary_tasks() {
+  local primary_task_definition="$1"
+  local active_task_arns
+  active_task_arns=($(aws ecs list-tasks \
+    --cluster "$ECS_CLUSTER_NAME" \
+    --service-name "$ECS_SERVICE_NAME" \
+    --desired-status RUNNING \
+    --max-results 10 \
+    --query 'taskArns' \
+    --output text 2>/dev/null || true))
+
+  if ((${#active_task_arns[@]} == 0)); then
+    echo 0
+    return
+  fi
+
+  local active_task_ids=()
+  local task_arn
+  for task_arn in "${active_task_arns[@]}"; do
+    active_task_ids+=("${task_arn##*/}")
+  done
+
+  aws ecs describe-tasks \
+    --cluster "$ECS_CLUSTER_NAME" \
+    --tasks "${active_task_ids[@]}" \
+    --output json 2>/dev/null \
+    | jq -r --arg task_definition "$primary_task_definition" '[.tasks[]? | select(.taskDefinitionArn == $task_definition and .lastStatus == "RUNNING")] | length'
+}
+
 detect_new_primary_stopped_task_failure() {
   local primary_task_definition="$1"
   if [[ -z "$primary_task_definition" || "$primary_task_definition" == "None" ]]; then
+    return 1
+  fi
+
+  local running_primary_count
+  running_primary_count="$(count_running_primary_tasks "$primary_task_definition")"
+  if [[ "$running_primary_count" =~ ^[0-9]+$ ]] && ((running_primary_count > 0)); then
     return 1
   fi
 
