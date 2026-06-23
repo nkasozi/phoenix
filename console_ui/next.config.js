@@ -1,16 +1,5 @@
 module.exports = {
 	transpilePackages: ["@refinedev/nextjs-router"],
-	async rewrites() {
-		if (!process.env.PHOENIX_INTERNAL_API_URL) {
-			return [];
-		}
-		return [
-			{
-				source: "/api/:path*",
-				destination: `${process.env.PHOENIX_INTERNAL_API_URL}/:path*`,
-			},
-		];
-	},
 	webpack(config) {
 		config.module.rules.push({
 			test: /\.svg$/,

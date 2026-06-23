@@ -109,6 +109,9 @@ jobs:
       aws-role-to-assume: ${{ needs.resolve_infra.outputs.aws-role-to-assume }}
       build-args: |
         NEXT_PUBLIC_API_URL=/api
+        NEXT_PUBLIC_ENV=dev
+        NEXT_PUBLIC_DEV_ADMIN_EMAIL=admin@admin.com
+        NEXT_PUBLIC_USER_INFO_COOKIE_NAME=user
         PHOENIX_INTERNAL_API_URL=${{ needs.resolve_infra.outputs.api-url }}
       build-context: console_ui
       container-name: web
