@@ -149,6 +149,65 @@ print_recent_container_logs() {
   done
 }
 
+collect_stopped_task_ids() {
+  local stopped_task_arns
+  stopped_task_arns=($(aws ecs list-tasks \
+    --cluster "$ECS_CLUSTER_NAME" \
+    --service-name "$ECS_SERVICE_NAME" \
+    --desired-status STOPPED \
+    --max-results 10 \
+    --query 'taskArns' \
+    --output text 2>/dev/null || true))
+
+  for task_arn in "${stopped_task_arns[@]}"; do
+    echo "${task_arn##*/}"
+  done
+}
+
+is_initial_stopped_task_id() {
+  local candidate_task_id="$1"
+  local initial_task_id
+  for initial_task_id in "${initial_stopped_task_ids[@]}"; do
+    if [[ "$candidate_task_id" == "$initial_task_id" ]]; then
+      return 0
+    fi
+  done
+  return 1
+}
+
+detect_new_primary_stopped_task_failure() {
+  local primary_task_definition="$1"
+  if [[ -z "$primary_task_definition" || "$primary_task_definition" == "None" ]]; then
+    return 1
+  fi
+
+  local stopped_task_ids=()
+  local task_id
+  while IFS= read -r task_id; do
+    if [[ -n "$task_id" ]] && ! is_initial_stopped_task_id "$task_id"; then
+      stopped_task_ids+=("$task_id")
+    fi
+  done < <(collect_stopped_task_ids)
+
+  if ((${#stopped_task_ids[@]} == 0)); then
+    return 1
+  fi
+
+  aws ecs describe-tasks \
+    --cluster "$ECS_CLUSTER_NAME" \
+    --tasks "${stopped_task_ids[@]}" \
+    --output json 2>/dev/null \
+    | jq -e --arg task_definition "$primary_task_definition" '
+      any(.tasks[]?;
+        .taskDefinitionArn == $task_definition
+        and (
+          .stopCode == "EssentialContainerExited"
+          or any(.containers[]?; (.exitCode // 0) != 0)
+        )
+      )
+    ' >/dev/null
+}
+
 print_failure_details() {
   echo "[ecs] Recent ECS service events:"
   "${describe_query_base[@]}" --query 'services[0].events[:10].[createdAt,message]' --output table || true
@@ -165,6 +224,12 @@ echo "[ecs] Waiting for service stability: $ECS_SERVICE_NAME"
 echo "[ecs] Timeout: ${timeout_seconds}s | Poll interval: ${poll_interval_seconds}s"
 
 start_epoch="$(date +%s)"
+initial_stopped_task_ids=()
+while IFS= read -r task_id; do
+  if [[ -n "$task_id" ]]; then
+    initial_stopped_task_ids+=("$task_id")
+  fi
+done < <(collect_stopped_task_ids)
 
 while true; do
   now_epoch="$(date +%s)"
@@ -177,6 +242,7 @@ while true; do
   deployment_count="$("${describe_query_base[@]}" --query 'length(services[0].deployments)' --output text)"
   primary_rollout="$("${describe_query_base[@]}" --query "services[0].deployments[?status=='PRIMARY'].rolloutState | [0]" --output text)"
   primary_failed_tasks="$("${describe_query_base[@]}" --query "services[0].deployments[?status=='PRIMARY'].failedTasks | [0]" --output text)"
+  primary_task_definition="$("${describe_query_base[@]}" --query "services[0].deployments[?status=='PRIMARY'].taskDefinition | [0]" --output text)"
 
   echo "[ecs] elapsed=${elapsed}s status=${status} desired=${desired} running=${running} pending=${pending} deployments=${deployment_count} primary_rollout=${primary_rollout} failed_tasks=${primary_failed_tasks}"
 
@@ -187,6 +253,12 @@ while true; do
 
   if [[ "$primary_rollout" == "FAILED" ]] || { [[ "$primary_failed_tasks" =~ ^[0-9]+$ ]] && (( primary_failed_tasks >= 3 )); }; then
     echo "[ecs] ERROR - deployment reached a terminal failure state; stopping the wait immediately."
+    print_failure_details
+    exit 1
+  fi
+
+  if detect_new_primary_stopped_task_failure "$primary_task_definition"; then
+    echo "[ecs] ERROR - a new task for the current deployment stopped after an essential container failure; failing fast."
     print_failure_details
     exit 1
   fi

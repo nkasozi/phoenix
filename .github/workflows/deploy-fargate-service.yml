@@ -213,7 +213,7 @@ jobs:
           ECS_CLUSTER_NAME: ${{ inputs.ecs-cluster-name }}
           ECS_SERVICE_NAME: ${{ inputs.ecs-service-name }}
           ECS_STABILITY_TIMEOUT_SECONDS: "1200"
-          ECS_STABILITY_POLL_INTERVAL_SECONDS: "15"
+          ECS_STABILITY_POLL_INTERVAL_SECONDS: "10"
 
       - name: Roll back ECS service
         if: failure()
@@ -224,4 +224,4 @@ jobs:
           ECS_SERVICE_NAME: ${{ inputs.ecs-service-name }}
           TASK_DEFINITION_ARN: ${{ steps.current-task-definition.outputs.arn }}
           ECS_ROLLBACK_TIMEOUT_SECONDS: "900"
-          ECS_ROLLBACK_POLL_INTERVAL_SECONDS: "15"
+          ECS_ROLLBACK_POLL_INTERVAL_SECONDS: "10"
