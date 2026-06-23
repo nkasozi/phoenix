@@ -17,6 +17,14 @@ def test_get_root(client: TestClient) -> None:
     assert content["title"] == config.settings.TITLE
 
 
+def test_get_health(client: TestClient) -> None:
+    """Get the explicit health endpoint used by load balancers."""
+    resp = client.get("/health")
+    content = resp.json()
+    assert resp.status_code == 200
+    assert content["title"] == config.settings.TITLE
+
+
 def test_db(session: sqlalchemy.orm.Session, recreate_tables) -> None:
     """Check the db connection."""
     select_query = sqlalchemy.select(1)

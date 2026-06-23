@@ -16,6 +16,7 @@ class HealthCheck(pydantic.BaseModel):
 
 
 @router.get("/", response_model=HealthCheck, tags=["status"])
+@router.get("/health", response_model=HealthCheck, tags=["status"])
 async def health_check() -> HealthCheck:
     """HealthCheck."""
     return HealthCheck(

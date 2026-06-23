@@ -33,10 +33,122 @@ print_failure_hints() {
   fi
 }
 
+print_target_health() {
+  local target_group_arn
+  target_group_arn="$("${describe_query_base[@]}" --query 'services[0].loadBalancers[0].targetGroupArn' --output text 2>/dev/null || true)"
+  if [[ -z "$target_group_arn" || "$target_group_arn" == "None" ]]; then
+    echo "[ecs] No target group found on the service."
+    return
+  fi
+
+  echo "[ecs] Target group health:"
+  aws elbv2 describe-target-health \
+    --target-group-arn "$target_group_arn" \
+    --query 'TargetHealthDescriptions[*].{target:Target.Id,port:Target.Port,state:TargetHealth.State,reason:TargetHealth.Reason,description:TargetHealth.Description}' \
+    --output table || true
+}
+
+print_recent_task_details() {
+  local stopped_task_arns
+  stopped_task_arns=($(aws ecs list-tasks \
+    --cluster "$ECS_CLUSTER_NAME" \
+    --service-name "$ECS_SERVICE_NAME" \
+    --desired-status STOPPED \
+    --max-results 10 \
+    --query 'taskArns' \
+    --output text 2>/dev/null || true))
+
+  if ((${#stopped_task_arns[@]} > 0)); then
+    echo "[ecs] Recent stopped task details:"
+    aws ecs describe-tasks \
+      --cluster "$ECS_CLUSTER_NAME" \
+      --tasks "${stopped_task_arns[@]}" \
+      --query 'tasks[*].{task:taskArn,stoppedAt:stoppedAt,stopCode:stopCode,stoppedReason:stoppedReason,containers:containers[*].{name:name,lastStatus:lastStatus,exitCode:exitCode,reason:reason}}' \
+      --output json || true
+  else
+    echo "[ecs] No stopped tasks found for this service."
+  fi
+
+  local active_task_arns
+  active_task_arns=($(aws ecs list-tasks \
+    --cluster "$ECS_CLUSTER_NAME" \
+    --service-name "$ECS_SERVICE_NAME" \
+    --desired-status RUNNING \
+    --max-results 10 \
+    --query 'taskArns' \
+    --output text 2>/dev/null || true))
+
+  if ((${#active_task_arns[@]} > 0)); then
+    echo "[ecs] Active task details:"
+    aws ecs describe-tasks \
+      --cluster "$ECS_CLUSTER_NAME" \
+      --tasks "${active_task_arns[@]}" \
+      --query 'tasks[*].{task:taskArn,lastStatus:lastStatus,healthStatus:healthStatus,containers:containers[*].{name:name,lastStatus:lastStatus,healthStatus:healthStatus,reason:reason}}' \
+      --output json || true
+  fi
+}
+
+print_task_definition_logging() {
+  local task_definition_arn
+  task_definition_arn="$("${describe_query_base[@]}" --query "services[0].deployments[?status=='PRIMARY'].taskDefinition | [0]" --output text 2>/dev/null || true)"
+  if [[ -z "$task_definition_arn" || "$task_definition_arn" == "None" ]]; then
+    echo "[ecs] No PRIMARY task definition found."
+    return
+  fi
+
+  echo "[ecs] PRIMARY task definition logging config:"
+  aws ecs describe-task-definition \
+    --task-definition "$task_definition_arn" \
+    --query 'taskDefinition.containerDefinitions[*].{name:name,logGroup:logConfiguration.options."awslogs-group",streamPrefix:logConfiguration.options."awslogs-stream-prefix"}' \
+    --output table || true
+}
+
+print_recent_container_logs() {
+  local task_definition_arn
+  task_definition_arn="$("${describe_query_base[@]}" --query "services[0].deployments[?status=='PRIMARY'].taskDefinition | [0]" --output text 2>/dev/null || true)"
+  if [[ -z "$task_definition_arn" || "$task_definition_arn" == "None" ]]; then
+    return
+  fi
+
+  local log_groups
+  log_groups=($(aws ecs describe-task-definition \
+    --task-definition "$task_definition_arn" \
+    --query 'taskDefinition.containerDefinitions[*].logConfiguration.options."awslogs-group"' \
+    --output text 2>/dev/null || true))
+
+  for log_group in "${log_groups[@]}"; do
+    if [[ -z "$log_group" || "$log_group" == "None" ]]; then
+      continue
+    fi
+    echo "[ecs] Recent CloudWatch logs from $log_group:"
+    local log_streams
+    log_streams=($(aws logs describe-log-streams \
+      --log-group-name "$log_group" \
+      --order-by LastEventTime \
+      --descending \
+      --max-items 2 \
+      --query 'logStreams[*].logStreamName' \
+      --output text 2>/dev/null || true))
+    for log_stream in "${log_streams[@]}"; do
+      echo "[ecs] Log stream: $log_stream"
+      aws logs get-log-events \
+        --log-group-name "$log_group" \
+        --log-stream-name "$log_stream" \
+        --limit 20 \
+        --query 'events[*].[timestamp,message]' \
+        --output table || true
+    done
+  done
+}
+
 print_failure_details() {
   echo "[ecs] Recent ECS service events:"
   "${describe_query_base[@]}" --query 'services[0].events[:10].[createdAt,message]' --output table || true
   print_failure_hints
+  print_target_health
+  print_recent_task_details
+  print_task_definition_logging
+  print_recent_container_logs
   echo "[ecs] Final service snapshot:"
   "${describe_query_base[@]}" --query 'services[0].{status:status,desired:desiredCount,running:runningCount,pending:pendingCount,deployments:deployments[*].{status:status,rollout:rolloutState,reason:rolloutStateReason,desired:desiredCount,running:runningCount,pending:pendingCount,failed:failedTasks}}' --output json || true
 }
