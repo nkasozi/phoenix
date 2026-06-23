@@ -1,6 +1,6 @@
 import { NextRequest } from "next/server";
 
-const HOP_BY_HOP_HEADERS = new Set([
+const HOP_BY_HOP_HEADERS = [
 	"connection",
 	"content-encoding",
 	"content-length",
@@ -12,7 +12,7 @@ const HOP_BY_HOP_HEADERS = new Set([
 	"trailer",
 	"transfer-encoding",
 	"upgrade",
-]);
+] as const;
 
 type RouteContext = {
 	params: {

@@ -148,6 +148,10 @@ print_recent_container_logs() {
       --query 'logStreams[*].logStreamName' \
       --output text 2>/dev/null || true))
     for log_stream in "${log_streams[@]}"; do
+      if [[ -z "$log_stream" || "$log_stream" == "None" ]]; then
+        echo "[ecs] No recent log stream found in $log_group."
+        continue
+      fi
       echo "[ecs] Log stream: $log_stream"
       aws logs get-log-events \
         --log-group-name "$log_group" \
