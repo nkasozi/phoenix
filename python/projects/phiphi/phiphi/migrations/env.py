@@ -8,6 +8,7 @@ from sqlalchemy import engine_from_config, pool
 # Please add the models you want to use in the migrations to all_platform_models.py
 from phiphi import all_platform_models
 from phiphi import config as phiphi_config
+from phiphi.migrations.alembic_config import escape_configparser_interpolation
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
@@ -18,7 +19,10 @@ config = context.config
 if config.config_file_name is not None:
     fileConfig(config.config_file_name)
 
-config.set_main_option("sqlalchemy.url", str(phiphi_config.settings.SQLALCHEMY_DATABASE_URI))
+config.set_main_option(
+    "sqlalchemy.url",
+    escape_configparser_interpolation(str(phiphi_config.settings.SQLALCHEMY_DATABASE_URI)),
+)
 
 # add your model's MetaData object here
 # for 'autogenerate' support

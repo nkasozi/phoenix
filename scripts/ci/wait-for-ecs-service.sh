@@ -59,10 +59,14 @@ print_recent_task_details() {
     --output text 2>/dev/null || true))
 
   if ((${#stopped_task_arns[@]} > 0)); then
+    local stopped_task_ids=()
+    for task_arn in "${stopped_task_arns[@]}"; do
+      stopped_task_ids+=("${task_arn##*/}")
+    done
     echo "[ecs] Recent stopped task details:"
     aws ecs describe-tasks \
       --cluster "$ECS_CLUSTER_NAME" \
-      --tasks "${stopped_task_arns[@]}" \
+      --tasks "${stopped_task_ids[@]}" \
       --query 'tasks[*].{task:taskArn,stoppedAt:stoppedAt,stopCode:stopCode,stoppedReason:stoppedReason,containers:containers[*].{name:name,lastStatus:lastStatus,exitCode:exitCode,reason:reason}}' \
       --output json || true
   else
@@ -79,10 +83,14 @@ print_recent_task_details() {
     --output text 2>/dev/null || true))
 
   if ((${#active_task_arns[@]} > 0)); then
+    local active_task_ids=()
+    for task_arn in "${active_task_arns[@]}"; do
+      active_task_ids+=("${task_arn##*/}")
+    done
     echo "[ecs] Active task details:"
     aws ecs describe-tasks \
       --cluster "$ECS_CLUSTER_NAME" \
-      --tasks "${active_task_arns[@]}" \
+      --tasks "${active_task_ids[@]}" \
       --query 'tasks[*].{task:taskArn,lastStatus:lastStatus,healthStatus:healthStatus,containers:containers[*].{name:name,lastStatus:lastStatus,healthStatus:healthStatus,reason:reason}}' \
       --output json || true
   fi
